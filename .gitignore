@@ -1,3 +1,16 @@
+# Quarto build (use docs/ for Pages)
+_site/
+.quarto/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS / logs
+.DS_Store
+Thumbs.db
+*.log
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
