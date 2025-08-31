@@ -4,6 +4,7 @@ project:
 
 website:
   title: "Data Science Project"
+  site-url: "https://taso5789.github.io/ds-project-portfolio/"
   navbar:
     collapse-below: xl 
     left:
@@ -37,9 +38,7 @@ website:
 
 format:
   html:
-    theme:
-      - cosmo
-      - brand
+    theme: cosmo
     css: styles.css
     toc: true
 
