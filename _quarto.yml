@@ -5,27 +5,35 @@ project:
 website:
   title: "Data Science Project"
   navbar:
+    collapse-below: xl 
     left:
       - text: "Introduction"
         href: index.qmd
       - text: "Data Preparation and Exploratory Data Analysis (DataPrep/EDA)"
         href: data_prep.qmd
-      - text: "Clustering"
-        href: clustering.qmd
-      - text: "Principal Component Analysis (PCA)"
-        href: pca.qmd
-      - text: "Naive Bayes"
-        href: naive_bayes.qmd
-      - text: "Decision Trees"
-        href: decision_trees.qmd
-      - text: "Support Vector Machine (SVM)"
-        href: svm.qmd
-      - text: "Regression"
-        href: regression.qmd
-      - text: "Neural Network (NN)"
-        href: nn.qmd
+      - text: "Models/Methods"
+        menu:
+        - text: "Clustering"
+          href: clustering.qmd
+        - text: "Principal Component Analysis (PCA)"
+          href: pca.qmd
+        - text: "Naive Bayes"
+          href: naive_bayes.qmd
+        - text: "Decision Trees"
+          href: decision_trees.qmd
+        - text: "Support Vector Machine (SVM)"
+          href: svm.qmd
+        - text: "Regression"
+          href: regression.qmd
+        - text: "Neural Network (NN)"
+          href: nn.qmd
       - text: "Conclusions"
         href: conclusions.qmd
+    right:
+      - icon: github
+        href: https://github.com/taso5789/ds-project-portfolio
+      - icon: linkedin
+        href: https://www.linkedin.com/in/taihei-sone-586102253/
 
 format:
   html:
