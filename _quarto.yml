@@ -1,0 +1,39 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Data Science Project"
+  navbar:
+    left:
+      - text: "Introduction"
+        href: index.qmd
+      - text: "Data Preparation and Exploratory Data Analysis (DataPrep/EDA)"
+        href: data_prep.qmd
+      - text: "Clustering"
+        href: clustering.qmd
+      - text: "Principal Component Analysis (PCA)"
+        href: pca.qmd
+      - text: "Naive Bayes"
+        href: naive_bayes.qmd
+      - text: "Decision Trees"
+        href: decision_trees.qmd
+      - text: "Support Vector Machine (SVM)"
+        href: svm.qmd
+      - text: "Regression"
+        href: regression.qmd
+      - text: "Neural Network (NN)"
+        href: nn.qmd
+      - text: "Conclusions"
+        href: conclusions.qmd
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true
+
+
+
