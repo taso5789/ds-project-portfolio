@@ -2,9 +2,79 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Data Science Project",
+    "title": "RESEARCH THEME",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\nWelcome\nHello World!"
+    "text": "Welcome\n\nThis website presents the process and results of analyses related to the research theme of xxx. You can browse the sections of interest from the tabs above.\n\n\n\nAbout Me\n\n\n\n\n\nThe author of this website, Taihei Sone, received the B.S. degree in Engineering from the University of Tokyo, Tokyo, Japan, in 2017, and the M.S. degree in Engineering from the University of Tokyo in 2019, where he was awarded the Department Chair’s Award for Outstanding Academic Achievement. Since 2024, he has been pursuing the M.S. degree in Data Science at the University of Colorado Boulder, Boulder, CO, USA. His research interests include machine learning, large-scale data systems, and artificial intelligence applications in economics.\nYou can also find him on  and ."
+  },
+  {
+    "objectID": "10_conclusions.html",
+    "href": "10_conclusions.html",
+    "title": "Conclusions",
+    "section": "",
+    "text": "xxx\nxxx\nxxx\nxxx\nxxx"
+  },
+  {
+    "objectID": "08_regression.html",
+    "href": "08_regression.html",
+    "title": "Regression",
+    "section": "",
+    "text": "Overview\n\nxxx\n\n\n\nData\n\nxxx\n\n\n\nCode\n\nxxx\n\n\n\nResults\n\nxxx"
+  },
+  {
+    "objectID": "06_decision_trees.html",
+    "href": "06_decision_trees.html",
+    "title": "Decision Trees",
+    "section": "",
+    "text": "Overview\n\nxxx\n\n\n\nData\n\nxxx\n\n\n\nCode\n\nxxx\n\n\n\nResults\n\nxxx"
+  },
+  {
+    "objectID": "04_pca.html",
+    "href": "04_pca.html",
+    "title": "Principal Component Analysis (PCA)",
+    "section": "",
+    "text": "Overview\n\nxxx\n\n\n\nData\n\nxxx\n\n\n\nCode\n\nxxx\n\n\n\nResults\n\nxxx"
+  },
+  {
+    "objectID": "02_data_prep.html",
+    "href": "02_data_prep.html",
+    "title": "Data Preparation and Exploratory Data Analysis (DataPrep/EDA)",
+    "section": "",
+    "text": "xxx"
+  },
+  {
+    "objectID": "01_introduction.html",
+    "href": "01_introduction.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "xxx\nxxx\nxxx\nxxx\nxxx"
+  },
+  {
+    "objectID": "03_clustering.html",
+    "href": "03_clustering.html",
+    "title": "Clustering",
+    "section": "",
+    "text": "Overview\n\nxxx\n\n\n\nData\n\nxxx\n\n\n\nCode\n\nxxx\n\n\n\nResults\n\nxxx"
+  },
+  {
+    "objectID": "05_naive_bayes.html",
+    "href": "05_naive_bayes.html",
+    "title": "Naive Bayes",
+    "section": "",
+    "text": "Overview\n\nxxx\n\n\n\nData\n\nxxx\n\n\n\nCode\n\nxxx\n\n\n\nResults\n\nxxx"
+  },
+  {
+    "objectID": "07_svm.html",
+    "href": "07_svm.html",
+    "title": "Support Vector Machine (SVM)",
+    "section": "",
+    "text": "Overview\n\nxxx\n\n\n\nData\n\nxxx\n\n\n\nCode\n\nxxx\n\n\n\nResults\n\nxxx"
+  },
+  {
+    "objectID": "09_nn.html",
+    "href": "09_nn.html",
+    "title": "Neural Network (NN)",
+    "section": "",
+    "text": "Overview\n\nxxx\n\n\n\nData\n\nxxx\n\n\n\nCode\n\nxxx\n\n\n\nResults\n\nxxx"
   },
   {
     "objectID": "about.html",

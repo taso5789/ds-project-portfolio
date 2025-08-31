@@ -1,0 +1,19 @@
+---
+title: "Principal Component Analysis (PCA)"
+---
+
+# Overview
+
+- xxx
+
+# Data
+
+- xxx
+
+# Code
+
+- xxx
+
+# Results
+
+- xxx

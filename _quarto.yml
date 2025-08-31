@@ -1,35 +1,37 @@
 project:
   type: website
   output-dir: docs
+  resources:
+    - images/**
 
 website:
   title: "Data Science Project"
   site-url: "https://taso5789.github.io/ds-project-portfolio/"
   navbar:
-    collapse-below: xl 
+    # collapse-below: xl 
     left:
       - text: "Introduction"
-        href: index.qmd
+        href: 01_introduction.qmd
       - text: "Data Preparation and Exploratory Data Analysis (DataPrep/EDA)"
-        href: data_prep.qmd
+        href: 02_data_prep.qmd
       - text: "Models/Methods"
         menu:
         - text: "Clustering"
-          href: clustering.qmd
+          href: 03_clustering.qmd
         - text: "Principal Component Analysis (PCA)"
-          href: pca.qmd
+          href: 04_pca.qmd
         - text: "Naive Bayes"
-          href: naive_bayes.qmd
+          href: 05_naive_bayes.qmd
         - text: "Decision Trees"
-          href: decision_trees.qmd
+          href: 06_decision_trees.qmd
         - text: "Support Vector Machine (SVM)"
-          href: svm.qmd
+          href: 07_svm.qmd
         - text: "Regression"
-          href: regression.qmd
+          href: 08_regression.qmd
         - text: "Neural Network (NN)"
-          href: nn.qmd
+          href: 09_nn.qmd
       - text: "Conclusions"
-        href: conclusions.qmd
+        href: 10_conclusions.qmd
     right:
       - icon: github
         href: https://github.com/taso5789/ds-project-portfolio

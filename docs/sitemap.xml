@@ -2,7 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://taso5789.github.io/ds-project-portfolio/index.html</loc>
-    <lastmod>2025-08-31T22:20:07.799Z</lastmod>
+    <lastmod>2025-08-31T23:39:40.178Z</lastmod>
+  </url>
+  <url>
+    <loc>https://taso5789.github.io/ds-project-portfolio/10_conclusions.html</loc>
+    <lastmod>2025-08-31T23:09:24.343Z</lastmod>
+  </url>
+  <url>
+    <loc>https://taso5789.github.io/ds-project-portfolio/08_regression.html</loc>
+    <lastmod>2025-08-31T23:05:36.014Z</lastmod>
+  </url>
+  <url>
+    <loc>https://taso5789.github.io/ds-project-portfolio/06_decision_trees.html</loc>
+    <lastmod>2025-08-31T23:04:41.469Z</lastmod>
+  </url>
+  <url>
+    <loc>https://taso5789.github.io/ds-project-portfolio/04_pca.html</loc>
+    <lastmod>2025-08-31T23:03:53.656Z</lastmod>
+  </url>
+  <url>
+    <loc>https://taso5789.github.io/ds-project-portfolio/02_data_prep.html</loc>
+    <lastmod>2025-08-31T23:00:42.986Z</lastmod>
+  </url>
+  <url>
+    <loc>https://taso5789.github.io/ds-project-portfolio/01_introduction.html</loc>
+    <lastmod>2025-08-31T23:00:35.780Z</lastmod>
+  </url>
+  <url>
+    <loc>https://taso5789.github.io/ds-project-portfolio/03_clustering.html</loc>
+    <lastmod>2025-08-31T23:02:10.182Z</lastmod>
+  </url>
+  <url>
+    <loc>https://taso5789.github.io/ds-project-portfolio/05_naive_bayes.html</loc>
+    <lastmod>2025-08-31T23:04:17.777Z</lastmod>
+  </url>
+  <url>
+    <loc>https://taso5789.github.io/ds-project-portfolio/07_svm.html</loc>
+    <lastmod>2025-08-31T23:05:12.314Z</lastmod>
+  </url>
+  <url>
+    <loc>https://taso5789.github.io/ds-project-portfolio/09_nn.html</loc>
+    <lastmod>2025-08-31T23:05:59.512Z</lastmod>
   </url>
   <url>
     <loc>https://taso5789.github.io/ds-project-portfolio/about.html</loc>
