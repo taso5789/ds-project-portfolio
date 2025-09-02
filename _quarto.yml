@@ -20,7 +20,7 @@ website:
           href: 03_clustering.qmd
         - text: "Principal Component Analysis (PCA)"
           href: 04_pca.qmd
-        - text: "Naive Bayes"
+        - text: "Naïve Bayes"
           href: 05_naive_bayes.qmd
         - text: "Decision Trees"
           href: 06_decision_trees.qmd
