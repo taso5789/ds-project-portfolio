@@ -1,17 +1,18 @@
 ---
-title: "RESEARCH THEME"
+title: "The Dynamics Between Inflation and Unemployment: Empirical Evidence from U.S. Macroeconomic Data"
 page-title: false 
 format:
   html:
     toc: false
     title-block-banner: false
+    css: styles.css
 ---
 
 
 # Welcome
 
 ::: {.justify}
-- This website presents the process and results of analyses related to the research theme of **xxx**. You can browse the sections of interest from the tabs above.
+- This website presents the process and results of analyses related to the research theme of **The Dynamics Between Inflation and Unemployment: Empirical Evidence from U.S. Macroeconomic Data**. You can browse the sections of interest from the tabs above.
 :::
 
 # About Me 

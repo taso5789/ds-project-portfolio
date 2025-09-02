@@ -10,3 +10,7 @@
 .justify {
   text-align: justify;
 }
+
+.quarto-title h1.title {
+  text-align: justify;
+}
