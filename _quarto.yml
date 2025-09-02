@@ -12,9 +12,9 @@ website:
     left:
       - text: "Introduction"
         href: 01_introduction.qmd
-      - text: "Data Preparation and Exploratory Data Analysis (DataPrep/EDA)"
+      - text: "DataPrep/EDA"
         href: 02_data_prep.qmd
-      - text: "Models/Methods"
+      - text: "Model/Method"
         menu:
         - text: "Clustering"
           href: 03_clustering.qmd
