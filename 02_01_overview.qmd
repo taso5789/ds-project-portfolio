@@ -3,6 +3,12 @@ title: "Overview"
 ---
 
 ::: {.justify}
+Notes: For the code used in this chapter (DataPrep/EDA), please refer [here](https://github.com/taso5789/ds-project-portfolio/blob/main/code/1_DataPrep_EDA.ipynb). This chapter uses the data available as of September 7, 2025.
+:::
+
+# Data
+
+::: {.justify}
 - In order to address the 10 Research Questions presented in [Introduction](01_introduction.qmd) and thereby achieve the objectives of this study, the data series listed in the @tbl-sources were collected. The table shows the category, frequency, data source, and retrieval method for each variable. In the Frequency column, "D," "W," "M," and "Q" indicate daily, weekly, monthly, and quarterly, respectively. By clicking the hyperlink attached to each data source in the Source column, you can access the corresponding data source.
 
   - An example of a URL GET request with `SERIES_ID`, `API_KEY`, and `YYYY-MM-DD` when using the FRED API is as follows:

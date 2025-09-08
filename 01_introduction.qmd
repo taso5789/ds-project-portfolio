@@ -2,7 +2,9 @@
 title: "Introduction"
 ---
 
+::: {.justify}
 Notes: All images displayed on this page are free-use materials, unless otherwise indicated by a specific credit.
+:::
 
 # Backgrounds
 
