@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>DataPrep/EDA – Data Science Project</title>
+<title>Data Gathering and Data Cleaning – Data Science Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -96,10 +96,25 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./01_introduction.html"> 
 <span class="menu-text">Introduction</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="./02_data_prep.html" aria-current="page"> 
-<span class="menu-text">DataPrep/EDA</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-dataprepeda" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">DataPrep/EDA</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-dataprepeda">    
+        <li>
+    <a class="dropdown-item" href="./02_01_overview.html">
+ <span class="dropdown-text">Overview</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./02_02_data_gathering_and_cleaning.html">
+ <span class="dropdown-text">Data Gathering and Data Cleaning</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02_03_data_visualization.html">
+ <span class="dropdown-text">Data Visualization</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-modelmethod" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Model/Method</span>
@@ -162,15 +177,67 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#inflation" id="toc-inflation" class="nav-link active" data-scroll-target="#inflation">Inflation</a>
+  <ul class="collapse">
+  <li><a href="#core-pce" id="toc-core-pce" class="nav-link" data-scroll-target="#core-pce">Core PCE</a></li>
+  </ul></li>
+  <li><a href="#unemployment" id="toc-unemployment" class="nav-link" data-scroll-target="#unemployment">Unemployment</a>
+  <ul class="collapse">
+  <li><a href="#unemployment-rate" id="toc-unemployment-rate" class="nav-link" data-scroll-target="#unemployment-rate">Unemployment Rate</a></li>
+  <li><a href="#noncyclical-rate-of-unemployment" id="toc-noncyclical-rate-of-unemployment" class="nav-link" data-scroll-target="#noncyclical-rate-of-unemployment">Noncyclical Rate of Unemployment</a></li>
+  </ul></li>
+  <li><a href="#business-cycles-and-policy-regimes" id="toc-business-cycles-and-policy-regimes" class="nav-link" data-scroll-target="#business-cycles-and-policy-regimes">Business Cycles and Policy Regimes</a>
+  <ul class="collapse">
+  <li><a href="#recession-indicators" id="toc-recession-indicators" class="nav-link" data-scroll-target="#recession-indicators">Recession Indicators</a></li>
+  <li><a href="#zero-lower-bound-dummy" id="toc-zero-lower-bound-dummy" class="nav-link" data-scroll-target="#zero-lower-bound-dummy">Zero Lower Bound dummy</a></li>
+  <li><a href="#covid-19-period-dummy" id="toc-covid-19-period-dummy" class="nav-link" data-scroll-target="#covid-19-period-dummy">COVID-19 Period dummy</a></li>
+  </ul></li>
+  <li><a href="#demand" id="toc-demand" class="nav-link" data-scroll-target="#demand">Demand</a>
+  <ul class="collapse">
+  <li><a href="#real-gdp" id="toc-real-gdp" class="nav-link" data-scroll-target="#real-gdp">Real GDP</a></li>
+  <li><a href="#real-potential-gdp" id="toc-real-potential-gdp" class="nav-link" data-scroll-target="#real-potential-gdp">Real Potential GDP</a></li>
+  <li><a href="#industrial-production" id="toc-industrial-production" class="nav-link" data-scroll-target="#industrial-production">Industrial Production</a></li>
+  <li><a href="#retail-sales" id="toc-retail-sales" class="nav-link" data-scroll-target="#retail-sales">Retail Sales</a></li>
+  </ul></li>
+  <li><a href="#supply" id="toc-supply" class="nav-link" data-scroll-target="#supply">Supply</a>
+  <ul class="collapse">
+  <li><a href="#crude-oil-prices" id="toc-crude-oil-prices" class="nav-link" data-scroll-target="#crude-oil-prices">Crude Oil Prices</a></li>
+  <li><a href="#import-price-index" id="toc-import-price-index" class="nav-link" data-scroll-target="#import-price-index">Import Price Index</a></li>
+  <li><a href="#labor-productivity" id="toc-labor-productivity" class="nav-link" data-scroll-target="#labor-productivity">Labor Productivity</a></li>
+  </ul></li>
+  <li><a href="#labor-markets" id="toc-labor-markets" class="nav-link" data-scroll-target="#labor-markets">Labor Markets</a>
+  <ul class="collapse">
+  <li><a href="#average-hourly-earnings" id="toc-average-hourly-earnings" class="nav-link" data-scroll-target="#average-hourly-earnings">Average Hourly Earnings</a></li>
+  <li><a href="#labor-force-participation-rate" id="toc-labor-force-participation-rate" class="nav-link" data-scroll-target="#labor-force-participation-rate">Labor Force Participation Rate</a></li>
+  <li><a href="#job-openings" id="toc-job-openings" class="nav-link" data-scroll-target="#job-openings">Job Openings</a></li>
+  </ul></li>
+  <li><a href="#monetary-policy" id="toc-monetary-policy" class="nav-link" data-scroll-target="#monetary-policy">Monetary Policy</a>
+  <ul class="collapse">
+  <li><a href="#federal-funds-effective-rate" id="toc-federal-funds-effective-rate" class="nav-link" data-scroll-target="#federal-funds-effective-rate">Federal Funds Effective Rate</a></li>
+  <li><a href="#money-suppley-m2" id="toc-money-suppley-m2" class="nav-link" data-scroll-target="#money-suppley-m2">Money Suppley (M2)</a></li>
+  <li><a href="#total-assets-of-federal-reserve" id="toc-total-assets-of-federal-reserve" class="nav-link" data-scroll-target="#total-assets-of-federal-reserve">Total Assets of Federal Reserve</a></li>
+  </ul></li>
+  <li><a href="#inflation-expectations" id="toc-inflation-expectations" class="nav-link" data-scroll-target="#inflation-expectations">Inflation Expectations</a>
+  <ul class="collapse">
+  <li><a href="#year-breakeven-inflation-rate" id="toc-year-breakeven-inflation-rate" class="nav-link" data-scroll-target="#year-breakeven-inflation-rate">5-Year Breakeven Inflation Rate</a></li>
+  <li><a href="#year-breakeven-inflation-rate-1" id="toc-year-breakeven-inflation-rate-1" class="nav-link" data-scroll-target="#year-breakeven-inflation-rate-1">10-Year Breakeven Inflation Rate</a></li>
+  <li><a href="#year-and-5-year-expected-changes-in-inflation-rates" id="toc-year-and-5-year-expected-changes-in-inflation-rates" class="nav-link" data-scroll-target="#year-and-5-year-expected-changes-in-inflation-rates">1-Year and 5-Year Expected Changes in Inflation Rates</a></li>
+  </ul></li>
+  <li><a href="#merged-cleaned-data" id="toc-merged-cleaned-data" class="nav-link" data-scroll-target="#merged-cleaned-data">Merged Cleaned Data</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">DataPrep/EDA</h1>
+<h1 class="title">Data Gathering and Data Cleaning</h1>
 </div>
 
 
@@ -187,11 +254,285 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="inflation" class="level1">
+<h1>Inflation</h1>
+<section id="core-pce" class="level2">
+<h2 class="anchored" data-anchor-id="core-pce">Core PCE</h2>
+<div class="justify">
 <ul>
-<li>xxx</li>
+<li>The raw data are monthly data starting from January 1959, indexed so that the average for 2017 equals 100. The cleaned data consist of <code>PCEPILFE_YoY</code>, which represents the year-over-year percentage change of the raw data, and <code>PCEPILFE_MoM</code>, which represents the month-over-month annualized percentage change of the raw data.</li>
 </ul>
+</div>
+<div class="text-center">
+<p><img src="results/1_DatPrep_EDA/corePCE.jpg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</section>
+</section>
+<section id="unemployment" class="level1">
+<h1>Unemployment</h1>
+<section id="unemployment-rate" class="level2">
+<h2 class="anchored" data-anchor-id="unemployment-rate">Unemployment Rate</h2>
+<div class="justify">
+<ul>
+<li>The raw data are monthly data starting from January 1948, expressed in percent. The cleaned data use these values directly; therefore, the two represent the same data.</li>
+</ul>
+</div>
+<div class="text-center">
+<p><img src="results/1_DatPrep_EDA/UNRATE.jpg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</section>
+<section id="noncyclical-rate-of-unemployment" class="level2">
+<h2 class="anchored" data-anchor-id="noncyclical-rate-of-unemployment">Noncyclical Rate of Unemployment</h2>
+<div class="justify">
+<ul>
+<li>The raw data are quarterly series starting from the first quarter of 1949, expressed in percent. The cleaned data convert them into monthly series using spline interpolation.</li>
+</ul>
+</div>
+<div class="text-center">
+<p><img src="results/1_DatPrep_EDA/NROU.jpg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</section>
+</section>
+<section id="business-cycles-and-policy-regimes" class="level1">
+<h1>Business Cycles and Policy Regimes</h1>
+<section id="recession-indicators" class="level2">
+<h2 class="anchored" data-anchor-id="recession-indicators">Recession Indicators</h2>
+<div class="justify">
+<ul>
+<li>The raw data are a monthly binary series starting from December 1854. A value of 1 is a recessionary period, while a value of 0 is an expansionary period. The cleaned data use these values directly; therefore, the two represent the same data.</li>
+</ul>
+</div>
+<div class="text-center">
+<p><img src="results/1_DatPrep_EDA/USREC.jpg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</section>
+<section id="zero-lower-bound-dummy" class="level2">
+<h2 class="anchored" data-anchor-id="zero-lower-bound-dummy">Zero Lower Bound dummy</h2>
+<div class="justify">
+<ul>
+<li>The raw data are the Federal Funds Effective Rate, provided as monthly series starting from July 1954, expressed in percent. The cleaned data are monthly series that take the value of 1 when the raw data are 0.25 percent or less, and 0 otherwise.</li>
+</ul>
+</div>
+<div class="text-center">
+<p><img src="results/1_DatPrep_EDA/ZLB.jpg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</section>
+<section id="covid-19-period-dummy" class="level2">
+<h2 class="anchored" data-anchor-id="covid-19-period-dummy">COVID-19 Period dummy</h2>
+<div class="justify">
+<ul>
+<li>This data is a monthly binary series that takes the value of 1 from April 2020 to March 2021, and 0 otherwise. The data period is conservatively set from January 1800 to December 2099. No external raw data were obtained or used.</li>
+</ul>
+</div>
+<div class="text-center">
+<p><img src="results/1_DatPrep_EDA/COVID.jpg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</section>
+</section>
+<section id="demand" class="level1">
+<h1>Demand</h1>
+<section id="real-gdp" class="level2">
+<h2 class="anchored" data-anchor-id="real-gdp">Real GDP</h2>
+<div class="justify">
+<ul>
+<li>The raw data are quarterly data starting from the first quarter of 1947, expressed in billions of chained 2017 dollars. The cleaned data are converted into monthly series by first expressing the quarter-to-quarter changes at an annualized rate in percent and then applying spline interpolation.</li>
+</ul>
+</div>
+<div class="text-center">
+<p><img src="results/1_DatPrep_EDA/GDPC1.jpg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</section>
+<section id="real-potential-gdp" class="level2">
+<h2 class="anchored" data-anchor-id="real-potential-gdp">Real Potential GDP</h2>
+<div class="justify">
+<ul>
+<li>The raw data are quarterly data starting from the first quarter of 1949, expressed in billions of chained 2017 dollars. The cleaned data are converted into monthly series by first expressing the quarter-to-quarter changes at an annualized rate in percent and then applying spline interpolation.</li>
+</ul>
+</div>
+<div class="text-center">
+<p><img src="results/1_DatPrep_EDA/GDPPOT.jpg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</section>
+<section id="industrial-production" class="level2">
+<h2 class="anchored" data-anchor-id="industrial-production">Industrial Production</h2>
+<div class="justify">
+<ul>
+<li>The raw data are monthly data starting from January 1919, expressed as an index with the 2017 average set to 100. The cleaned data are monthly series showing the month-over-month changes at an annualized rate in percent.</li>
+</ul>
+</div>
+<div class="text-center">
+<p><img src="results/1_DatPrep_EDA/INDPRO.jpg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</section>
+<section id="retail-sales" class="level2">
+<h2 class="anchored" data-anchor-id="retail-sales">Retail Sales</h2>
+<div class="justify">
+<ul>
+<li>The raw data are monthly data starting from January 1992, expressed in millions of dollars. The cleaned data are monthly series showing the month-over-month changes at an annualized rate in percent.</li>
+</ul>
+</div>
+<div class="text-center">
+<p><img src="results/1_DatPrep_EDA/RSAFS.jpg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</section>
+</section>
+<section id="supply" class="level1">
+<h1>Supply</h1>
+<section id="crude-oil-prices" class="level2">
+<h2 class="anchored" data-anchor-id="crude-oil-prices">Crude Oil Prices</h2>
+<div class="justify">
+<ul>
+<li>The raw data are monthly data starting from January 1986, expressed in dollars per barrel. The cleaned data are monthly series showing the year-over-year changes in percent.</li>
+</ul>
+</div>
+<div class="text-center">
+<p><img src="results/1_DatPrep_EDA/MCOILWTICO.jpg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</section>
+<section id="import-price-index" class="level2">
+<h2 class="anchored" data-anchor-id="import-price-index">Import Price Index</h2>
+<div class="justify">
+<ul>
+<li>The raw data are monthly data starting from September 1982, expressed as an index with the 2000 average set to 100. The cleaned data are monthly series showing the year-over-year changes in percent, calculated using the portion of the data that is continuously available from December 1988 onward.</li>
+</ul>
+</div>
+<div class="text-center">
+<p><img src="results/1_DatPrep_EDA/IR.jpg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</section>
+<section id="labor-productivity" class="level2">
+<h2 class="anchored" data-anchor-id="labor-productivity">Labor Productivity</h2>
+<div class="justify">
+<ul>
+<li>The raw data are quarterly series starting from the first quarter of 1947, expressed as an index with the 2017 average set to 100. The cleaned data are series converted into monthly frequency by first expressing the quarter-to-quarter changes at an annualized rate in percent and then applying spline interpolation.</li>
+</ul>
+</div>
+<div class="text-center">
+<p><img src="results/1_DatPrep_EDA/OPHNFB.jpg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</section>
+</section>
+<section id="labor-markets" class="level1">
+<h1>Labor Markets</h1>
+<section id="average-hourly-earnings" class="level2">
+<h2 class="anchored" data-anchor-id="average-hourly-earnings">Average Hourly Earnings</h2>
+<div class="justify">
+<ul>
+<li>The raw data are monthly series starting from March 2006, expressed in dollars per hour. The cleaned data are monthly series showing the month-over-month changes at an annualized rate in percent.</li>
+</ul>
+</div>
+<div class="text-center">
+<p><img src="results/1_DatPrep_EDA/CES0500000003.jpg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</section>
+<section id="labor-force-participation-rate" class="level2">
+<h2 class="anchored" data-anchor-id="labor-force-participation-rate">Labor Force Participation Rate</h2>
+<div class="justify">
+<ul>
+<li>The raw data are monthly series starting from January 1948, expressed in percent. The cleaned data use these values directly; therefore, the two represent the same data.</li>
+</ul>
+</div>
+<div class="text-center">
+<p><img src="results/1_DatPrep_EDA/CIVPART.jpg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</section>
+<section id="job-openings" class="level2">
+<h2 class="anchored" data-anchor-id="job-openings">Job Openings</h2>
+<div class="justify">
+<ul>
+<li>The raw data are monthly series starting from December 2000, expressed in level in thousands. The cleaned data are monthly series showing the month-over-month changes at an annualized rate in percent.</li>
+</ul>
+</div>
+<div class="text-center">
+<p><img src="results/1_DatPrep_EDA/JTSJOL.jpg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</section>
+</section>
+<section id="monetary-policy" class="level1">
+<h1>Monetary Policy</h1>
+<section id="federal-funds-effective-rate" class="level2">
+<h2 class="anchored" data-anchor-id="federal-funds-effective-rate">Federal Funds Effective Rate</h2>
+<div class="justify">
+<ul>
+<li>The raw data are monthly series starting from July 1954, expressed in percent. The cleaned data use these values directly; therefore, the two represent the same data.</li>
+</ul>
+</div>
+<div class="text-center">
+<p><img src="results/1_DatPrep_EDA/FEDFUNDS.jpg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</section>
+<section id="money-suppley-m2" class="level2">
+<h2 class="anchored" data-anchor-id="money-suppley-m2">Money Suppley (M2)</h2>
+<div class="justify">
+<ul>
+<li>The raw data are monthly series starting from January 1959, expressed in billions of dollars. The cleaned data are monthly series showing the month-over-month changes at an annualized rate in percent.</li>
+</ul>
+</div>
+<div class="text-center">
+<p><img src="results/1_DatPrep_EDA/M2SL.jpg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</section>
+<section id="total-assets-of-federal-reserve" class="level2">
+<h2 class="anchored" data-anchor-id="total-assets-of-federal-reserve">Total Assets of Federal Reserve</h2>
+<div class="justify">
+<ul>
+<li>The raw data are weekly series starting from December 18, 2002, expressed in millions of U.S. dollars. The cleaned data are monthly series showing the year-over-year changes in the monthly averages, expressed in percent.</li>
+</ul>
+</div>
+<div class="text-center">
+<p><img src="results/1_DatPrep_EDA/WALCL.jpg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</section>
+</section>
+<section id="inflation-expectations" class="level1">
+<h1>Inflation Expectations</h1>
+<section id="year-breakeven-inflation-rate" class="level2">
+<h2 class="anchored" data-anchor-id="year-breakeven-inflation-rate">5-Year Breakeven Inflation Rate</h2>
+<div class="justify">
+<ul>
+<li>The raw data are daily series starting from January 2, 2003, expressed in percent. The cleaned data are series of their monthly averages.</li>
+</ul>
+</div>
+<div class="text-center">
+<p><img src="results/1_DatPrep_EDA/T5YIE.jpg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</section>
+<section id="year-breakeven-inflation-rate-1" class="level2">
+<h2 class="anchored" data-anchor-id="year-breakeven-inflation-rate-1">10-Year Breakeven Inflation Rate</h2>
+<div class="justify">
+<ul>
+<li>The raw data are daily series starting from January 2, 2003, expressed in percent. The cleaned data are series of their monthly averages.</li>
+</ul>
+</div>
+<div class="text-center">
+<p><img src="results/1_DatPrep_EDA/T10YIE.jpg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</section>
+<section id="year-and-5-year-expected-changes-in-inflation-rates" class="level2">
+<h2 class="anchored" data-anchor-id="year-and-5-year-expected-changes-in-inflation-rates">1-Year and 5-Year Expected Changes in Inflation Rates</h2>
+<div class="justify">
+<ul>
+<li>The raw data are monthly series starting from January 1978, expressed in percent. The cleaned data extract the portion from April 1990 onward, for which continuous monthly data are available.</li>
+</ul>
+</div>
+<div class="text-center">
+<p><img src="results/1_DatPrep_EDA/PXMD.jpg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</section>
+</section>
+<section id="merged-cleaned-data" class="level1">
+<h1>Merged Cleaned Data</h1>
+<div class="justify">
+<ul>
+<li>The following shows the data frame obtained by performing an inner join of all the above data. For clarity, the data frame is transposed here.</li>
+</ul>
+</div>
+<div class="text-center">
+<p><img src="results/1_DatPrep_EDA/merged_cleaned_data.jpg" class="img-fluid" style="width:90.0%"></p>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

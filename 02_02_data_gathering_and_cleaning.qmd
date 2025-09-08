@@ -1,0 +1,250 @@
+---
+title: "Data Gathering and Data Cleaning"
+---
+
+# Inflation
+
+## Core PCE
+
+::: {.justify}
+- The raw data are monthly data starting from January 1959, indexed so that the average for 2017 equals 100. The cleaned data consist of `PCEPILFE_YoY`, which represents the year-over-year percentage change of the raw data, and `PCEPILFE_MoM`, which represents the month-over-month annualized percentage change of the raw data.
+:::
+
+::: {.text-center}
+![](results/1_DatPrep_EDA/corePCE.jpg){width=90%}
+:::
+
+# Unemployment
+
+## Unemployment Rate
+
+::: {.justify}
+- The raw data are monthly data starting from January 1948, expressed in percent. The cleaned data use these values directly; therefore, the two represent the same data.
+:::
+
+::: {.text-center}
+![](results/1_DatPrep_EDA/UNRATE.jpg){width=90%}
+:::
+
+
+## Noncyclical Rate of Unemployment
+::: {.justify}
+- The raw data are quarterly series starting from the first quarter of 1949, expressed in percent. The cleaned data convert them into monthly series using spline interpolation.
+::: 
+
+::: {.text-center}
+![](results/1_DatPrep_EDA/NROU.jpg){width=90%}
+:::
+
+# Business Cycles and Policy Regimes
+
+## Recession Indicators
+
+::: {.justify}
+- The raw data are a monthly binary series starting from December 1854. A value of 1 is a recessionary period, while a value of 0 is an expansionary period. The cleaned data use these values directly; therefore, the two represent the same data.
+::: 
+
+::: {.text-center}
+![](results/1_DatPrep_EDA/USREC.jpg){width=90%}
+:::
+
+## Zero Lower Bound dummy
+
+::: {.justify}
+- The raw data are the Federal Funds Effective Rate, provided as monthly series starting from July 1954, expressed in percent. The cleaned data are monthly series that take the value of 1 when the raw data are 0.25 percent or less, and 0 otherwise.
+::: 
+
+::: {.text-center}
+![](results/1_DatPrep_EDA/ZLB.jpg){width=90%}
+:::
+
+## COVID-19 Period dummy
+
+::: {.justify}
+- This data is a monthly binary series that takes the value of 1 from April 2020 to March 2021, and 0 otherwise. The data period is conservatively set from January 1800 to December 2099. No external raw data were obtained or used.
+::: 
+
+::: {.text-center}
+![](results/1_DatPrep_EDA/COVID.jpg){width=90%}
+:::
+
+# Demand
+
+## Real GDP
+
+::: {.justify}
+- The raw data are quarterly data starting from the first quarter of 1947, expressed in billions of chained 2017 dollars. The cleaned data are converted into monthly series by first expressing the quarter-to-quarter changes at an annualized rate in percent and then applying spline interpolation.
+::: 
+
+::: {.text-center}
+![](results/1_DatPrep_EDA/GDPC1.jpg){width=90%}
+:::
+
+## Real Potential GDP
+
+::: {.justify}
+- The raw data are quarterly data starting from the first quarter of 1949, expressed in billions of chained 2017 dollars. The cleaned data are converted into monthly series by first expressing the quarter-to-quarter changes at an annualized rate in percent and then applying spline interpolation.
+::: 
+
+::: {.text-center}
+![](results/1_DatPrep_EDA/GDPPOT.jpg){width=90%}
+:::
+
+## Industrial Production
+
+::: {.justify}
+- The raw data are monthly data starting from January 1919, expressed as an index with the 2017 average set to 100. The cleaned data are monthly series showing the month-over-month changes at an annualized rate in percent.
+::: 
+
+::: {.text-center}
+![](results/1_DatPrep_EDA/INDPRO.jpg){width=90%}
+:::
+
+## Retail Sales
+
+::: {.justify}
+- The raw data are monthly data starting from January 1992, expressed in millions of dollars. The cleaned data are monthly series showing the month-over-month changes at an annualized rate in percent.
+::: 
+
+::: {.text-center}
+![](results/1_DatPrep_EDA/RSAFS.jpg){width=90%}
+:::
+
+# Supply
+
+## Crude Oil Prices
+
+::: {.justify}
+- The raw data are monthly data starting from January 1986, expressed in dollars per barrel. The cleaned data are monthly series showing the year-over-year changes in percent.
+::: 
+
+::: {.text-center}
+![](results/1_DatPrep_EDA/MCOILWTICO.jpg){width=90%}
+:::
+
+## Import Price Index
+
+::: {.justify}
+- The raw data are monthly data starting from September 1982, expressed as an index with the 2000 average set to 100. The cleaned data are monthly series showing the year-over-year changes in percent, calculated using the portion of the data that is continuously available from December 1988 onward.
+:::
+
+::: {.text-center}
+![](results/1_DatPrep_EDA/IR.jpg){width=90%}
+:::
+
+## Labor Productivity
+
+::: {.justify}
+- The raw data are quarterly series starting from the first quarter of 1947, expressed as an index with the 2017 average set to 100. The cleaned data are series converted into monthly frequency by first expressing the quarter-to-quarter changes at an annualized rate in percent and then applying spline interpolation.
+:::
+
+::: {.text-center}
+![](results/1_DatPrep_EDA/OPHNFB.jpg){width=90%}
+:::
+
+# Labor Markets
+
+## Average Hourly Earnings
+
+::: {.justify}
+- The raw data are monthly series starting from March 2006, expressed in dollars per hour. The cleaned data are monthly series showing the month-over-month changes at an annualized rate in percent.
+:::
+
+::: {.text-center}
+![](results/1_DatPrep_EDA/CES0500000003.jpg){width=90%}
+:::
+
+## Labor Force Participation Rate
+
+::: {.justify}
+- The raw data are monthly series starting from January 1948, expressed in percent. The cleaned data use these values directly; therefore, the two represent the same data.
+:::
+
+::: {.text-center}
+![](results/1_DatPrep_EDA/CIVPART.jpg){width=90%}
+:::
+
+## Job Openings
+
+::: {.justify}
+- The raw data are monthly series starting from December 2000, expressed in level in thousands. The cleaned data are monthly series showing the month-over-month changes at an annualized rate in percent.
+:::
+
+::: {.text-center}
+![](results/1_DatPrep_EDA/JTSJOL.jpg){width=90%}
+:::
+
+# Monetary Policy
+
+## Federal Funds Effective Rate
+
+::: {.justify}
+- The raw data are monthly series starting from July 1954, expressed in percent. The cleaned data use these values directly; therefore, the two represent the same data.
+:::
+
+::: {.text-center}
+![](results/1_DatPrep_EDA/FEDFUNDS.jpg){width=90%}
+:::
+
+## Money Suppley (M2)
+
+::: {.justify}
+- The raw data are monthly series starting from January 1959, expressed in billions of dollars. The cleaned data are monthly series showing the month-over-month changes at an annualized rate in percent.
+:::
+
+::: {.text-center}
+![](results/1_DatPrep_EDA/M2SL.jpg){width=90%}
+:::
+
+## Total Assets of Federal Reserve
+
+::: {.justify}
+- The raw data are weekly series starting from December 18, 2002, expressed in millions of U.S. dollars. The cleaned data are monthly series showing the year-over-year changes in the monthly averages, expressed in percent.
+:::
+
+::: {.text-center}
+![](results/1_DatPrep_EDA/WALCL.jpg){width=90%}
+:::
+
+# Inflation Expectations
+
+## 5-Year Breakeven Inflation Rate
+
+::: {.justify}
+- The raw data are daily series starting from January 2, 2003, expressed in percent. The cleaned data are series of their monthly averages.
+:::
+
+::: {.text-center}
+![](results/1_DatPrep_EDA/T5YIE.jpg){width=90%}
+:::
+
+## 10-Year Breakeven Inflation Rate
+
+::: {.justify}
+- The raw data are daily series starting from January 2, 2003, expressed in percent. The cleaned data are series of their monthly averages.
+:::
+
+::: {.text-center}
+![](results/1_DatPrep_EDA/T10YIE.jpg){width=90%}
+::: 
+
+## 1-Year and 5-Year Expected Changes in Inflation Rates
+
+::: {.justify}
+- The raw data are monthly series starting from January 1978, expressed in percent. The cleaned data extract the portion from April 1990 onward, for which continuous monthly data are available.
+:::
+
+::: {.text-center}
+![](results/1_DatPrep_EDA/PXMD.jpg){width=90%}
+:::
+
+# Merged Cleaned Data
+
+::: {.justify}
+- The following shows the data frame obtained by performing an inner join of all the above data. For clarity, the data frame is transposed here.
+:::
+
+::: {.text-center}
+![](results/1_DatPrep_EDA/merged_cleaned_data.jpg){width=90%}
+:::
+

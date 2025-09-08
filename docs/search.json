@@ -1,12 +1,5 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "The Dynamics Between Inflation and Unemployment: Empirical Evidence from U.S. Macroeconomic Data",
-    "section": "",
-    "text": "Welcome\n\n\nThis website presents the process and results of analyses related to the research theme of The Dynamics Between Inflation and Unemployment: Empirical Evidence from U.S. Macroeconomic Data. You can browse the sections of interest from the tabs above.\n\n\n\n\nAbout Me\n\n\n\n\n\n\nThe author of this website, Taihei Sone, received the B.S. degree in Engineering from the University of Tokyo, Tokyo, Japan, in 2017, and the M.S. degree in Engineering from the University of Tokyo in 2019, where he was awarded the Department Chair’s Award for Outstanding Academic Achievement. Since 2024, he has been pursuing the M.S. degree in Data Science at the University of Colorado Boulder, Boulder, CO, USA. His research interests include machine learning, large-scale data systems, and artificial intelligence applications in economics.\nYou can also find him on  and ."
-  },
-  {
     "objectID": "10_conclusions.html",
     "href": "10_conclusions.html",
     "title": "Conclusions",
@@ -35,18 +28,263 @@
     "text": "Overview\n\nxxx\n\n\n\nData\n\nxxx\n\n\n\nCode\n\nxxx\n\n\n\nResults\n\nxxx"
   },
   {
-    "objectID": "02_data_prep.html",
-    "href": "02_data_prep.html",
-    "title": "DataPrep/EDA",
+    "objectID": "02_03_data_visualization.html",
+    "href": "02_03_data_visualization.html",
+    "title": "Data Visualization",
     "section": "",
-    "text": "xxx"
+    "text": "Figure 1: Descriptive Statistics of Macroeconomic Indicators. The summary highlights central tendencies and variability across variables, revealing substantial dispersion in indicators such as industrial production (INDPRO) and retail sales (RSAFS), while others like labor force participation (CIVPART) and inflation (PCEPILFE_YoY and PCEPILFE_MoM) show more stable ranges.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: Histograms of Macroeconomic Indicators. The distributions reveal that many variables, such as inflation (PCEPILFE_YoY and PCEPILFE_MoM) and labor force participation (CIVPART), cluster around specific ranges with relatively symmetric shapes, while others like unemployment rate (UNRATE) and money supply (M2SL) display skewness or heavy tails, indicating the presence of outliers and structural differences across indicators.\n\n\n\n\n\n\n\n\n\n\n\nA value of 1 is a recessionary period, while a value of 0 is an expansionary period.\n\n\n\n\n\n\n\n\n\nFigure 3: Violin Plots of Macroeconomic Indicators Grouped by USREC. The distributions show that during recession periods (USREC=1), unemployment (UNRATE) shifts upward in its violin plot, while inflation (PCEPILFE_YoY and PCEPILFE_MoM) and output growth (GDPC1) violins are generally lower, reflecting typical cyclical dynamics of economic downturns.\n\n\n\n\n\n\n\n\n\nA value of 1 is a zero lower bound constraint period, while a value of 0 is not.\n\n\n\n\n\n\n\n\n\nFigure 4: Violin Plots of Macroeconomic Indicators Grouped by ZLB_dummy. The plots show that under the zero lower bound period (ZLB_dummy=1), the federal funds rate (FEDFUNDS) violin collapses near zero by definition, while the unemployment rate (UNRATE) violin shifts upward, indicating looser monetary conditions accompanied by labor market weakness.\n\n\n\n\n\n\n\n\n\nA value of 1 is a COVID period, while a value of 0 is not.\n\n\n\n\n\n\n\n\n\nFigure 5: Violin Plots of Macroeconomic Indicators Grouped by COVID_dummy. The plots show that during the COVID period (COVID_dummy=1), unemployment (UNRATE) rises sharply while labor force participation (CIVPART) declines, and output growth (GDPC1) and industrial production (INDPRO) distributions widen considerably, reflecting heightened volatility and economic disruption.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 6: Correlation Heatmap of Macroeconomic Indicators. The plot shows both positive (red) and negative (blue) correlations, highlighting strong positive relationships such as between inflation (PCEPILFE_YoY and PCEPILFE_MoM) and inflation expectations (T5YIE, T10YIE, PX_MD, and PX5_MD), and strong negative relationships such as between unemployment rate (UNRATE) and the federal funds effective rate (FEDFUNDS), which can guide variable selection and interpretation in further analysis."
+  },
+  {
+    "objectID": "02_03_data_visualization.html#summary-statistics",
+    "href": "02_03_data_visualization.html#summary-statistics",
+    "title": "Data Visualization",
+    "section": "",
+    "text": "Figure 1: Descriptive Statistics of Macroeconomic Indicators. The summary highlights central tendencies and variability across variables, revealing substantial dispersion in indicators such as industrial production (INDPRO) and retail sales (RSAFS), while others like labor force participation (CIVPART) and inflation (PCEPILFE_YoY and PCEPILFE_MoM) show more stable ranges."
+  },
+  {
+    "objectID": "02_03_data_visualization.html#histograms",
+    "href": "02_03_data_visualization.html#histograms",
+    "title": "Data Visualization",
+    "section": "",
+    "text": "Figure 2: Histograms of Macroeconomic Indicators. The distributions reveal that many variables, such as inflation (PCEPILFE_YoY and PCEPILFE_MoM) and labor force participation (CIVPART), cluster around specific ranges with relatively symmetric shapes, while others like unemployment rate (UNRATE) and money supply (M2SL) display skewness or heavy tails, indicating the presence of outliers and structural differences across indicators."
+  },
+  {
+    "objectID": "02_03_data_visualization.html#violin-plots-of-macroeconomic-indicators",
+    "href": "02_03_data_visualization.html#violin-plots-of-macroeconomic-indicators",
+    "title": "Data Visualization",
+    "section": "",
+    "text": "A value of 1 is a recessionary period, while a value of 0 is an expansionary period.\n\n\n\n\n\n\n\n\n\nFigure 3: Violin Plots of Macroeconomic Indicators Grouped by USREC. The distributions show that during recession periods (USREC=1), unemployment (UNRATE) shifts upward in its violin plot, while inflation (PCEPILFE_YoY and PCEPILFE_MoM) and output growth (GDPC1) violins are generally lower, reflecting typical cyclical dynamics of economic downturns.\n\n\n\n\n\n\n\n\n\nA value of 1 is a zero lower bound constraint period, while a value of 0 is not.\n\n\n\n\n\n\n\n\n\nFigure 4: Violin Plots of Macroeconomic Indicators Grouped by ZLB_dummy. The plots show that under the zero lower bound period (ZLB_dummy=1), the federal funds rate (FEDFUNDS) violin collapses near zero by definition, while the unemployment rate (UNRATE) violin shifts upward, indicating looser monetary conditions accompanied by labor market weakness.\n\n\n\n\n\n\n\n\n\nA value of 1 is a COVID period, while a value of 0 is not.\n\n\n\n\n\n\n\n\n\nFigure 5: Violin Plots of Macroeconomic Indicators Grouped by COVID_dummy. The plots show that during the COVID period (COVID_dummy=1), unemployment (UNRATE) rises sharply while labor force participation (CIVPART) declines, and output growth (GDPC1) and industrial production (INDPRO) distributions widen considerably, reflecting heightened volatility and economic disruption."
+  },
+  {
+    "objectID": "02_03_data_visualization.html#correlation-heatmap",
+    "href": "02_03_data_visualization.html#correlation-heatmap",
+    "title": "Data Visualization",
+    "section": "",
+    "text": "Figure 6: Correlation Heatmap of Macroeconomic Indicators. The plot shows both positive (red) and negative (blue) correlations, highlighting strong positive relationships such as between inflation (PCEPILFE_YoY and PCEPILFE_MoM) and inflation expectations (T5YIE, T10YIE, PX_MD, and PX5_MD), and strong negative relationships such as between unemployment rate (UNRATE) and the federal funds effective rate (FEDFUNDS), which can guide variable selection and interpretation in further analysis."
+  },
+  {
+    "objectID": "02_03_data_visualization.html#time-series-of-macroeconomic-indicators",
+    "href": "02_03_data_visualization.html#time-series-of-macroeconomic-indicators",
+    "title": "Data Visualization",
+    "section": "Time Series of Macroeconomic Indicators",
+    "text": "Time Series of Macroeconomic Indicators\n\n\n\n\n\n\n\nFigure 7: Time Series of Macroeconomic Indicators. The plots reveal diverse dynamics across variables, with some showing steady long-term trends while others exhibit sharp fluctuations or structural breaks, reflecting economic cycles and major events such as recessions or policy shifts."
+  },
+  {
+    "objectID": "02_03_data_visualization.html#locally-estimated-scatterplot-smoothing-loess",
+    "href": "02_03_data_visualization.html#locally-estimated-scatterplot-smoothing-loess",
+    "title": "Data Visualization",
+    "section": "Locally Estimated Scatterplot Smoothing (LOESS)",
+    "text": "Locally Estimated Scatterplot Smoothing (LOESS)\n\n\n\n\n\n\n\nFigure 8: LOESS-Smoothed Trends of Macroeconomic Indicators. The orange smoothed lines highlight underlying trajectories across variables, effectively filtering out short-term noise and revealing the baseline movement of each indicator."
+  },
+  {
+    "objectID": "02_03_data_visualization.html#hodrickprescott-filter-hp-filtrer-trend",
+    "href": "02_03_data_visualization.html#hodrickprescott-filter-hp-filtrer-trend",
+    "title": "Data Visualization",
+    "section": "Hodrick–Prescott Filter (HP Filtrer): Trend",
+    "text": "Hodrick–Prescott Filter (HP Filtrer): Trend\n\n\n\n\n\n\n\nFigure 9: HP-Trend Decomposition of Macroeconomic Indicators. The orange lines extracted by the HP filter reveal the long-term trend components of each series, smoothing out short-term fluctuations and highlighting gradual shifts such as the steady decline in the natural rate of unemployment (NROU)."
+  },
+  {
+    "objectID": "02_03_data_visualization.html#hodrickprescott-filter-hp-filtrer-cycle",
+    "href": "02_03_data_visualization.html#hodrickprescott-filter-hp-filtrer-cycle",
+    "title": "Data Visualization",
+    "section": "Hodrick–Prescott Filter (HP Filtrer): Cycle",
+    "text": "Hodrick–Prescott Filter (HP Filtrer): Cycle\n\n\n\n\n\n\n\nFigure 10: HP-Cycle Components of Macroeconomic Indicators. The plots show short-term deviations from long-term trends, with most series fluctuating around zero, indicating cyclical dynamics and temporary shocks rather than persistent structural shifts."
+  },
+  {
+    "objectID": "02_03_data_visualization.html#autocorrelation-function-acf",
+    "href": "02_03_data_visualization.html#autocorrelation-function-acf",
+    "title": "Data Visualization",
+    "section": "Autocorrelation Function (ACF)",
+    "text": "Autocorrelation Function (ACF)\n\n\n\n\n\n\n\nFigure 11: Autocorrelation Functions (ACF) of Macroeconomic Indicators with 36 Monthly Lags. The plots reveal persistent autocorrelation in many variables such as unemployment (UNRATE and NROU) and inflation measures (PCEPILFE_YoY and PCEPILFE_MoM), suggesting strong serial dependence, while others like industrial production (INDPRO) and retail sales (RSAFS) exhibit weaker or rapidly decaying correlations, indicating more short-term variability."
+  },
+  {
+    "objectID": "02_03_data_visualization.html#partial-autocorrelation-function-pacf",
+    "href": "02_03_data_visualization.html#partial-autocorrelation-function-pacf",
+    "title": "Data Visualization",
+    "section": "Partial Autocorrelation Function (PACF)",
+    "text": "Partial Autocorrelation Function (PACF)\n\n\n\n\n\n\n\nFigure 12: Partial Autocorrelation Functions (PACF) of Macroeconomic Indicators with 36 Monthly Lags. Many variables show significant spikes only at the first few lags—typical of autoregressive processes—while others display more persistent or irregular patterns, indicating potential higher-order dynamics or structural shocks in the data."
+  },
+  {
+    "objectID": "02_01_overview.html",
+    "href": "02_01_overview.html",
+    "title": "Overview",
+    "section": "",
+    "text": "In order to address the 10 Research Questions presented in Introduction and thereby achieve the objectives of this study, the data series listed in the Table 1 were collected. The table shows the category, frequency, data source, and retrieval method for each variable. In the Frequency column, “D,” “W,” “M,” and “Q” indicate daily, weekly, monthly, and quarterly, respectively. By clicking the hyperlink attached to each data source in the Source column, you can access the corresponding data source.\n\nAn example of a URL GET request with SERIES_ID, API_KEY, and YYYY-MM-DD when using the FRED API is as follows:\n\nFor example, if you want to retrieve the Core PCE series from January 1, 1990 onward, substitute 'PCEPILFE' for SERIES_ID and '1990-01-01' for YYYY-MM-DD. For API_KEY, enter your own API key.\n\nhttps://api.stlouisfed.org/fred/series/observations?series_id=SERIES_ID&api_key=API_KEY&file_type=json&observation_start=YYYY-MM-DD\nThe 1-year and 5-year Expected Changes in Inflation Rates were downloaded as CSV files from the University of Michigan Surveys of Consumers website. By clicking the hyperlink attached to each variable name, the raw data can be downloaded.\nNote that the COVID-19 period dummy was constructed according to the time period, which takes the value of 1 from April 2020 to March 2021 and 0 otherwise.\n\n\n\n\n\n\nTable 1: Data List\n\n\n\n\n\nCategroy\nVariable\nFrequency\nSource\nMethod of Acquisition\n\n\n\n\nInflation\nCore PCE\nM\nFRED\nAPI fetch\n\n\nUnemployment\nUnemployment Rate\nM\nFRED\nAPI fetch\n\n\nUnemployment\nNoncyclical Rate of Unemployment\nQ\nFRED\nAPI fetch\n\n\nBusiness Cycles and Policy Regimes\nRecession Indicators\nM\nFRED\nAPI fetch\n\n\nBusiness Cycles and Policy Regimes\nZero Lower Bound dummy\nM\nFRED\nAPI fetch\n\n\nBusiness Cycles and Policy Regimes\nCOVID-19 Period dummy\nM\nNot Available\nCreated\n\n\nDemand\nReal GDP\nQ\nFRED\nAPI fetch\n\n\nDemand\nReal Potential GDP\nQ\nFRED\nAPI fetch\n\n\nDemand\nIndustrial Production\nM\nFRED\nAPI fetch\n\n\nDemand\nRetail Sales\nM\nFRED\nAPI fetch\n\n\nSupply\nCrude Oil Prices\nM\nFRED\nAPI fetch\n\n\nSupply\nImport Price Index\nM\nFRED\nAPI fetch\n\n\nSupply\nLabor Productivity\nQ\nFRED\nAPI fetch\n\n\nLabor Markets\nAverage Hourly Earnings\nM\nFRED\nAPI fetch\n\n\nLabor Markets\nLabor Force Participation Rate\nM\nFRED\nAPI fetch\n\n\nLabor Markets\nJob Openings\nM\nFRED\nAPI fetch\n\n\nMonetary Policy\nFederal Funds Effective Rate\nM\nFRED\nAPI fetch\n\n\nMonetary Policy\nMoney Suppley (M2)\nM\nFRED\nAPI fetch\n\n\nMonetary Policy\nTotal Assets of Federal Reserve\nW\nFRED\nAPI fetch\n\n\nInflation Expectations\n5-Year Breakeven Inflation Rate\nD\nFRED\nAPI fetch\n\n\nInflation Expectations\n10-Year Breakeven Inflation Rate\nD\nFRED\nAPI fetch\n\n\nInflation Expectations\n1-Year Expected Changes in Inflation Rates\nM\nUniversity of Michigan\nCSV download\n\n\nInflation Expectations\n5-Year Expected Changes in Inflation Rates\nM\nUniversity of Michigan\nCSV download"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "The Dynamics Between Inflation and Unemployment: Empirical Evidence from U.S. Macroeconomic Data",
+    "section": "",
+    "text": "Welcome\n\n\nThis website presents the process and results of analyses related to the research theme of The Dynamics Between Inflation and Unemployment: Empirical Evidence from U.S. Macroeconomic Data. You can browse the sections of interest from the tabs above.\n\n\n\n\nAbout Me\n\n\n\n\n\n\nThe author of this website, Taihei Sone, received the B.S. degree in Engineering from the University of Tokyo, Tokyo, Japan, in 2017, and the M.S. degree in Engineering from the University of Tokyo in 2019, where he was awarded the Department Chair’s Award for Outstanding Academic Achievement. Since 2024, he has been pursuing the M.S. degree in Data Science at the University of Colorado Boulder, Boulder, CO, USA. His research interests include machine learning, large-scale data systems, and artificial intelligence applications in economics.\nYou can also find him on  and ."
   },
   {
     "objectID": "01_introduction.html",
     "href": "01_introduction.html",
     "title": "Introduction",
     "section": "",
-    "text": "Notes: All images displayed on this page are free-use materials, unless otherwise indicated by a specific credit.\n\nBackgrounds\n\n\nThe relationship between inflation and unemployment has long constituted a central issue in the field of macroeconomics. These two indicators are not merely statistical constructs but rather fundamental determinants that directly affect the standard of living of households and the overall stability of society. Inflation reflects the purchasing power of money and exerts a profound influence on the decision-making processes of households and firms, while unemployment represents the state of labor market conditions and is closely associated with household income and the productive capacity of the economy. Historically, the evolution of these two variables has frequently posed conflicting challenges for policymakers. For example, expansionary policies may succeed in reducing unemployment in the short run, yet they simultaneously raise the likelihood of accelerating inflation. Conversely, policies aimed at containing inflation often depress aggregate demand, thereby heightening the risk of increased unemployment. Thus, reconciling the goals of price stability and full employment has consistently been a central concern in both economic theory and policy practice. The U.S. Federal Reserve’s explicit commitment to a “dual mandate” of price stability and maximum employment exemplifies this tension. Moreover, this dual mandate extends beyond considerations of economic efficiency alone, carrying critical implications for social cohesion and political stability. An uncontrolled surge in inflation can undermine household welfare and destabilize everyday life, while persistently elevated unemployment can exacerbate inequality, fuel political unrest, and highlight the need for a comprehensive theoretical and empirical understanding of their dynamics for effective policy.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAs a classical contribution to this theme, Phillips (1958) demonstrated the existence of a stable negative correlation between wage growth and the unemployment rate, thereby presenting the important insight that the balance of supply and demand in the labor market is directly linked to wage fluctuations. His study was based on long-term data from the United Kingdom, but the result came to be regarded as a general phenomenon observable in many countries. Subsequently, Samuelson and Solow (1960), through an empirical study using U.S. data, generalized Phillips’s finding into a trade-off relationship between inflation and unemployment, emphasizing the possibility of applying this relationship to economic policy and suggesting that policymakers could “choose” a desirable combination of the two. This interpretation had a major impact on macroeconomic policy debates at the time, but the stability of the relationship was questioned early on, and a series of theoretical objections soon emerged. Muth (1961), with the rational expectations hypothesis, challenged the traditional adaptive expectations framework by assuming that agents form expectations consistent with the underlying economic model. Furthermore, Sargent and Wallace (1975) advanced the policy ineffectiveness proposition, arguing that anticipated monetary policy has no lasting impact on real economic activity, and Lucas (1976) added the critique that statistically observed macroeconomic relationships may shift depending on the prevailing policy rule. These arguments highlighted the limitations of using the Phillips curve directly for policy purposes and led to the understanding that there is no sustained long-run trade-off between inflation and unemployment, with the unemployment rate converging to its natural rate. At the same time, since the neoclassical framework assuming perfectly flexible prices could not sufficiently explain short-run business cycle fluctuations, the need for more realistic models increased. Against this background, New Keynesian models such as the price adjustment cost model by Rotemberg (1982) and the stochastic price-setting model by Calvo (1983) emerged, demonstrating that by explicitly incorporating nominal rigidities, a short-run trade-off between inflation and unemployment could indeed exist. These models were subsequently systematized by Woodford (2003), forming the standard theoretical foundation of modern monetary policy analysis and becoming widely referenced in the practice of central banking.\n\n\n\n\n\n\nSource: WallStreetMojo\n\n\n\n\n\nOn the empirical side, the strength and stability of the relationship between inflation and unemployment have consistently been a subject of debate. In particular, recent studies indicate that the Phillips curve does not function as a fixed empirical regularity but rather changes its shape depending on the historical period and economic environment. Ball and Mazumder (2011), using U.S. data, reported a flattening of the Phillips curve and demonstrated that the impact of unemployment fluctuations on inflation has weakened substantially compared to the past. This finding is consistent with the anchoring of inflation expectations and the increased credibility of monetary policy, and it has been recognized as a factor contributing to the stability of inflation. Blanchard (2016) focused on U.S. inflation dynamics and emphasized that, unlike in earlier periods, changes in unemployment no longer move inflation rates as strongly, making it more difficult for policymakers to rely on the Phillips curve. Furthermore, Stock and Watson (2019) showed that the predictability of U.S. inflation has declined markedly in recent years and concluded that traditional Phillips curve–based forecasting models fail to deliver sufficient accuracy. Hazell et al. (2022), using state-level panel data, provided empirical evidence that the relationship between inflation and unemployment changes nonlinearly depending on whether the economy is subject to demand or supply shocks. Their research is important in that it highlights how relationships that appear blurred in aggregate macroeconomic data can become more clearly identifiable at the regional level. Taken together, this body of work suggests that the Phillips curve does not simply operate as a stable relationship in which “lower unemployment leads to higher inflation,” but instead varies significantly depending on economic conditions, the nature of shocks, and policy regimes. Therefore, analyzing the relationship between inflation and unemployment requires a flexible approach that goes beyond reliance on static empirical regularities and takes into account institutional contexts and the characteristics of shocks.\n\n\n\n\n\n\n\nIn recent years, with the advancement of machine learning, there has been a rapid increase in attempts to apply data-driven methods to the forecasting of key macroeconomic variables such as inflation and unemployment. These methods have attracted attention because they offer the potential to capture nonlinearities and complex interdependencies that traditional linear regression and time-series models fail to detect. Medeiros et al. (2021), using U.S. inflation data, employed Random Forests and Least Absolute Shrinkage and Selection Operator (LASSO) in their analysis and reported predictive accuracy superior to that of conventional AutoRegressive (AR) and factor models, thereby demonstrating that machine learning can hold an advantage over traditional approaches. This study provided results directly relevant to improving inflation forecasts used in practice by central banks and other policymakers, underscoring its empirical significance. Furthermore, Gogas et al. (2021) examined unemployment in the euro area as a whole and compared machine learning techniques with traditional time-series models, showing that machine learning has an advantage in short-term forecasting. They found that while Random Forests and Support Vector Machines (SVMs) achieve higher prediction accuracy, challenges remain regarding model interpretability and policy applicability, highlighting the difficulty of applying machine learning directly to policy operations. This issue points to a fundamental challenge in macroeconomic research—namely, how to balance predictive accuracy with theoretical consistency and policy relevance. In addition, Magazzino et al. (2025) analyzed unemployment across 23 advanced economies using artificial neural networks and demonstrated that factors such as GDP, labor productivity, demographic dynamics, and even AI-driven technological innovation are major determinants of unemployment fluctuations. Their results suggest that unemployment dynamics depend not only on cyclical factors but also heavily on structural and technological elements. Taken together, these studies underscore that while machine learning has proven effective for forecasting macroeconomic variables, they also highlight the need to overcome challenges related to model transparency and practical policy applicability.\n\n\n\n\n\n\n\nHowever, important challenges remain in this line of research. First, much of the existing literature has focused on either inflation or unemployment in isolation, and there are relatively few attempts to analyze both variables in an integrated manner and systematically capture their interactions. In fact, although inflation and unemployment should be considered simultaneously from both theoretical and policy perspectives, many empirical studies have tended to concentrate on only one side. Second, while many studies emphasize the evaluation of predictive accuracy, frameworks that combine regime classification with regression-based forecasting have not been sufficiently developed. For example, only a limited number of studies identify regimes such as high- and low-inflation periods or recessions and expansions, and then evaluate predictive performance within each of these states. Third, much of the data used are drawn from commercial databases or restricted sources, which imposes constraints on transparency and reproducibility, although the use of open data could create an environment in which a broader range of researchers and policymakers can more easily replicate and extend results. Few studies, however, have explicitly incorporated this consideration. Fourth, the linear regression models that continue to play a central role in policy analysis, such as Ordinary Least Squares (OLS) and Vector Auto Regressive (VAR), are rarely compared directly with machine learning methods within a unified framework. This lack of comparison has limited the perspective needed for policymakers to understand how traditional and modern methods might be used in a complementary fashion, and the absence of such evaluations represents a major obstacle to assessing the practical applicability of machine learning in real-world policy contexts. Therefore, future research must adopt a more comprehensive approach that addresses not only predictive accuracy but also interpretability and policy relevance at the same time.\n\n\n\n\n\n\n\nBased on the foregoing discussion, the objectives of this study can be organized into four main points. First, it aims to conduct an integrated analysis of inflation and unemployment by comparing traditional regression models (OLS, VAR, Elastic Net) with machine learning techniques (Naïve Bayes, decision trees, SVM, and neural networks) within a unified framework, thereby evaluating both predictive accuracy and interpretability. Second, it seeks to identify macroeconomic regimes through clustering and principal component analysis, and to apply classification and regression approaches in an integrated manner so as to examine simultaneously “where the economy currently stands” and “how it is likely to evolve.” Third, it will systematically analyze the dynamic causal relationship and regime dependence between inflation and unemployment using Granger causality tests and local projection methods. Fourth, by utilizing open and reproducible data sources such as the FRED API, the BLS API, and the World Bank API, the study aims to ensure transparency and reproducibility of the analysis and to provide a research platform that can be replicated and extended by a broad range of readers, including academic researchers and policymakers. Through these four pillars, this study aspires to bridge traditional research on the Phillips curve with contemporary machine learning approaches, thereby offering a new understanding of the relationship between inflation and unemployment. In addition, the study emphasizes not only the re-examination of existing findings but also the direct comparison between machine learning and regression analysis, with the explicit goal of deriving practical implications for policy applications. In light of this, the study sets forth ten research questions designed to reconsider the relationship between inflation and unemployment from multiple perspectives, beginning with the existence of a short-run trade-off and expanding to assess regime dependence and the role of macroeconomic factors. Furthermore, by comparing the predictive performance and interpretability of machine learning and traditional models, they also delve into the causal direction of the relationship and the dynamic effects of shocks. Accordingly, this study seeks to provide a systematic framework that comprehensively addresses both theoretical and empirical challenges.\n\n\n\n\n\n\n\nResearch Questions\n\n\nIs a short-run trade-off between inflation and unemployment statistically observable?\nTo what extent does the Phillips curve relationship vary across business-cycle phases (recessions and expansions) and policy regimes (e.g., the zero lower bound period or the COVID-19 era)?\nHow do macroeconomic factors extracted through principal component analysis (PCA) affect the dynamics of inflation and unemployment?\nDoes regime identification based on data-driven clustering align with historical episodes such as stagflation or the post–global financial crisis recovery?\nTo what extent can simple classification models such as Naïve Bayes and decision trees accurately identify periods of high inflation or high unemployment?\nDoes the support vector machine (SVM) improve regime-classification accuracy compared with simpler classifiers such as Naïve Bayes and decision trees?\nHow do traditional regression models (OLS, VAR, Elastic Net) and machine learning models (SVM, neural networks) differ in their performance when forecasting inflation and unemployment one, three, and six months ahead?\nCan performance differences across forecasting models be judged statistically significant using tests such as the Diebold–Mariano test?\nAccording to Granger causality tests, what is the causal direction between inflation and unemployment (inflation → unemployment or unemployment → inflation)?\nThrough local projection analysis, how do demand shocks and supply shocks dynamically affect inflation and unemployment?"
+    "text": "Notes: All images displayed on this page are free-use materials, unless otherwise indicated by a specific credit.\n\nBackgrounds\n\n\nThe relationship between inflation and unemployment has long constituted a central issue in the field of macroeconomics. These two indicators are not merely statistical constructs but rather fundamental determinants that directly affect the standard of living of households and the overall stability of society. Inflation reflects the purchasing power of money and exerts a profound influence on the decision-making processes of households and firms, while unemployment represents the state of labor market conditions and is closely associated with household income and the productive capacity of the economy. Historically, the evolution of these two variables has frequently posed conflicting challenges for policymakers. For example, expansionary policies may succeed in reducing unemployment in the short run, yet they simultaneously raise the likelihood of accelerating inflation. Conversely, policies aimed at containing inflation often depress aggregate demand, thereby heightening the risk of increased unemployment. Thus, reconciling the goals of price stability and full employment has consistently been a central concern in both economic theory and policy practice. The U.S. Federal Reserve’s explicit commitment to a “dual mandate” of price stability and maximum employment exemplifies this tension. Moreover, this dual mandate extends beyond considerations of economic efficiency alone, carrying critical implications for social cohesion and political stability. An uncontrolled surge in inflation can undermine household welfare and destabilize everyday life, while persistently elevated unemployment can exacerbate inequality, fuel political unrest, and highlight the need for a comprehensive theoretical and empirical understanding of their dynamics for effective policy.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAs a classical contribution to this theme, Phillips (1958) demonstrated the existence of a stable negative correlation between wage growth and the unemployment rate, thereby presenting the important insight that the balance of supply and demand in the labor market is directly linked to wage fluctuations. His study was based on long-term data from the United Kingdom, but the result came to be regarded as a general phenomenon observable in many countries. Subsequently, Samuelson and Solow (1960), through an empirical study using U.S. data, generalized Phillips’s finding into a trade-off relationship between inflation and unemployment, emphasizing the possibility of applying this relationship to economic policy and suggesting that policymakers could “choose” a desirable combination of the two. This interpretation had a major impact on macroeconomic policy debates at the time, but the stability of the relationship was questioned early on, and a series of theoretical objections soon emerged. Muth (1961), with the rational expectations hypothesis, challenged the traditional adaptive expectations framework by assuming that agents form expectations consistent with the underlying economic model. Furthermore, Sargent and Wallace (1975) advanced the policy ineffectiveness proposition, arguing that anticipated monetary policy has no lasting impact on real economic activity, and Lucas (1976) added the critique that statistically observed macroeconomic relationships may shift depending on the prevailing policy rule. These arguments highlighted the limitations of using the Phillips curve directly for policy purposes and led to the understanding that there is no sustained long-run trade-off between inflation and unemployment, with the unemployment rate converging to its natural rate. At the same time, since the neoclassical framework assuming perfectly flexible prices could not sufficiently explain short-run business cycle fluctuations, the need for more realistic models increased. Against this background, New Keynesian models such as the price adjustment cost model by Rotemberg (1982) and the stochastic price-setting model by Calvo (1983) emerged, demonstrating that by explicitly incorporating nominal rigidities, a short-run trade-off between inflation and unemployment could indeed exist. These models were subsequently systematized by Woodford (2003), forming the standard theoretical foundation of modern monetary policy analysis and becoming widely referenced in the practice of central banking.\n\n\n\n\n\n\nSource: WallStreetMojo\n\n\n\n\n\nOn the empirical side, the strength and stability of the relationship between inflation and unemployment have consistently been a subject of debate. In particular, recent studies indicate that the Phillips curve does not function as a fixed empirical regularity but rather changes its shape depending on the historical period and economic environment. Ball and Mazumder (2011), using U.S. data, reported a flattening of the Phillips curve and demonstrated that the impact of unemployment fluctuations on inflation has weakened substantially compared to the past. This finding is consistent with the anchoring of inflation expectations and the increased credibility of monetary policy, and it has been recognized as a factor contributing to the stability of inflation. Blanchard (2016) focused on U.S. inflation dynamics and emphasized that, unlike in earlier periods, changes in unemployment no longer move inflation rates as strongly, making it more difficult for policymakers to rely on the Phillips curve. Furthermore, Stock and Watson (2019) showed that the predictability of U.S. inflation has declined markedly in recent years and concluded that traditional Phillips curve–based forecasting models fail to deliver sufficient accuracy. Hazell et al. (2022), using state-level panel data, provided empirical evidence that the relationship between inflation and unemployment changes nonlinearly depending on whether the economy is subject to demand or supply shocks. Their research is important in that it highlights how relationships that appear blurred in aggregate macroeconomic data can become more clearly identifiable at the regional level. Taken together, this body of work suggests that the Phillips curve does not simply operate as a stable relationship in which “lower unemployment leads to higher inflation,” but instead varies significantly depending on economic conditions, the nature of shocks, and policy regimes. Therefore, analyzing the relationship between inflation and unemployment requires a flexible approach that goes beyond reliance on static empirical regularities and takes into account institutional contexts and the characteristics of shocks.\n\n\n\n\n\n\n\nIn recent years, with the advancement of machine learning, there has been a rapid increase in attempts to apply data-driven methods to the forecasting of key macroeconomic variables such as inflation and unemployment. These methods have attracted attention because they offer the potential to capture nonlinearities and complex interdependencies that traditional linear regression and time-series models fail to detect. Medeiros et al. (2021), using U.S. inflation data, employed Random Forests and Least Absolute Shrinkage and Selection Operator (LASSO) in their analysis and reported predictive accuracy superior to that of conventional AutoRegressive (AR) and factor models, thereby demonstrating that machine learning can hold an advantage over traditional approaches. This study provided results directly relevant to improving inflation forecasts used in practice by central banks and other policymakers, underscoring its empirical significance. Furthermore, Gogas et al. (2021) examined unemployment in the euro area as a whole and compared machine learning techniques with traditional time-series models, showing that machine learning has an advantage in short-term forecasting. They found that while Random Forests and Support Vector Machines (SVMs) achieve higher prediction accuracy, challenges remain regarding model interpretability and policy applicability, highlighting the difficulty of applying machine learning directly to policy operations. This issue points to a fundamental challenge in macroeconomic research—namely, how to balance predictive accuracy with theoretical consistency and policy relevance. In addition, Magazzino et al. (2025) analyzed unemployment across 23 advanced economies using artificial neural networks and demonstrated that factors such as GDP, labor productivity, demographic dynamics, and even AI-driven technological innovation are major determinants of unemployment fluctuations. Their results suggest that unemployment dynamics depend not only on cyclical factors but also heavily on structural and technological elements. Taken together, these studies underscore that while machine learning has proven effective for forecasting macroeconomic variables, they also highlight the need to overcome challenges related to model transparency and practical policy applicability.\n\n\n\n\n\n\n\nHowever, important challenges remain in this line of research. First, much of the existing literature has focused on either inflation or unemployment in isolation, and there are relatively few attempts to analyze both variables in an integrated manner and systematically capture their interactions. In fact, although inflation and unemployment should be considered simultaneously from both theoretical and policy perspectives, many empirical studies have tended to concentrate on only one side. Second, while many studies emphasize the evaluation of predictive accuracy, frameworks that combine regime classification with regression-based forecasting have not been sufficiently developed. For example, only a limited number of studies identify regimes such as high- and low-inflation periods or recessions and expansions, and then evaluate predictive performance within each of these states. Third, much of the data used are drawn from commercial databases or restricted sources, which imposes constraints on transparency and reproducibility, although the use of open data could create an environment in which a broader range of researchers and policymakers can more easily replicate and extend results. Few studies, however, have explicitly incorporated this consideration. Fourth, the linear regression models that continue to play a central role in policy analysis, such as Ordinary Least Squares (OLS) and Vector Auto Regressive (VAR), are rarely compared directly with machine learning methods within a unified framework. This lack of comparison has limited the perspective needed for policymakers to understand how traditional and modern methods might be used in a complementary fashion, and the absence of such evaluations represents a major obstacle to assessing the practical applicability of machine learning in real-world policy contexts. Therefore, future research must adopt a more comprehensive approach that addresses not only predictive accuracy but also interpretability and policy relevance at the same time.\n\n\n\n\n\n\n\nBased on the foregoing discussion, the objectives of this study can be organized into four main points. First, it aims to conduct an integrated analysis of inflation and unemployment by comparing traditional regression models (OLS, VAR, Elastic Net) with machine learning techniques (Naïve Bayes, decision trees, SVM, and neural networks) within a unified framework, thereby evaluating both predictive accuracy and interpretability. Second, it seeks to identify macroeconomic regimes through clustering and principal component analysis, and to apply classification and regression approaches in an integrated manner so as to examine simultaneously “where the economy currently stands” and “how it is likely to evolve.” Third, it will systematically analyze the dynamic causal relationship and regime dependence between inflation and unemployment using Granger causality tests and local projection methods. Fourth, by utilizing open and reproducible data sources such as the FRED API, the BLS API, and the World Bank API, the study aims to ensure transparency and reproducibility of the analysis and to provide a research platform that can be replicated and extended by a broad range of readers, including academic researchers and policymakers. Through these four pillars, this study aspires to bridge traditional research on the Phillips curve with contemporary machine learning approaches, thereby offering a new understanding of the relationship between inflation and unemployment. In addition, the study emphasizes not only the re-examination of existing findings but also the direct comparison between machine learning and regression analysis, with the explicit goal of deriving practical implications for policy applications. In light of this, the study sets forth 10 research questions designed to reconsider the relationship between inflation and unemployment from multiple perspectives, beginning with the existence of a short-run trade-off and expanding to assess regime dependence and the role of macroeconomic factors. Furthermore, by comparing the predictive performance and interpretability of machine learning and traditional models, they also delve into the causal direction of the relationship and the dynamic effects of shocks. Accordingly, this study seeks to provide a systematic framework that comprehensively addresses both theoretical and empirical challenges.\n\n\n\n\n\n\n\nResearch Questions\n\n\nIs a short-run trade-off between inflation and unemployment statistically observable?\nTo what extent does the Phillips curve relationship vary across business-cycle phases (recessions and expansions) and policy regimes (e.g., the zero lower bound period or the COVID-19 era)?\nHow do macroeconomic factors extracted through principal component analysis (PCA) affect the dynamics of inflation and unemployment?\nDoes regime identification based on data-driven clustering align with historical episodes such as stagflation or the post–global financial crisis recovery?\nTo what extent can simple classification models such as Naïve Bayes and decision trees accurately identify periods of high inflation or high unemployment?\nDoes the support vector machine (SVM) improve regime-classification accuracy compared with simpler classifiers such as Naïve Bayes and decision trees?\nHow do traditional regression models (OLS, VAR, Elastic Net) and machine learning models (SVM, neural networks) differ in their performance when forecasting inflation and unemployment one, three, and six months ahead?\nCan performance differences across forecasting models be judged statistically significant using tests such as the Diebold–Mariano test?\nAccording to Granger causality tests, what is the causal direction between inflation and unemployment (inflation → unemployment or unemployment → inflation)?\nThrough local projection analysis, how do demand shocks and supply shocks dynamically affect inflation and unemployment?"
+  },
+  {
+    "objectID": "02_02_data_gathering_and_cleaning.html",
+    "href": "02_02_data_gathering_and_cleaning.html",
+    "title": "Data Gathering and Data Cleaning",
+    "section": "",
+    "text": "The raw data are monthly data starting from January 1959, indexed so that the average for 2017 equals 100. The cleaned data consist of PCEPILFE_YoY, which represents the year-over-year percentage change of the raw data, and PCEPILFE_MoM, which represents the month-over-month annualized percentage change of the raw data."
+  },
+  {
+    "objectID": "02_02_data_gathering_and_cleaning.html#core-pce",
+    "href": "02_02_data_gathering_and_cleaning.html#core-pce",
+    "title": "Data Gathering and Data Cleaning",
+    "section": "",
+    "text": "The raw data are monthly data starting from January 1959, indexed so that the average for 2017 equals 100. The cleaned data consist of PCEPILFE_YoY, which represents the year-over-year percentage change of the raw data, and PCEPILFE_MoM, which represents the month-over-month annualized percentage change of the raw data."
+  },
+  {
+    "objectID": "02_02_data_gathering_and_cleaning.html#unemployment-rate",
+    "href": "02_02_data_gathering_and_cleaning.html#unemployment-rate",
+    "title": "Data Gathering and Data Cleaning",
+    "section": "Unemployment Rate",
+    "text": "Unemployment Rate\n\n\nThe raw data are monthly data starting from January 1948, expressed in percent. The cleaned data use these values directly; therefore, the two represent the same data."
+  },
+  {
+    "objectID": "02_02_data_gathering_and_cleaning.html#noncyclical-rate-of-unemployment",
+    "href": "02_02_data_gathering_and_cleaning.html#noncyclical-rate-of-unemployment",
+    "title": "Data Gathering and Data Cleaning",
+    "section": "Noncyclical Rate of Unemployment",
+    "text": "Noncyclical Rate of Unemployment\n\n\nThe raw data are quarterly series starting from the first quarter of 1949, expressed in percent. The cleaned data convert them into monthly series using spline interpolation."
+  },
+  {
+    "objectID": "02_02_data_gathering_and_cleaning.html#recession-indicators",
+    "href": "02_02_data_gathering_and_cleaning.html#recession-indicators",
+    "title": "Data Gathering and Data Cleaning",
+    "section": "Recession Indicators",
+    "text": "Recession Indicators\n\n\nThe raw data are a monthly binary series starting from December 1854. A value of 1 is a recessionary period, while a value of 0 is an expansionary period. The cleaned data use these values directly; therefore, the two represent the same data."
+  },
+  {
+    "objectID": "02_02_data_gathering_and_cleaning.html#zero-lower-bound-dummy",
+    "href": "02_02_data_gathering_and_cleaning.html#zero-lower-bound-dummy",
+    "title": "Data Gathering and Data Cleaning",
+    "section": "Zero Lower Bound dummy",
+    "text": "Zero Lower Bound dummy\n\n\nThe raw data are the Federal Funds Effective Rate, provided as monthly series starting from July 1954, expressed in percent. The cleaned data are monthly series that take the value of 1 when the raw data are 0.25 percent or less, and 0 otherwise."
+  },
+  {
+    "objectID": "02_02_data_gathering_and_cleaning.html#covid-19-period-dummy",
+    "href": "02_02_data_gathering_and_cleaning.html#covid-19-period-dummy",
+    "title": "Data Gathering and Data Cleaning",
+    "section": "COVID-19 Period dummy",
+    "text": "COVID-19 Period dummy\n\n\nThis data is a monthly binary series that takes the value of 1 from April 2020 to March 2021, and 0 otherwise. The data period is conservatively set from January 1800 to December 2099. No external raw data were obtained or used."
+  },
+  {
+    "objectID": "02_02_data_gathering_and_cleaning.html#real-gdp",
+    "href": "02_02_data_gathering_and_cleaning.html#real-gdp",
+    "title": "Data Gathering and Data Cleaning",
+    "section": "Real GDP",
+    "text": "Real GDP\n\n\nThe raw data are quarterly data starting from the first quarter of 1947, expressed in billions of chained 2017 dollars. The cleaned data are converted into monthly series by first expressing the quarter-to-quarter changes at an annualized rate in percent and then applying spline interpolation."
+  },
+  {
+    "objectID": "02_02_data_gathering_and_cleaning.html#real-potential-gdp",
+    "href": "02_02_data_gathering_and_cleaning.html#real-potential-gdp",
+    "title": "Data Gathering and Data Cleaning",
+    "section": "Real Potential GDP",
+    "text": "Real Potential GDP\n\n\nThe raw data are quarterly data starting from the first quarter of 1949, expressed in billions of chained 2017 dollars. The cleaned data are converted into monthly series by first expressing the quarter-to-quarter changes at an annualized rate in percent and then applying spline interpolation."
+  },
+  {
+    "objectID": "02_02_data_gathering_and_cleaning.html#industrial-production",
+    "href": "02_02_data_gathering_and_cleaning.html#industrial-production",
+    "title": "Data Gathering and Data Cleaning",
+    "section": "Industrial Production",
+    "text": "Industrial Production\n\n\nThe raw data are monthly data starting from January 1919, expressed as an index with the 2017 average set to 100. The cleaned data are monthly series showing the month-over-month changes at an annualized rate in percent."
+  },
+  {
+    "objectID": "02_02_data_gathering_and_cleaning.html#retail-sales",
+    "href": "02_02_data_gathering_and_cleaning.html#retail-sales",
+    "title": "Data Gathering and Data Cleaning",
+    "section": "Retail Sales",
+    "text": "Retail Sales\n\n\nThe raw data are monthly data starting from January 1992, expressed in millions of dollars. The cleaned data are monthly series showing the month-over-month changes at an annualized rate in percent."
+  },
+  {
+    "objectID": "02_02_data_gathering_and_cleaning.html#crude-oil-prices",
+    "href": "02_02_data_gathering_and_cleaning.html#crude-oil-prices",
+    "title": "Data Gathering and Data Cleaning",
+    "section": "Crude Oil Prices",
+    "text": "Crude Oil Prices\n\n\nThe raw data are monthly data starting from January 1986, expressed in dollars per barrel. The cleaned data are monthly series showing the year-over-year changes in percent."
+  },
+  {
+    "objectID": "02_02_data_gathering_and_cleaning.html#import-price-index",
+    "href": "02_02_data_gathering_and_cleaning.html#import-price-index",
+    "title": "Data Gathering and Data Cleaning",
+    "section": "Import Price Index",
+    "text": "Import Price Index\n\n\nThe raw data are monthly data starting from September 1982, expressed as an index with the 2000 average set to 100. The cleaned data are monthly series showing the year-over-year changes in percent, calculated using the portion of the data that is continuously available from December 1988 onward."
+  },
+  {
+    "objectID": "02_02_data_gathering_and_cleaning.html#labor-productivity",
+    "href": "02_02_data_gathering_and_cleaning.html#labor-productivity",
+    "title": "Data Gathering and Data Cleaning",
+    "section": "Labor Productivity",
+    "text": "Labor Productivity\n\n\nThe raw data are quarterly series starting from the first quarter of 1947, expressed as an index with the 2017 average set to 100. The cleaned data are series converted into monthly frequency by first expressing the quarter-to-quarter changes at an annualized rate in percent and then applying spline interpolation."
+  },
+  {
+    "objectID": "02_02_data_gathering_and_cleaning.html#average-hourly-earnings",
+    "href": "02_02_data_gathering_and_cleaning.html#average-hourly-earnings",
+    "title": "Data Gathering and Data Cleaning",
+    "section": "Average Hourly Earnings",
+    "text": "Average Hourly Earnings\n\n\nThe raw data are monthly series starting from March 2006, expressed in dollars per hour. The cleaned data are monthly series showing the month-over-month changes at an annualized rate in percent."
+  },
+  {
+    "objectID": "02_02_data_gathering_and_cleaning.html#labor-force-participation-rate",
+    "href": "02_02_data_gathering_and_cleaning.html#labor-force-participation-rate",
+    "title": "Data Gathering and Data Cleaning",
+    "section": "Labor Force Participation Rate",
+    "text": "Labor Force Participation Rate\n\n\nThe raw data are monthly series starting from January 1948, expressed in percent. The cleaned data use these values directly; therefore, the two represent the same data."
+  },
+  {
+    "objectID": "02_02_data_gathering_and_cleaning.html#job-openings",
+    "href": "02_02_data_gathering_and_cleaning.html#job-openings",
+    "title": "Data Gathering and Data Cleaning",
+    "section": "Job Openings",
+    "text": "Job Openings\n\n\nThe raw data are monthly series starting from December 2000, expressed in level in thousands. The cleaned data are monthly series showing the month-over-month changes at an annualized rate in percent."
+  },
+  {
+    "objectID": "02_02_data_gathering_and_cleaning.html#federal-funds-effective-rate",
+    "href": "02_02_data_gathering_and_cleaning.html#federal-funds-effective-rate",
+    "title": "Data Gathering and Data Cleaning",
+    "section": "Federal Funds Effective Rate",
+    "text": "Federal Funds Effective Rate\n\n\nThe raw data are monthly series starting from July 1954, expressed in percent. The cleaned data use these values directly; therefore, the two represent the same data."
+  },
+  {
+    "objectID": "02_02_data_gathering_and_cleaning.html#money-suppley-m2",
+    "href": "02_02_data_gathering_and_cleaning.html#money-suppley-m2",
+    "title": "Data Gathering and Data Cleaning",
+    "section": "Money Suppley (M2)",
+    "text": "Money Suppley (M2)\n\n\nThe raw data are monthly series starting from January 1959, expressed in billions of dollars. The cleaned data are monthly series showing the month-over-month changes at an annualized rate in percent."
+  },
+  {
+    "objectID": "02_02_data_gathering_and_cleaning.html#total-assets-of-federal-reserve",
+    "href": "02_02_data_gathering_and_cleaning.html#total-assets-of-federal-reserve",
+    "title": "Data Gathering and Data Cleaning",
+    "section": "Total Assets of Federal Reserve",
+    "text": "Total Assets of Federal Reserve\n\n\nThe raw data are weekly series starting from December 18, 2002, expressed in millions of U.S. dollars. The cleaned data are monthly series showing the year-over-year changes in the monthly averages, expressed in percent."
+  },
+  {
+    "objectID": "02_02_data_gathering_and_cleaning.html#year-breakeven-inflation-rate",
+    "href": "02_02_data_gathering_and_cleaning.html#year-breakeven-inflation-rate",
+    "title": "Data Gathering and Data Cleaning",
+    "section": "5-Year Breakeven Inflation Rate",
+    "text": "5-Year Breakeven Inflation Rate\n\n\nThe raw data are daily series starting from January 2, 2003, expressed in percent. The cleaned data are series of their monthly averages."
+  },
+  {
+    "objectID": "02_02_data_gathering_and_cleaning.html#year-breakeven-inflation-rate-1",
+    "href": "02_02_data_gathering_and_cleaning.html#year-breakeven-inflation-rate-1",
+    "title": "Data Gathering and Data Cleaning",
+    "section": "10-Year Breakeven Inflation Rate",
+    "text": "10-Year Breakeven Inflation Rate\n\n\nThe raw data are daily series starting from January 2, 2003, expressed in percent. The cleaned data are series of their monthly averages."
+  },
+  {
+    "objectID": "02_02_data_gathering_and_cleaning.html#year-and-5-year-expected-changes-in-inflation-rates",
+    "href": "02_02_data_gathering_and_cleaning.html#year-and-5-year-expected-changes-in-inflation-rates",
+    "title": "Data Gathering and Data Cleaning",
+    "section": "1-Year and 5-Year Expected Changes in Inflation Rates",
+    "text": "1-Year and 5-Year Expected Changes in Inflation Rates\n\n\nThe raw data are monthly series starting from January 1978, expressed in percent. The cleaned data extract the portion from April 1990 onward, for which continuous monthly data are available."
   },
   {
     "objectID": "03_clustering.html",
@@ -75,12 +313,5 @@
     "title": "Neural Network (NN)",
     "section": "",
     "text": "Overview\n\nxxx\n\n\n\nData\n\nxxx\n\n\n\nCode\n\nxxx\n\n\n\nResults\n\nxxx"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site"
   }
 ]

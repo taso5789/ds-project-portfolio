@@ -1,5 +1,19 @@
 project:
   type: website
+  render:
+    - index.qmd
+    - 01_introduction.qmd
+    - 02_01_overview.qmd
+    - 02_02_data_gathering_and_cleaning.qmd
+    - 02_03_data_visualization.qmd
+    - 03_clustering.qmd
+    - 04_pca.qmd
+    - 05_naive_bayes.qmd
+    - 06_decision_trees.qmd
+    - 07_svm.qmd
+    - 08_regression.qmd
+    - 09_nn.qmd
+    - 10_conclusions.qmd
   output-dir: docs
   resources:
     - images/**
@@ -13,7 +27,14 @@ website:
       - text: "Introduction"
         href: 01_introduction.qmd
       - text: "DataPrep/EDA"
-        href: 02_data_prep.qmd
+        # href: 02_data_prep.qmd
+        menu:
+        - text: "Overview"
+          href: 02_01_overview.qmd
+        - text: "Data Gathering and Data Cleaning"
+          href: 02_02_data_gathering_and_cleaning.qmd
+        - text: "Data Visualization"
+          href: 02_03_data_visualization.qmd
       - text: "Model/Method"
         menu:
         - text: "Clustering"

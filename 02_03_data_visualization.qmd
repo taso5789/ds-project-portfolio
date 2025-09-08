@@ -1,0 +1,94 @@
+---
+title: "Data Visualization"
+---
+
+# Static Visualization
+
+## Summary Statistics
+
+::: {.justify}
+![Descriptive Statistics of Macroeconomic Indicators. The summary highlights central tendencies and variability across variables, revealing substantial dispersion in indicators such as industrial production (INDPRO) and retail sales (RSAFS), while others like labor force participation (CIVPART) and inflation (PCEPILFE_YoY and PCEPILFE_MoM) show more stable ranges.](results/1_DatPrep_EDA/EDA_describe.jpg){#fig-describe width=90% fig-align="center"}
+:::
+
+## Histograms
+
+::: {.justify}
+![Histograms of Macroeconomic Indicators. The distributions reveal that many variables, such as inflation (PCEPILFE_YoY and PCEPILFE_MoM) and labor force participation (CIVPART), cluster around specific ranges with relatively symmetric shapes, while others like unemployment rate (UNRATE) and money supply (M2SL) display skewness or heavy tails, indicating the presence of outliers and structural differences across indicators.](results/1_DatPrep_EDA/EDA_histograms_grid_all_series.png){#fig-hist width=90% fig-align="center"}
+:::
+
+## Violin Plots of Macroeconomic Indicators
+
+### Grouped by USREC
+
+::: {.justify}
+- A value of 1 is a recessionary period, while a value of 0 is an expansionary period.
+::: 
+
+::: {.justify}
+![Violin Plots of Macroeconomic Indicators Grouped by USREC. The distributions show that during recession periods (USREC=1), unemployment (UNRATE) shifts upward in its violin plot, while inflation (PCEPILFE_YoY and PCEPILFE_MoM) and output growth (GDPC1) violins are generally lower, reflecting typical cyclical dynamics of economic downturns.](results/1_DatPrep_EDA/EDA_violins_by_USREC.png){#fig-vio-USREC width=90% fig-align="center"}
+:::
+
+### Grouped by ZLB_dummy
+
+::: {.justify}
+- A value of 1 is a zero lower bound constraint period, while a value of 0 is not.
+::: 
+
+::: {.justify}
+![Violin Plots of Macroeconomic Indicators Grouped by ZLB_dummy. The plots show that under the zero lower bound period (ZLB_dummy=1), the federal funds rate (FEDFUNDS) violin collapses near zero by definition, while the unemployment rate (UNRATE) violin shifts upward, indicating looser monetary conditions accompanied by labor market weakness.](results/1_DatPrep_EDA/EDA_violins_by_ZLB_dummy.png){#fig-vio-zlb width=90% fig-align="center"}
+:::
+
+### Grouped by COVID_dummy
+
+::: {.justify}
+- A value of 1 is a COVID period, while a value of 0 is not.
+::: 
+
+::: {.justify}
+![Violin Plots of Macroeconomic Indicators Grouped by COVID_dummy. The plots show that during the COVID period (COVID_dummy=1), unemployment (UNRATE) rises sharply while labor force participation (CIVPART) declines, and output growth (GDPC1) and industrial production (INDPRO) distributions widen considerably, reflecting heightened volatility and economic disruption.](results/1_DatPrep_EDA/EDA_violins_by_COVID_dummy.png){#fig-vio-covid width=90% fig-align="center"}
+:::
+
+## Correlation Heatmap
+
+::: {.justify}
+![Correlation Heatmap of Macroeconomic Indicators. The plot shows both positive (red) and negative (blue) correlations, highlighting strong positive relationships such as between inflation (PCEPILFE_YoY and PCEPILFE_MoM) and inflation expectations (T5YIE, T10YIE, PX_MD, and PX5_MD), and strong negative relationships such as between unemployment rate (UNRATE) and the federal funds effective rate (FEDFUNDS), which can guide variable selection and interpretation in further analysis.](results/1_DatPrep_EDA/EDA_correlation_heatmap.png){#fig-corr-heatmap width=90% fig-align="center"}
+:::
+
+# Dynamic Visualization
+
+## Time Series of Macroeconomic Indicators
+
+::: {.justify}
+![Time Series of Macroeconomic Indicators. The plots reveal diverse dynamics across variables, with some showing steady long-term trends while others exhibit sharp fluctuations or structural breaks, reflecting economic cycles and major events such as recessions or policy shifts.](results/1_DatPrep_EDA/EDA_all_columns_timeseries.png){#fig-timeseries width=90% fig-align="center"}
+:::
+
+## Locally Estimated Scatterplot Smoothing (LOESS)
+
+::: {.justify}
+![LOESS-Smoothed Trends of Macroeconomic Indicators. The orange smoothed lines highlight underlying trajectories across variables, effectively filtering out short-term noise and revealing the baseline movement of each indicator.](results/1_DatPrep_EDA/EDA_loess_grid_all_series.png){#fig-loess width=90% fig-align="center"}
+:::
+
+
+## Hodrick–Prescott Filter (HP Filtrer): Trend
+
+::: {.justify}
+![HP-Trend Decomposition of Macroeconomic Indicators. The orange lines extracted by the HP filter reveal the long-term trend components of each series, smoothing out short-term fluctuations and highlighting gradual shifts such as the steady decline in the natural rate of unemployment (NROU).](results/1_DatPrep_EDA/EDA_hp_trend_grid_all_series.png){#fig-hp-trend width=90% fig-align="center"}
+:::
+
+## Hodrick–Prescott Filter (HP Filtrer): Cycle
+
+::: {.justify}
+![HP-Cycle Components of Macroeconomic Indicators. The plots show short-term deviations from long-term trends, with most series fluctuating around zero, indicating cyclical dynamics and temporary shocks rather than persistent structural shifts.](results/1_DatPrep_EDA/EDA_hp_cycle_grid_all_series.png){#fig-hp-cycle width=90% fig-align="center"}
+:::
+
+## Autocorrelation Function (ACF)
+
+::: {.justify}
+![Autocorrelation Functions (ACF) of Macroeconomic Indicators with 36 Monthly Lags. The plots reveal persistent autocorrelation in many variables such as unemployment (UNRATE and NROU) and inflation measures (PCEPILFE_YoY and PCEPILFE_MoM), suggesting strong serial dependence, while others like industrial production (INDPRO) and retail sales (RSAFS) exhibit weaker or rapidly decaying correlations, indicating more short-term variability.](results/1_DatPrep_EDA/EDA_acf_grid_all_series.png){#fig-acf width=90% fig-align="center"}
+:::
+
+## Partial Autocorrelation Function (PACF)
+
+::: {.justify}
+![Partial Autocorrelation Functions (PACF) of Macroeconomic Indicators with 36 Monthly Lags. Many variables show significant spikes only at the first few lags—typical of autoregressive processes—while others display more persistent or irregular patterns, indicating potential higher-order dynamics or structural shocks in the data.](results/1_DatPrep_EDA/EDA_pacf_grid_all_series.png){#fig-pacf width=90% fig-align="center"}
+:::

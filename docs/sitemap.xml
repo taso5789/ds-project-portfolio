@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://taso5789.github.io/ds-project-portfolio/index.html</loc>
-    <lastmod>2025-09-02T21:53:25.282Z</lastmod>
-  </url>
-  <url>
     <loc>https://taso5789.github.io/ds-project-portfolio/10_conclusions.html</loc>
     <lastmod>2025-08-31T23:09:24.343Z</lastmod>
   </url>
@@ -21,12 +17,24 @@
     <lastmod>2025-08-31T23:03:53.656Z</lastmod>
   </url>
   <url>
-    <loc>https://taso5789.github.io/ds-project-portfolio/02_data_prep.html</loc>
-    <lastmod>2025-09-02T02:08:15.595Z</lastmod>
+    <loc>https://taso5789.github.io/ds-project-portfolio/02_03_data_visualization.html</loc>
+    <lastmod>2025-09-08T03:23:10.215Z</lastmod>
+  </url>
+  <url>
+    <loc>https://taso5789.github.io/ds-project-portfolio/02_01_overview.html</loc>
+    <lastmod>2025-09-07T21:03:32.900Z</lastmod>
+  </url>
+  <url>
+    <loc>https://taso5789.github.io/ds-project-portfolio/index.html</loc>
+    <lastmod>2025-09-02T21:53:25.282Z</lastmod>
   </url>
   <url>
     <loc>https://taso5789.github.io/ds-project-portfolio/01_introduction.html</loc>
-    <lastmod>2025-09-02T22:57:14.868Z</lastmod>
+    <lastmod>2025-09-06T03:39:08.497Z</lastmod>
+  </url>
+  <url>
+    <loc>https://taso5789.github.io/ds-project-portfolio/02_02_data_gathering_and_cleaning.html</loc>
+    <lastmod>2025-09-07T23:07:07.699Z</lastmod>
   </url>
   <url>
     <loc>https://taso5789.github.io/ds-project-portfolio/03_clustering.html</loc>
@@ -43,9 +51,5 @@
   <url>
     <loc>https://taso5789.github.io/ds-project-portfolio/09_nn.html</loc>
     <lastmod>2025-08-31T23:05:59.512Z</lastmod>
-  </url>
-  <url>
-    <loc>https://taso5789.github.io/ds-project-portfolio/about.html</loc>
-    <lastmod>2025-08-31T22:20:07.780Z</lastmod>
   </url>
 </urlset>
