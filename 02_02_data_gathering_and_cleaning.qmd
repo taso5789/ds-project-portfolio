@@ -241,7 +241,7 @@ title: "Data Gathering and Data Cleaning"
 # Merged Cleaned Data
 
 ::: {.justify}
-- The following shows the data frame obtained by performing an inner join of all the above data. For clarity, the data frame is transposed here.
+- The following shows the data frame obtained by performing an inner join of all the above cleaned data. For clarity, the data frame is transposed here.
 :::
 
 ::: {.text-center}
