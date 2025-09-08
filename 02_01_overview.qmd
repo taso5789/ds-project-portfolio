@@ -3,7 +3,7 @@ title: "Overview"
 ---
 
 ::: {.justify}
-Notes: For the code used in this chapter (DataPrep/EDA), please refer [here](https://github.com/taso5789/ds-project-portfolio/blob/main/code/1_DataPrep_EDA.ipynb). This chapter uses the data available as of September 7, 2025.
+Notes: For the code used in this chapter (DataPrep/EDA), please refer [here](https://github.com/taso5789/ds-project-portfolio/blob/main/code/1_DataPrep_EDA.ipynb). This chapter uses the data available as of September 8, 2025.
 :::
 
 # Data
