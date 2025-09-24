@@ -183,9 +183,10 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#data-prep" id="toc-data-prep" class="nav-link" data-scroll-target="#data-prep">Data Prep</a></li>
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
   </ul>
 </nav>
     </div>
@@ -211,26 +212,71 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="justify">
+<p>Notes: All images displayed on this page are free-use materials, unless otherwise indicated by a specific credit.</p>
+</div>
 <section id="overview" class="level1">
 <h1>Overview</h1>
+<div class="justify">
 <ul>
-<li>xxx</li>
+<li><p><strong>Clustering</strong> is an unsupervised learning technique that groups similar data points together based on their characteristics. The purpose of clustering is discovery—it allows us to identify hidden structures, patterns, or natural groupings within the data without relying on predefined labels. There are two major approaches to clustering: <strong>partitional clustering</strong> and <strong>hierarchical clustering</strong>.</p>
+<ul>
+<li><p><strong>Partitional clustering</strong> (e.g., k-means) divides the dataset into a fixed number of clusters. Each data point is assigned to exactly one cluster, and the algorithm iteratively updates cluster centers to minimize within-cluster distances. This approach is computationally efficient and works well when the number of clusters is known in advance.</p></li>
+<li><p><strong>Hierarchical clustering</strong> builds a tree-like structure (dendrogram) to represent nested groupings of the data. It can be performed in two ways: agglomerative (bottom-up, starting with individual points and merging them into clusters) or divisive (top-down, starting with one large cluster and splitting it into smaller clusters). Unlike k-means, it does not require specifying the number of clusters beforehand, and the dendrogram provides insight into multiple levels of grouping.</p></li>
+</ul></li>
+<li><p>A key element in clustering is the <strong>distance metric</strong>, which defines how similarity between data points is measured. Common metrics include Euclidean distance (straight-line distance in space), Manhattan distance (sum of absolute differences across dimensions), and Cosine similarity (measuring the angle between vectors, useful for text or high-dimensional data). The choice of distance metric can significantly affect the resulting clusters and must be carefully aligned with the nature of the data.</p></li>
+<li><p>In this project, clustering will be used to explore hidden groupings in the dataset and provide insights that may not be immediately visible through simple descriptive statistics. <mark><span style="color:red">How to apply clustering to my data</span></mark></p></li>
 </ul>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig_03_overview_01.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig_03_overview_02.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="data" class="level1">
-<h1>Data</h1>
+<section id="data-prep" class="level1">
+<h1>Data Prep</h1>
+<div class="justify">
 <ul>
-<li>xxx</li>
+<li><strong>Clustering methods require only unlabeled numeric data</strong>. Unlike supervised learning, where models are trained with predefined labels or categories, clustering is an unsupervised approach that seeks to discover hidden groupings in the data without prior knowledge of class membership. Because of this, categorical labels or outcome variables are not necessary and, in fact, must be excluded during the clustering process to avoid biasing the results. In addition, the input data must be numeric since clustering algorithms, such as k-means and hierarchical clustering, rely on distance or similarity measures (e.g., Euclidean distance, cosine similarity). These measures are mathematically defined only for numerical variables. If the dataset includes categorical or textual features, they need to be transformed into numeric representations (for example, one-hot encoding for categorical variables or vectorization methods for text) before clustering can be applied.</li>
+</ul>
+</div>
+<div class="justify">
+<ul>
+<li>The sample image of the data used in the analysis on this page is shown below. This dataset corresponds to the one shown in “Merged Cleaned Data” at the end of <a href="./02_02_data_gathering_and_cleaning.html">Data Gathering and Data Cleaning</a>.</li>
+</ul>
+</div>
+<div class="text-center">
+<p><img src="results/2_Clustering/data.jpg" class="img-fluid" style="width:90.0%"></p>
+</div>
+<ul>
+<li><mark><span style="color:red">Link to Data</span></mark></li>
 </ul>
 </section>
 <section id="code" class="level1">
 <h1>Code</h1>
 <ul>
-<li>xxx</li>
+<li><mark><span style="color:red">Link to Code</span></mark></li>
 </ul>
 </section>
 <section id="results" class="level1">
 <h1>Results</h1>
+<ul>
+<li>xxx</li>
+</ul>
+</section>
+<section id="conclusions" class="level1">
+<h1>Conclusions</h1>
 <ul>
 <li>xxx</li>
 </ul>

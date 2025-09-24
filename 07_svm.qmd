@@ -6,7 +6,7 @@ title: "Support Vector Machine (SVM)"
 
 - xxx
 
-# Data
+# Data Prep
 
 - xxx
 
@@ -15,5 +15,9 @@ title: "Support Vector Machine (SVM)"
 - xxx
 
 # Results
+
+- xxx
+
+# Conclusions
 
 - xxx

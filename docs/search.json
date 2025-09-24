@@ -11,21 +11,21 @@
     "href": "08_regression.html",
     "title": "Regression",
     "section": "",
-    "text": "Overview\n\nxxx\n\n\n\nData\n\nxxx\n\n\n\nCode\n\nxxx\n\n\n\nResults\n\nxxx"
+    "text": "Overview\n\nxxx\n\n\n\nData Prep\n\nxxx\n\n\n\nCode\n\nxxx\n\n\n\nResults\n\nxxx\n\n\n\nConclusions\n\nxxx"
   },
   {
     "objectID": "06_decision_trees.html",
     "href": "06_decision_trees.html",
     "title": "Decision Trees",
     "section": "",
-    "text": "Overview\n\nxxx\n\n\n\nData\n\nxxx\n\n\n\nCode\n\nxxx\n\n\n\nResults\n\nxxx"
+    "text": "Overview\n\nxxx\n\n\n\nData Prep\n\nxxx\n\n\n\nCode\n\nxxx\n\n\n\nResults\n\nxxx\n\n\n\nConclusions\n\nxxx"
   },
   {
     "objectID": "04_pca.html",
     "href": "04_pca.html",
     "title": "Principal Component Analysis (PCA)",
     "section": "",
-    "text": "Overview\n\nxxx\n\n\n\nData\n\nxxx\n\n\n\nCode\n\nxxx\n\n\n\nResults\n\nxxx"
+    "text": "Notes: All images displayed on this page are free-use materials, unless otherwise indicated by a specific credit.\n\n\nOverview\n\n\nPrincipal Component Analysis (PCA) is a widely used dimensionality reduction technique in data science and statistics. The main idea of PCA is to transform a set of correlated variables into a smaller set of uncorrelated variables, called principal components, while preserving as much of the original information as possible. Each principal component is a linear combination of the original variables and captures the directions of maximum variance in the dataset.\nAt the core of PCA are eigenvalues and eigenvectors. Eigenvectors define the directions (principal components) along which the data varies the most, while eigenvalues indicate the amount of variance explained by each component. The larger the eigenvalue, the more information the component carries. By ranking components according to their eigenvalues, we can determine how many dimensions should be retained without losing significant information.\nThe significance of dimensionality reduction lies in the simplification of analysis and visualization. By reducing the number of dimensions, patterns and groupings become clearer, and the data can be effectively displayed in two or three dimensions. This allows researchers to intuitively explore relationships, clusters, and structures that would otherwise remain hidden in high-dimensional space.\nHigh-dimensional data often poses serious challenges. It may contain redundancy and noise, and as the number of dimensions increases, the data becomes sparse. This phenomenon is known as the curse of dimensionality, which reduces the reliability of distance calculations, clustering, and nearest-neighbor searches. For example, in low-dimensional space, points may appear relatively close to each other, but in high-dimensional space they tend to be almost equally distant, making it difficult to identify meaningful patterns or similarities. PCA addresses these issues by reducing the dimensionality of the dataset while retaining the most important sources of variance. By projecting the data onto fewer principal components, PCA removes redundancy, suppresses noise, and produces a more compact and manageable dataset. This not only improves computational efficiency but also enhances the performance of subsequent machine learning algorithms.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nData Prep\n\n\nPrincipal Component Analysis requires numeric and standardized data. Since PCA is based on variance and covariance, it can only be applied to numerical variables. If the dataset contains categorical or textual features, they must first be converted into numerical form. For example, categorical variables can be transformed using one-hot encoding, while text data can be vectorized with appropriate methods. Moreover, PCA is sensitive to differences in scale, so it is crucial to normalize or standardize the variables before applying the method. For instance, if one feature is measured in thousands and another in decimals, the feature with the larger scale will dominate the variance and bias the results. Standardization—subtracting the mean and dividing by the standard deviation for each variable—ensures that all features contribute equally to the principal components.\n\n\n\n\nThe sample image of the data used in the analysis on this page is shown below. This dataset corresponds to the one shown in “Merged Cleaned Data” at the end of Data Gathering and Data Cleaning.\n\n\n\n\n\n\nLink to Data\n\n\n\nCode\n\nLink to Code\n\n\n\nResults\n\nxxx\n\n\n\nConclusions\n\nxxx"
   },
   {
     "objectID": "02_03_data_visualization.html",
@@ -291,27 +291,27 @@
     "href": "03_clustering.html",
     "title": "Clustering",
     "section": "",
-    "text": "Overview\n\nxxx\n\n\n\nData\n\nxxx\n\n\n\nCode\n\nxxx\n\n\n\nResults\n\nxxx"
+    "text": "Notes: All images displayed on this page are free-use materials, unless otherwise indicated by a specific credit.\n\n\nOverview\n\n\nClustering is an unsupervised learning technique that groups similar data points together based on their characteristics. The purpose of clustering is discovery—it allows us to identify hidden structures, patterns, or natural groupings within the data without relying on predefined labels. There are two major approaches to clustering: partitional clustering and hierarchical clustering.\n\nPartitional clustering (e.g., k-means) divides the dataset into a fixed number of clusters. Each data point is assigned to exactly one cluster, and the algorithm iteratively updates cluster centers to minimize within-cluster distances. This approach is computationally efficient and works well when the number of clusters is known in advance.\nHierarchical clustering builds a tree-like structure (dendrogram) to represent nested groupings of the data. It can be performed in two ways: agglomerative (bottom-up, starting with individual points and merging them into clusters) or divisive (top-down, starting with one large cluster and splitting it into smaller clusters). Unlike k-means, it does not require specifying the number of clusters beforehand, and the dendrogram provides insight into multiple levels of grouping.\n\nA key element in clustering is the distance metric, which defines how similarity between data points is measured. Common metrics include Euclidean distance (straight-line distance in space), Manhattan distance (sum of absolute differences across dimensions), and Cosine similarity (measuring the angle between vectors, useful for text or high-dimensional data). The choice of distance metric can significantly affect the resulting clusters and must be carefully aligned with the nature of the data.\nIn this project, clustering will be used to explore hidden groupings in the dataset and provide insights that may not be immediately visible through simple descriptive statistics. How to apply clustering to my data\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nData Prep\n\n\nClustering methods require only unlabeled numeric data. Unlike supervised learning, where models are trained with predefined labels or categories, clustering is an unsupervised approach that seeks to discover hidden groupings in the data without prior knowledge of class membership. Because of this, categorical labels or outcome variables are not necessary and, in fact, must be excluded during the clustering process to avoid biasing the results. In addition, the input data must be numeric since clustering algorithms, such as k-means and hierarchical clustering, rely on distance or similarity measures (e.g., Euclidean distance, cosine similarity). These measures are mathematically defined only for numerical variables. If the dataset includes categorical or textual features, they need to be transformed into numeric representations (for example, one-hot encoding for categorical variables or vectorization methods for text) before clustering can be applied.\n\n\n\n\nThe sample image of the data used in the analysis on this page is shown below. This dataset corresponds to the one shown in “Merged Cleaned Data” at the end of Data Gathering and Data Cleaning.\n\n\n\n\n\n\nLink to Data\n\n\n\nCode\n\nLink to Code\n\n\n\nResults\n\nxxx\n\n\n\nConclusions\n\nxxx"
   },
   {
     "objectID": "05_naive_bayes.html",
     "href": "05_naive_bayes.html",
     "title": "Naïve Bayes",
     "section": "",
-    "text": "Overview\n\nxxx\n\n\n\nData\n\nxxx\n\n\n\nCode\n\nxxx\n\n\n\nResults\n\nxxx"
+    "text": "Overview\n\nxxx\n\n\n\nData Prep\n\nxxx\n\n\n\nCode\n\nxxx\n\n\n\nResults\n\nxxx\n\n\n\nConclusions\n\nxxx"
   },
   {
     "objectID": "07_svm.html",
     "href": "07_svm.html",
     "title": "Support Vector Machine (SVM)",
     "section": "",
-    "text": "Overview\n\nxxx\n\n\n\nData\n\nxxx\n\n\n\nCode\n\nxxx\n\n\n\nResults\n\nxxx"
+    "text": "Overview\n\nxxx\n\n\n\nData Prep\n\nxxx\n\n\n\nCode\n\nxxx\n\n\n\nResults\n\nxxx\n\n\n\nConclusions\n\nxxx"
   },
   {
     "objectID": "09_nn.html",
     "href": "09_nn.html",
     "title": "Neural Network (NN)",
     "section": "",
-    "text": "Overview\n\nxxx\n\n\n\nData\n\nxxx\n\n\n\nCode\n\nxxx\n\n\n\nResults\n\nxxx"
+    "text": "Overview\n\nxxx\n\n\n\nData Prep\n\nxxx\n\n\n\nCode\n\nxxx\n\n\n\nResults\n\nxxx\n\n\n\nConclusions\n\nxxx"
   }
 ]

@@ -183,9 +183,10 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#data-prep" id="toc-data-prep" class="nav-link" data-scroll-target="#data-prep">Data Prep</a></li>
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
   </ul>
 </nav>
     </div>
@@ -211,26 +212,68 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="justify">
+<p>Notes: All images displayed on this page are free-use materials, unless otherwise indicated by a specific credit.</p>
+</div>
 <section id="overview" class="level1">
 <h1>Overview</h1>
+<div class="justify">
 <ul>
-<li>xxx</li>
+<li><p><strong>Principal Component Analysis (PCA)</strong> is a widely used dimensionality reduction technique in data science and statistics. The main idea of PCA is to transform a set of correlated variables into a smaller set of uncorrelated variables, called principal components, while preserving as much of the original information as possible. Each principal component is a linear combination of the original variables and captures the directions of maximum variance in the dataset.</p></li>
+<li><p>At the core of PCA are <strong>eigenvalues</strong> and <strong>eigenvectors</strong>. Eigenvectors define the directions (principal components) along which the data varies the most, while eigenvalues indicate the amount of variance explained by each component. The larger the eigenvalue, the more information the component carries. By ranking components according to their eigenvalues, we can determine how many dimensions should be retained without losing significant information.</p></li>
+<li><p><strong>The significance of dimensionality reduction</strong> lies in <strong>the simplification of analysis and visualization</strong>. By reducing the number of dimensions, patterns and groupings become clearer, and the data can be effectively displayed in two or three dimensions. This allows researchers to intuitively explore relationships, clusters, and structures that would otherwise remain hidden in high-dimensional space.</p></li>
+<li><p><strong>High-dimensional data often poses serious challenges</strong>. It may contain redundancy and noise, and as the number of dimensions increases, the data becomes sparse. This phenomenon is known as the curse of dimensionality, which reduces the reliability of distance calculations, clustering, and nearest-neighbor searches. For example, in low-dimensional space, points may appear relatively close to each other, but in high-dimensional space they tend to be almost equally distant, making it difficult to identify meaningful patterns or similarities. <strong>PCA addresses these issues</strong> by reducing the dimensionality of the dataset while retaining the most important sources of variance. By projecting the data onto fewer principal components, PCA removes redundancy, suppresses noise, and produces a more compact and manageable dataset. This not only improves computational efficiency but also enhances the performance of subsequent machine learning algorithms.</p></li>
 </ul>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig_04_overview_01.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig_04_overview_02.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="data" class="level1">
-<h1>Data</h1>
+<section id="data-prep" class="level1">
+<h1>Data Prep</h1>
+<div class="justify">
 <ul>
-<li>xxx</li>
+<li><strong>Principal Component Analysis requires numeric and standardized data</strong>. Since PCA is based on variance and covariance, it can only be applied to numerical variables. If the dataset contains categorical or textual features, they must first be converted into numerical form. For example, categorical variables can be transformed using one-hot encoding, while text data can be vectorized with appropriate methods. Moreover, PCA is sensitive to differences in scale, so it is crucial to normalize or standardize the variables before applying the method. For instance, if one feature is measured in thousands and another in decimals, the feature with the larger scale will dominate the variance and bias the results. Standardization—subtracting the mean and dividing by the standard deviation for each variable—ensures that all features contribute equally to the principal components.</li>
+</ul>
+</div>
+<div class="justify">
+<ul>
+<li>The sample image of the data used in the analysis on this page is shown below. This dataset corresponds to the one shown in “Merged Cleaned Data” at the end of <a href="./02_02_data_gathering_and_cleaning.html">Data Gathering and Data Cleaning</a>.</li>
+</ul>
+</div>
+<div class="text-center">
+<p><img src="results/3_PCA/data.jpg" class="img-fluid" style="width:90.0%"></p>
+</div>
+<ul>
+<li><mark><span style="color:red">Link to Data</span></mark></li>
 </ul>
 </section>
 <section id="code" class="level1">
 <h1>Code</h1>
 <ul>
-<li>xxx</li>
+<li><mark><span style="color:red">Link to Code</span></mark></li>
 </ul>
 </section>
 <section id="results" class="level1">
 <h1>Results</h1>
+<ul>
+<li>xxx</li>
+</ul>
+</section>
+<section id="conclusions" class="level1">
+<h1>Conclusions</h1>
 <ul>
 <li>xxx</li>
 </ul>

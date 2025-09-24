@@ -6,7 +6,7 @@ title: "Naïve Bayes"
 
 - xxx
 
-# Data
+# Data Prep
 
 - xxx
 
@@ -15,5 +15,9 @@ title: "Naïve Bayes"
 - xxx
 
 # Results
+
+- xxx
+
+# Conclusions
 
 - xxx
