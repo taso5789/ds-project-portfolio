@@ -40,11 +40,12 @@ Notes: All images displayed on this page are free-use materials, unless otherwis
 :::
 
 ::: {.text-center}
-![](results/2_Clustering/data.jpg){width=90%}
+![](results/2_Clustering/data.jpg){width=100%}
 :::
 
-- <mark><span style="color:red">Link to Data</span></mark>
-
+::: {.justify}
+- The above dataset can be found [here](https://github.com/taso5789/ds-project-portfolio/tree/main/data/df_merged.csv).
+:::
 
 # Code
 
@@ -52,8 +53,178 @@ Notes: All images displayed on this page are free-use materials, unless otherwis
 
 # Results
 
-- xxx
+## Silhouette Scores of K-Means and Hierarchical Clustering
+
+::: {.justify}
+- The silhouette analysis of K-Means clustering (Euclidean distance) shows that the silhouette scores remain relatively modest across all values of *k*, peaking at about **0.27 when k = 12**. This suggests that while K-Means does identify some meaningful separation at this cluster size, the overall cohesion within clusters and separation between clusters is limited. In other words, the structure captured by K-Means is relatively weak, and the method may be less effective at uncovering clear macroeconomic regimes in this dataset.
+
+- In contrast, hierarchical clustering with cosine distance yields consistently higher silhouette scores, reaching about **0.42 for k = 10–12**. This indicates that hierarchical clustering provides more coherent and well-separated clusters, making it more reliable for identifying distinct macroeconomic states.
+
+- Taken together, both methods point to **10–12 clusters as a reasonable range**, but hierarchical clustering is clearly the stronger approach in this application.
+
+- In the figures below, the left side shows the results of K-Means Clustering, while the right side shows the results of Hierarchical Clustering.
+:::
+
+::: {.columns}
+::: {.column width="50%"}
+![](results/2_Clustering/kmeans_silhouette_scores.png){fig-align="center" width="100%"}
+:::
+::: {.column width="50%"}
+![](results/2_Clustering/hierarchical_silhouette_scores.png){fig-align="center" width="100%"}
+:::
+:::
+
+## Hierarchical Clustering Dendrogram
+
+::: {.justify}
+- The figure below is a hierarchical clustering dendrogram based on cosine distance and average linkage. The vertical axis indicates the distance at which clusters merge, with lower values representing greater similarity. Cutting the tree around a distance of 0.6 yields approximately 10–12 distinct clusters, corresponding to different macroeconomic regimes such as normal periods, recessions, and shock episodes.
+:::
+
+::: {.text-center}
+![](results/2_Clustering/hierarchical_clustering_dendrogram.png){width=100%}
+:::
+
+## Related to Q1 in [Introduction](01_introduction.qmd)
+
+::: {.justify}
+**Is a short-run trade-off between inflation and unemployment statistically observable?**
+
+- Yes, it is. In both figures (2D scatterplots of unemployment rate `UNRATE` and inflation rate `PCEPI YoY`), periods of higher inflation coincide with lower unemployment clusters (upper-left), while periods of higher unemployment coincide with lower or even negative inflation clusters (lower-right).
+
+- Although the relationship is not a perfect straight line, the presence of distinct clusters indicates that the short-run Phillips curve trade-off is statistically observable.
+
+- In the figures below, the left side shows the results of K-Means Clustering, while the right side shows the results of Hierarchical Clustering.
+:::
+
+::: {.columns}
+::: {.column width="50%"}
+![](results/2_Clustering/kmeans_clusters_k12.png){fig-align="center" width="100%"}
+:::
+::: {.column width="50%"}
+![](results/2_Clustering/hierarchical_clusters_k11.png){fig-align="center" width="100%"}
+:::
+:::
+
+## Related to Q2 in [Introduction](01_introduction.qmd)
+
+::: {.justify}
+**To what extent does the Phillips curve relationship vary across business-cycle phases (recessions and expansions) and policy regimes (e.g., the zero lower bound period or the COVID-19 era)?**
+
+- By conducting clustering based on whether the economy was in a recession or not, during the Zero Lower Bound (ZLB) period or not, and in the COVID-19 era or not, the negative relationship between unemployment and inflation was generally preserved in all cases. In other words, although the slope varied in strength across different economic phases and policy regimes, the basic Phillips curve relationship consistently held.
+
+- In the figures below, the left sides show the results of K-Means Clustering, while the right sides show the results of Hierarchical Clustering.
+:::
+
+### U.S. Recession
+
+#### Non-Recession Period (USREC = 0)
+
+::: {.columns}
+::: {.column width="50%"}
+![](results/2_Clustering/by_regime_USREC/USREC_0.0/kmeans_scatter.png){fig-align="center" width="100%"}
+:::
+::: {.column width="50%"}
+![](results/2_Clustering/by_regime_USREC/USREC_0.0/hclust_scatter.png){fig-align="center" width="100%"}
+:::
+:::
+
+#### Recession Period (USREC = 1)
+
+::: {.columns}
+::: {.column width="50%"}
+![](results/2_Clustering/by_regime_USREC/USREC_1.0/kmeans_scatter.png){fig-align="center" width="100%"}
+:::
+::: {.column width="50%"}
+![](results/2_Clustering/by_regime_USREC/USREC_1.0/hclust_scatter.png){fig-align="center" width="100%"}
+:::
+:::
+
+### Zero Lower Bound Period
+
+#### Non-Zero Lower Bound Period (ZLB_dummy = 0)
+
+::: {.columns}
+::: {.column width="50%"}
+![](results/2_Clustering/by_regime_ZLB_dummy/ZLB_dummy_0/kmeans_scatter.png){fig-align="center" width="100%"}
+:::
+::: {.column width="50%"}
+![](results/2_Clustering/by_regime_ZLB_dummy/ZLB_dummy_0/hclust_scatter.png){fig-align="center" width="100%"}
+:::
+:::
+
+#### Zero Lower Bound Period (ZLB_dummy = 1)
+ 
+::: {.columns}
+::: {.column width="50%"}
+![](results/2_Clustering/by_regime_ZLB_dummy/ZLB_dummy_1/kmeans_scatter.png){fig-align="center" width="100%"}
+:::
+::: {.column width="50%"}
+![](results/2_Clustering/by_regime_ZLB_dummy/ZLB_dummy_1/hclust_scatter.png){fig-align="center" width="100%"}
+:::
+:::
+ 
+### COVID-19 Period
+
+#### Non-COVID-19 Period (COVID_dummy = 0)
+
+::: {.columns}
+::: {.column width="50%"}
+![](results/2_Clustering/by_regime_COVID_dummy/COVID_dummy_0/kmeans_scatter.png){fig-align="center" width="100%"}
+:::
+::: {.column width="50%"}
+![](results/2_Clustering/by_regime_COVID_dummy/COVID_dummy_0/hclust_scatter.png){fig-align="center" width="100%"}
+:::
+:::
+
+#### COVID-19 Bound Period (COVID_dummy = 1)
+
+::: {.columns}
+::: {.column width="50%"}
+![](results/2_Clustering/by_regime_COVID_dummy/COVID_dummy_1/kmeans_scatter.png){fig-align="center" width="100%"}
+:::
+::: {.column width="50%"}
+![](results/2_Clustering/by_regime_COVID_dummy/COVID_dummy_1/hclust_scatter.png){fig-align="center" width="100%"}
+:::
+:::
+
+## Related to Q4 in [Introduction](01_introduction.qmd)
+
+::: {.justify}
+**Does regime identification based on data-driven clustering align with historical episodes such as stagflation or the post–global financial crisis recovery?**
+
+- Yes, it does. In both K-Means clustering and hierarchical clustering, each cluster tends to be strongly skewed toward either 0 or 1 for the dummy variables representing recessions (USREC), the zero lower bound period (ZLB_dummy), and the COVID era (COVID_dummy), suggesting the effectiveness of clustering in identifying regimes.
+:::
+
+### K-Means Clustering
+
+::: {.justify}
+- In K-Means clustering, each cluster tends to be strongly skewed toward either 0 or 1 for the dummy variables representing recessions (USREC), the zero lower bound period (ZLB_dummy), and the COVID era (COVID_dummy), suggesting the effectiveness of clustering in identifying regimes. For example, focusing on Cluster 0, since `USREC` is entirely 0, `ZLB_dummy` is entirely 1, and `COVID_dummy` is entirely 0, it can be seen that the data classified into this cluster correspond to periods that are not recessions, are within the zero lower bound period, and are not during the COVID era, thereby allowing regimes to be clearly identified. For other clusters as well, although in some cases the proportions of 0 and 1 for certain dummy variables are nearly balanced, making regime identification more difficult, in general the regimes can be clearly distinguished.
+:::
+
+::: {.text-center}
+![](results/2_Clustering/pies_kmeans_label_binary_pies.png){width=100%}
+:::
+
+### Hierarchical Clustering
+
+::: {.justify}
+- In hierarchical clustering, each cluster tends to be strongly skewed toward either 0 or 1 for the dummy variables representing recessions (USREC), the zero lower bound period (ZLB_dummy), and the COVID era (COVID_dummy), suggesting the effectiveness of clustering in identifying regimes. For example, focusing on Cluster 1, since `USREC`, `ZLB_dummy`, and `COVID_dummy` are all 0, it can be seen that the data classified into this cluster correspond to periods that are not recessions, are not within the zero lower bound period, and are not during the COVID era, thereby allowing regimes to be clearly identified. For other clusters as well, although in some cases the proportions of 0 and 1 for certain dummy variables are nearly balanced, making regime identification more difficult, in general the regimes can be clearly distinguished.
+:::
+
+::: {.text-center}
+![](results/2_Clustering/pies_hclust_label_binary_pies.png){width=100%}
+:::
 
 # Conclusions
 
-- xxx
+::: {.justify}
+- This study applied both K-Means and hierarchical clustering to macroeconomic data in order to explore hidden structures related to the Phillips curve and regime shifts. The analysis shows that clustering methods can uncover meaningful groupings of economic conditions even without predefined labels.
+
+- Silhouette analysis suggests that hierarchical clustering with cosine distance provides more coherent and well-separated clusters than K-Means, with an optimal range of about 10–12 clusters. The dendrogram further highlights natural divisions that correspond to different macroeconomic states.
+
+- Across business-cycle phases and policy regimes (recessions, the zero lower bound period, and the COVID-19 era), the negative relationship between unemployment and inflation—the Phillips curve—was generally preserved, though the slope varied in strength across regimes. This indicates that the short-run trade-off remains statistically observable in different contexts.
+
+- Regime identification based on clustering aligns with historical episodes. Many clusters are strongly skewed toward one state of the dummy variables (USREC, ZLB_dummy, COVID_dummy), demonstrating that clustering can effectively distinguish between regimes such as normal periods, recessions, ZLB episodes, and the COVID-19 shock.
+
+- Taken together, these results suggest that unsupervised clustering techniques, particularly hierarchical clustering, are valuable tools for identifying macroeconomic regimes and for assessing the stability of the Phillips curve relationship under different economic conditions.
+:::

@@ -41,8 +41,9 @@ Notes: All images displayed on this page are free-use materials, unless otherwis
 ![](results/3_PCA/data.jpg){width=90%}
 :::
 
-- <mark><span style="color:red">Link to Data</span></mark>
-
+::: {.justify}
+- The above dataset can be found [here](https://github.com/taso5789/ds-project-portfolio/tree/main/data/df_merged.csv).
+:::
 
 # Code
 
