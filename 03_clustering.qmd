@@ -49,7 +49,7 @@ Notes: All images displayed on this page are free-use materials, unless otherwis
 
 # Code
 
-- <mark><span style="color:red">Link to Code</span></mark>
+- For the code used in this chapter (Clustering), please refer [here]().
 
 # Results
 
