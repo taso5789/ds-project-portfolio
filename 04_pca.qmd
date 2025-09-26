@@ -38,7 +38,7 @@ Notes: All images displayed on this page are free-use materials, unless otherwis
 :::
 
 ::: {.text-center}
-![](results/3_PCA/data.jpg){width=90%}
+![](results/3_PCA/data.jpg){width=100%}
 :::
 
 ::: {.justify}
@@ -47,12 +47,46 @@ Notes: All images displayed on this page are free-use materials, unless otherwis
 
 # Code
 
-- <mark><span style="color:red">Link to Code</span></mark>
+::: {.justify}
+- For the code used in this chapter (Principal Component Analysis (PCA)), please refer [here](https://github.com/taso5789/ds-project-portfolio/blob/main/code/3_PCA.ipynb).
+:::
 
 # Results
 
-- xxx
+::: {.justify}
+- The results of the principal component analysis (PCA) are discussed and illustrated using the figures.
+
+- @fig-PCA-score shows the explained variance ratio of each principal component as well as the cumulative contribution. The first principal component accounts for about 27% of the total variance, followed by a gradual decline, and the cumulative explained variance reaches roughly 90% with the first ten components. This indicates that while a large portion of the variance can be summarized by a few principal components, multiple components are still needed to capture the overall diversity of the macroeconomic dataset. In particular, the first three components already explain more than half of the total variance, so the focus of interpretation is placed on them.
+
+- @fig-PCA-heatmap shows the relationship between each original macroeconomic variable and the principal components. The first principal component exhibits a strong positive correlation not only with year-over-year (YoY) core inflation rate (`PCEPILFE YoY`) but also with month-over-month (MoM) core inflation rate (`PCEPILFE MoM`). It is also positively correlated with inflation expectations (`T5YIE`, `T10YIE`, `PX_MD`, and `PX_5MD`). In contrast, it shows a negative correlation with the unemployment rate (`UNRATE`), reflecting the Phillips curve trade-off between inflation and unemployment. Thus, the first component can be interpreted as a comprehensive inflation factor, capturing both the medium-term trend (YoY) and short-term fluctuations (MoM).
+
+- The second and third components are more closely related to production and labor market indicators such as industrial production (`INDPRO`), retail sales (`RSAFS`), and average hourly earnings (`CES0500000003`), suggesting that they capture business cycle and labor market dynamics.
+
+- In summary, the scree plot helps identify how many components are necessary to capture the majority of the variance, while the correlation heatmap reveals how the principal components are linked to the original macroeconomic variables. Together, these visualizations make it possible to label the extracted factors in economic terms, such as an inflation factor and business cycle factors. Notably, both year-over-year and month-over-month inflation measures load strongly on the first principal component, indicating that PCA successfully extracts a common factor that encompasses both persistent and short-term inflation dynamics.
+
+![Scree plot of the principal components. The bars indicate the variance explained by each component, while the line shows the cumulative explained variance. The first few components capture the majority of the total variance, after which additional components contribute marginally.](results/3_PCA/pca_scree.png){#fig-PCA-score width=100% fig-align="center"}
+
+![Heatmap of correlations between original macroeconomic variables and the first ten principal components. Red indicates positive correlation, blue indicates negative correlation, and white represents weak or no correlation.](results/3_PCA/pca_corr_heatmap.png){#fig-PCA-heatmap width=100% fig-align="center"}
+:::
+
+## Related to Q3 (out of 10 Research Questions) in [Introduction](01_introduction.qmd)
+
+::: {.justify}
+**How do macroeconomic factors extracted through principal component analysis (PCA) affect the dynamics of inflation and unemployment?**
+
+- According to @fig-PCA-heatmap, macroeconomic factors extracted through PCA affect the dynamics of inflation and unemployment mainly through two channels:
+
+  1. **Inflation factor (first principal component)**: When this factor rises, both the year-over-year (YoY) and month-over-month (MoM) core inflation rates increase, while the unemployment rate decreases. This reflects a short-run Phillips curve relationship, namely **higher inflationary pressures → lower unemployment**.
+
+  1. **Business cycle factors (second and third principal components)**: These are closely linked to real economic activity (production, retail sales, and labor market indicators) and represent business cycle conditions by primarily driving unemployment fluctuations. Their effects on inflation generally emerge with a lag through the demand channel, with MoM inflation responding earlier than YoY inflation, as it is more sensitive to short-term fluctuations.
+
+- In summary, PCA facilitates the identification of distinct macroeconomic drivers, isolating an inflation factor and business cycle factors, and thereby providing a structured account of how persistent price pressures and cyclical labor market conditions jointly shape the evolution of inflation and unemployment.
+:::
 
 # Conclusions
 
-- xxx
+::: {.justify}
+- This study applied principal component analysis (PCA) to macroeconomic indicators to identify latent factors shaping inflation and unemployment dynamics. The first principal component emerges as a comprehensive **inflation factor**, strongly correlated with both year-over-year and month-over-month measures of core inflation and inversely related to unemployment, thereby reflecting the Phillips curve trade-off. The second and third components are closely linked to production, retail sales, and labor market indicators, representing **business cycle factors** that primarily drive unemployment fluctuations and indirectly influence inflation.
+
+- Overall, PCA proves effective in reducing the dimensionality of complex datasets while preserving meaningful macroeconomic variation. By distinguishing between inflation and business cycle drivers, PCA provides a structured framework for understanding how persistent price pressures and cyclical labor market conditions jointly shape the economy. These results highlight PCA’s value not only as a statistical tool but also as a means of generating insights relevant for macroeconomic policy analysis.
+:::

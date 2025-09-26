@@ -17,7 +17,7 @@ Notes: All images displayed on this page are free-use materials, unless otherwis
 
 - A key element in clustering is the **distance metric**, which defines how similarity between data points is measured. Common metrics include Euclidean distance (straight-line distance in space), Manhattan distance (sum of absolute differences across dimensions), and Cosine similarity (measuring the angle between vectors, useful for text or high-dimensional data). The choice of distance metric can significantly affect the resulting clusters and must be carefully aligned with the nature of the data.
 
-- In this project, clustering will be used to explore hidden groupings in the dataset and provide insights that may not be immediately visible through simple descriptive statistics. <mark><span style="color:red">How to apply clustering to my data</span></mark>
+- In this project, clustering will be used to explore hidden groupings in the dataset and provide insights that may not be immediately visible through simple descriptive statistics. Specifically, K-Means and hierarchical clustering will be applied to standardized macroeconomic indicators to uncover distinct regimes. The quality and number of clusters will be evaluated using silhouette scores and dendrogram analysis. To validate the discovered groupings, the distribution of regime dummies (`USREC`, `ZLB_dummy`, `COVID_dummy`) within each cluster will be examined via cross-tabs and donut/pie charts to assess alignment with historical episodes such as recessions, the zero lower bound period, and the COVID-19 era. In addition, cluster-wise and regime-wise scatter plots of unemployment and inflation will be used to evaluate how strongly the short-run Phillips curve relationship is preserved across regimes.
 :::
 
 ::: {.columns}
@@ -49,7 +49,9 @@ Notes: All images displayed on this page are free-use materials, unless otherwis
 
 # Code
 
-- For the code used in this chapter (Clustering), please refer [here]().
+::: {.justify}
+- For the code used in this chapter (Clustering), please refer [here](https://github.com/taso5789/ds-project-portfolio/blob/main/code/2_Clustering.ipynb).
+:::
 
 # Results
 
@@ -58,33 +60,46 @@ Notes: All images displayed on this page are free-use materials, unless otherwis
 ::: {.justify}
 - The silhouette analysis of K-Means clustering (Euclidean distance) shows that the silhouette scores remain relatively modest across all values of *k*, peaking at about **0.27 when k = 12**. This suggests that while K-Means does identify some meaningful separation at this cluster size, the overall cohesion within clusters and separation between clusters is limited. In other words, the structure captured by K-Means is relatively weak, and the method may be less effective at uncovering clear macroeconomic regimes in this dataset.
 
-- In contrast, hierarchical clustering with cosine distance yields consistently higher silhouette scores, reaching about **0.42 for k = 10–12**. This indicates that hierarchical clustering provides more coherent and well-separated clusters, making it more reliable for identifying distinct macroeconomic states.
+- In contrast, hierarchical clustering with cosine distance yields consistently higher silhouette scores, reaching about **0.42 for k = 11**. **This indicates that hierarchical clustering provides more coherent and well-separated clusters, making it more reliable for identifying distinct macroeconomic states**.
 
-- Taken together, both methods point to **10–12 clusters as a reasonable range**, but hierarchical clustering is clearly the stronger approach in this application.
+- Despite these differences, **both methods converge on a similar conclusion: around 11–12 clusters represent a reasonable range** for capturing the underlying structure of the data. This agreement suggests that the existence of multiple macroeconomic regimes is robust to the choice of clustering method.
+
+- Taken together, both methods point to **11–12 clusters as a reasonable range**, but hierarchical clustering is clearly the stronger approach in this application.
 
 - In the figures below, the left side shows the results of K-Means Clustering, while the right side shows the results of Hierarchical Clustering.
 :::
 
 ::: {.columns}
-::: {.column width="50%"}
-![](results/2_Clustering/kmeans_silhouette_scores.png){fig-align="center" width="100%"}
+
+::: {.column width="47.5%"}
+::: {.justify}
+![Silhouette scores of K-Means clustering (Euclidean distance) across different numbers of clusters (*k* = 2–19). The scores peak at *k* = 12 (≈0.28), suggesting that around 12 clusters provide the most coherent separation under this method.](results/2_Clustering/kmeans_silhouette_scores.png){#K-Means-Silhouette-Scores width=100% fig-align="center"}
 :::
-::: {.column width="50%"}
-![](results/2_Clustering/hierarchical_silhouette_scores.png){fig-align="center" width="100%"}
 :::
+
+::: {.column width="5%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="47.5%"}
+::: {.justify}
+![Silhouette scores of hierarchical clustering with cosine distance across different numbers of clusters (*k* = 2–19). The scores reach their highest values at *k* = 11 (≈0.42), indicating stronger cohesion and separation compared to K-Means.](results/2_Clustering/hierarchical_silhouette_scores.png){#Hierarchical-Silhouette-Scores width=100% fig-align="center"}
+:::
+:::
+
 :::
 
 ## Hierarchical Clustering Dendrogram
 
 ::: {.justify}
-- The figure below is a hierarchical clustering dendrogram based on cosine distance and average linkage. The vertical axis indicates the distance at which clusters merge, with lower values representing greater similarity. Cutting the tree around a distance of 0.6 yields approximately 10–12 distinct clusters, corresponding to different macroeconomic regimes such as normal periods, recessions, and shock episodes.
+- The figure below is a hierarchical clustering dendrogram based on cosine distance and average linkage. The vertical axis indicates the distance at which clusters merge, with lower values representing greater similarity. Cutting the tree around a distance of 0.6 yields approximately 11–12 distinct clusters, corresponding to different macroeconomic regimes such as normal periods, recessions, and shock episodes.
 :::
 
-::: {.text-center}
-![](results/2_Clustering/hierarchical_clustering_dendrogram.png){width=100%}
+::: {.justify}
+![Hierarchical clustering dendrogram using cosine distance and average linkage. The vertical axis indicates the distance at which clusters merge, with lower values representing greater similarity. Cutting the dendrogram around a distance of 0.6 suggests approximately 11–12 distinct clusters, corresponding to different macroeconomic regimes.](results/2_Clustering/hierarchical_clustering_dendrogram.png){#Hierarchical-Clustering-Dendrogram width=100% fig-align="center"}
 :::
 
-## Related to Q1 in [Introduction](01_introduction.qmd)
+## Related to Q1 (out of 10 Research Questions) in [Introduction](01_introduction.qmd)
 
 ::: {.justify}
 **Is a short-run trade-off between inflation and unemployment statistically observable?**
@@ -97,97 +112,161 @@ Notes: All images displayed on this page are free-use materials, unless otherwis
 :::
 
 ::: {.columns}
-::: {.column width="50%"}
-![](results/2_Clustering/kmeans_clusters_k12.png){fig-align="center" width="100%"}
-:::
-::: {.column width="50%"}
-![](results/2_Clustering/hierarchical_clusters_k11.png){fig-align="center" width="100%"}
+
+::: {.column width="47.5%"}
+::: {.justify}
+![K-Means clustering results with *k* = 12 on standardized features. The scatter plot shows unemployment (`UNRATE`, x-axis) and inflation (`PCEPILFE_YoY`, y-axis), with points colored by cluster assignment. Distinct groupings illustrate the short-run Phillips curve trade-off, where clusters with higher inflation correspond to lower unemployment and vice versa.](results/2_Clustering/kmeans_clusters_k12.png){#K-Means-Clustering width=100% fig-align="center"}
 :::
 :::
 
-## Related to Q2 in [Introduction](01_introduction.qmd)
+::: {.column width="5%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="47.5%"}
+::: {.justify}
+![Hierarchical clustering results with *k* = 11 on standardized features. The scatter plot shows unemployment (`UNRATE`, x-axis) and inflation (`PCEPILFE_YoY`, y-axis), with points colored by cluster assignment. The clusters reveal distinct groupings that highlight the short-run Phillips curve trade-off, where periods of higher inflation are generally associated with lower unemployment, and vice versa.](results/2_Clustering/hierarchical_clusters_k11.png){#Hierarchical-Clustering width=100% fig-align="center"}
+:::
+:::
+:::
+
+## Related to Q2 (out of 10 Research Questions) in [Introduction](01_introduction.qmd)
 
 ::: {.justify}
 **To what extent does the Phillips curve relationship vary across business-cycle phases (recessions and expansions) and policy regimes (e.g., the zero lower bound period or the COVID-19 era)?**
 
-- By conducting clustering based on whether the economy was in a recession or not, during the Zero Lower Bound (ZLB) period or not, and in the COVID-19 era or not, the negative relationship between unemployment and inflation was generally preserved in all cases. In other words, although the slope varied in strength across different economic phases and policy regimes, the basic Phillips curve relationship consistently held.
+- By conducting clustering based on whether the economy was in a recession or not (`USREC` = 0/1), during the Zero Lower Bound (ZLB) period or not (`ZLB_dummy` = 0/1), and in the COVID-19 era or not (`COVID_dummy` = 0/1), the negative relationship between unemployment and inflation was generally preserved in all cases. In other words, although the slope varied in strength across different economic phases and policy regimes, the basic Phillips curve relationship consistently held.
 
 - In the figures below, the left sides show the results of K-Means Clustering, while the right sides show the results of Hierarchical Clustering.
 :::
 
 ### U.S. Recession
 
-#### Non-Recession Period (USREC = 0)
+#### Non-Recession Period (`USREC` = 0)
 
 ::: {.columns}
-::: {.column width="50%"}
-![](results/2_Clustering/by_regime_USREC/USREC_0.0/kmeans_scatter.png){fig-align="center" width="100%"}
-:::
-::: {.column width="50%"}
-![](results/2_Clustering/by_regime_USREC/USREC_0.0/hclust_scatter.png){fig-align="center" width="100%"}
+::: {.column width="47.5%"}
+::: {.justify}
+![K-Means clustering results on standardized unemployment (`UNRATE`, x-axis) and inflation (`PCEPILFE_YoY`, y-axis) during non-recession periods (`USREC` = 0). Based on silhouette analysis conducted for this subset, the optimal number of clusters was determined to be *k* = 9. The resulting clusters reveal distinct macroeconomic groupings, indicating that the short-run Phillips curve relationship is generally preserved outside recessions.](results/2_Clustering/by_regime_USREC/USREC_0/kmeans_scatter.png){#KMeans-Clustering-USREC-0 width="100%"  fig-align="center"}
 :::
 :::
 
-#### Recession Period (USREC = 1)
+::: {.column width="5%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="47.5%"}
+::: {.justify}
+![Hierarchical clustering results on standardized unemployment (`UNRATE`, x-axis) and inflation (`PCEPILFE_YoY`, y-axis) during non-recession periods (`USREC` = 0). Based on silhouette analysis conducted for this subset, the optimal number of clusters was determined to be *k* = 10. The resulting clusters reveal distinct macroeconomic groupings, indicating that the short-run Phillips curve relationship is generally preserved outside recessions.](results/2_Clustering/by_regime_USREC/USREC_0/hclust_scatter.png){#Hierarchical-Clustering-USREC-0 width=100%  fig-align="center"}
+:::
+:::
+:::
+
+#### Recession Period (`USREC` = 1)
 
 ::: {.columns}
-::: {.column width="50%"}
-![](results/2_Clustering/by_regime_USREC/USREC_1.0/kmeans_scatter.png){fig-align="center" width="100%"}
+::: {.column width="47.5%"}
+::: {.justify}
+![K-Means clustering results on standardized unemployment (`UNRATE`, x-axis) and inflation (`PCEPILFE_YoY`, y-axis) during recession periods (`USREC` = 1). Based on silhouette analysis conducted for this subset, the optimal number of clusters was determined to be *k* = 3. The resulting clusters reveal distinct macroeconomic groupings, indicating that the short-run Phillips curve relationship is generally preserved within recessions.](results/2_Clustering/by_regime_USREC/USREC_1/kmeans_scatter.png){#KMeans-Clustering-USREC-1 width=100%  fig-align="center"}
 :::
-::: {.column width="50%"}
-![](results/2_Clustering/by_regime_USREC/USREC_1.0/hclust_scatter.png){fig-align="center" width="100%"}
+:::
+
+::: {.column width="5%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="47.5%"}
+::: {.justify}
+![Hierarchical clustering results on standardized unemployment (`UNRATE`, x-axis) and inflation (`PCEPILFE_YoY`, y-axis) during recession periods (`USREC` = 1). Based on silhouette analysis conducted for this subset, the optimal number of clusters was determined to be *k* = 2. The resulting clusters reveal distinct macroeconomic groupings, indicating that the short-run Phillips curve relationship is generally preserved within recessions.](results/2_Clustering/by_regime_USREC/USREC_1/hclust_scatter.png){#Hierarchical-Clustering-USREC-1 width=100%  fig-align="center"}
+:::
 :::
 :::
 
 ### Zero Lower Bound Period
 
-#### Non-Zero Lower Bound Period (ZLB_dummy = 0)
+#### Non-Zero Lower Bound Period (`ZLB_dummy` = 0)
 
 ::: {.columns}
-::: {.column width="50%"}
-![](results/2_Clustering/by_regime_ZLB_dummy/ZLB_dummy_0/kmeans_scatter.png){fig-align="center" width="100%"}
-:::
-::: {.column width="50%"}
-![](results/2_Clustering/by_regime_ZLB_dummy/ZLB_dummy_0/hclust_scatter.png){fig-align="center" width="100%"}
+::: {.column width="47.5%"}
+::: {.justify}
+![K-Means clustering results on standardized unemployment (`UNRATE`, x-axis) and inflation (`PCEPILFE_YoY`, y-axis) during non-zero lower bound periods (`ZLB_dummy` = 0). Based on silhouette analysis conducted for this subset, the optimal number of clusters was determined to be *k* = 7. The resulting clusters reveal distinct macroeconomic groupings, indicating that the short-run Phillips curve relationship is generally preserved outside zero lower bound periods.](results/2_Clustering/by_regime_ZLB_dummy/ZLB_dummy_0/kmeans_scatter.png){#KMeans-Clustering-ZLB-0 width=100%  fig-align="center"}
 :::
 :::
 
-#### Zero Lower Bound Period (ZLB_dummy = 1)
+::: {.column width="5%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="47.5%"}
+::: {.justify}
+![Hierarchical clustering results on standardized unemployment (`UNRATE`, x-axis) and inflation (`PCEPILFE_YoY`, y-axis) during non-zero lower bound periods (`ZLB_dummy` = 0). Based on silhouette analysis conducted for this subset, the optimal number of clusters was determined to be *k* = 3. The resulting clusters reveal distinct macroeconomic groupings, indicating that the short-run Phillips curve relationship is generally preserved outside zero lower bound periods.](results/2_Clustering/by_regime_ZLB_dummy/ZLB_dummy_0/hclust_scatter.png){#Hierarchical-Clustering-ZLB-0 width=100% fig-align="center"}
+:::
+:::
+:::
+
+#### Zero Lower Bound Period (`ZLB_dummy` = 1)
  
 ::: {.columns}
-::: {.column width="50%"}
-![](results/2_Clustering/by_regime_ZLB_dummy/ZLB_dummy_1/kmeans_scatter.png){fig-align="center" width="100%"}
+::: {.column width="47.5%"}
+::: {.justify}
+![K-Means clustering results on standardized unemployment (`UNRATE`, x-axis) and inflation (`PCEPILFE_YoY`, y-axis) during zero lower bound periods (`ZLB_dummy` = 1). Based on silhouette analysis conducted for this subset, the optimal number of clusters was determined to be *k* = 5. The resulting clusters reveal distinct macroeconomic groupings, indicating that the short-run Phillips curve relationship is generally preserved during zero lower bound periods.](results/2_Clustering/by_regime_ZLB_dummy/ZLB_dummy_1/kmeans_scatter.png){#KMeans-Clustering-ZLB-1 width=100%  fig-align="center"}
 :::
-::: {.column width="50%"}
-![](results/2_Clustering/by_regime_ZLB_dummy/ZLB_dummy_1/hclust_scatter.png){fig-align="center" width="100%"}
+:::
+
+::: {.column width="5%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="47.5%"}
+::: {.justify}
+![Hierarchical clustering results on standardized unemployment (`UNRATE`, x-axis) and inflation (`PCEPILFE_YoY`, y-axis) during zero lower bound periods (`ZLB_dummy` = 1). Based on silhouette analysis conducted for this subset, the optimal number of clusters was determined to be *k* = 13. The resulting clusters reveal distinct macroeconomic groupings, indicating that the short-run Phillips curve relationship is generally preserved during zero lower bound periods.](results/2_Clustering/by_regime_ZLB_dummy/ZLB_dummy_1/hclust_scatter.png){#Hierarchical-Clustering-ZLB-1 width=100% fig-align="center"}
+:::
 :::
 :::
  
-### COVID-19 Period
+### COVID-19 Era
 
-#### Non-COVID-19 Period (COVID_dummy = 0)
-
-::: {.columns}
-::: {.column width="50%"}
-![](results/2_Clustering/by_regime_COVID_dummy/COVID_dummy_0/kmeans_scatter.png){fig-align="center" width="100%"}
-:::
-::: {.column width="50%"}
-![](results/2_Clustering/by_regime_COVID_dummy/COVID_dummy_0/hclust_scatter.png){fig-align="center" width="100%"}
-:::
-:::
-
-#### COVID-19 Bound Period (COVID_dummy = 1)
+#### Non-COVID-19 Era (`COVID_dummy` = 0)
 
 ::: {.columns}
-::: {.column width="50%"}
-![](results/2_Clustering/by_regime_COVID_dummy/COVID_dummy_1/kmeans_scatter.png){fig-align="center" width="100%"}
-:::
-::: {.column width="50%"}
-![](results/2_Clustering/by_regime_COVID_dummy/COVID_dummy_1/hclust_scatter.png){fig-align="center" width="100%"}
+::: {.column width="47.5%"}
+::: {.justify}
+![K-Means clustering results on standardized unemployment (`UNRATE`, x-axis) and inflation (`PCEPILFE_YoY`, y-axis) during non-COVID-19 era (`COVID_dummy` = 0). Based on silhouette analysis conducted for this subset, the optimal number of clusters was determined to be *k* = 10. The resulting clusters reveal distinct macroeconomic groupings, indicating that the short-run Phillips curve relationship is generally preserved outside COVID-19 era.](results/2_Clustering/by_regime_COVID_dummy/COVID_dummy_0/kmeans_scatter.png){#KMeans-Clustering-COVID-0 width=100% fig-align="center"}
 :::
 :::
 
-## Related to Q4 in [Introduction](01_introduction.qmd)
+::: {.column width="5%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="47.5%"}
+::: {.justify}
+![Hierarchical clustering results on standardized unemployment (`UNRATE`, x-axis) and inflation (`PCEPILFE_YoY`, y-axis) during non-COVID-19 era (`COVID_dummy` = 0). Based on silhouette analysis conducted for this subset, the optimal number of clusters was determined to be *k* = 4. The resulting clusters reveal distinct macroeconomic groupings, indicating that the short-run Phillips curve relationship is generally preserved outside COVID-19 era.](results/2_Clustering/by_regime_COVID_dummy/COVID_dummy_0/hclust_scatter.png){#Hierarchical-Clustering-COVID-0 width=100% fig-align="center"}
+:::
+:::
+:::
+
+#### COVID-19 Bound Era (`COVID_dummy` = 1)
+
+::: {.columns}
+::: {.column width="47.5%"}
+::: {.justify}
+![K-Means clustering results on standardized unemployment (`UNRATE`, x-axis) and inflation (`PCEPILFE_YoY`, y-axis) during COVID-19 era (`COVID_dummy` = 1). Based on silhouette analysis conducted for this subset, the optimal number of clusters was determined to be *k* = 2. The resulting clusters reveal distinct macroeconomic groupings, indicating that the short-run Phillips curve relationship is generally preserved during COVID-19 era.](results/2_Clustering/by_regime_COVID_dummy/COVID_dummy_1/kmeans_scatter.png){#KMeans-Clustering-COVID-1 width=100% fig-align="center"}
+:::
+:::
+
+::: {.column width="5%"}
+<!-- empty column to create gap -->
+:::
+
+::: {.column width="47.5%"}
+::: {.justify}
+![Hierarchical clustering results on standardized unemployment (`UNRATE`, x-axis) and inflation (`PCEPILFE_YoY`, y-axis) during COVID-19 era (`COVID_dummy` = 1). Based on silhouette analysis conducted for this subset, the optimal number of clusters was determined to be *k* = 6. The resulting clusters reveal distinct macroeconomic groupings, indicating that the short-run Phillips curve relationship is generally preserved during COVID-19 era.](results/2_Clustering/by_regime_COVID_dummy/COVID_dummy_1/hclust_scatter.png){#Hierarchical-Clustering-COVID-1 width=100% fig-align="center"}
+:::
+:::
+:::
+
+## Related to Q4 (out of 10 Research Questions) in [Introduction](01_introduction.qmd)
 
 ::: {.justify}
 **Does regime identification based on data-driven clustering align with historical episodes such as stagflation or the post–global financial crisis recovery?**
@@ -201,8 +280,8 @@ Notes: All images displayed on this page are free-use materials, unless otherwis
 - In K-Means clustering, each cluster tends to be strongly skewed toward either 0 or 1 for the dummy variables representing recessions (USREC), the zero lower bound period (ZLB_dummy), and the COVID era (COVID_dummy), suggesting the effectiveness of clustering in identifying regimes. For example, focusing on Cluster 0, since `USREC` is entirely 0, `ZLB_dummy` is entirely 1, and `COVID_dummy` is entirely 0, it can be seen that the data classified into this cluster correspond to periods that are not recessions, are within the zero lower bound period, and are not during the COVID era, thereby allowing regimes to be clearly identified. For other clusters as well, although in some cases the proportions of 0 and 1 for certain dummy variables are nearly balanced, making regime identification more difficult, in general the regimes can be clearly distinguished.
 :::
 
-::: {.text-center}
-![](results/2_Clustering/pies_kmeans_label_binary_pies.png){width=100%}
+::: {.justify}
+![Distribution of dummy variables within clusters from K-Means clustering (*k* = 12). Each donut chart shows the share of 0 vs. 1 for `USREC` (recessions), `ZLB_dummy` (zero lower bound period), and `COVID_dummy` (COVID-19 era) across clusters. Most clusters are strongly skewed toward either 0 or 1, indicating that K-Means effectively distinguishes macroeconomic regimes such as normal periods, recessions, the ZLB period, and the COVID-19 shock.](results/2_Clustering/pies_kmeans_label_binary_pies.png){#K-Means-Label-Binary-Pies width=100% fig-align="center"}
 :::
 
 ### Hierarchical Clustering
@@ -211,8 +290,8 @@ Notes: All images displayed on this page are free-use materials, unless otherwis
 - In hierarchical clustering, each cluster tends to be strongly skewed toward either 0 or 1 for the dummy variables representing recessions (USREC), the zero lower bound period (ZLB_dummy), and the COVID era (COVID_dummy), suggesting the effectiveness of clustering in identifying regimes. For example, focusing on Cluster 1, since `USREC`, `ZLB_dummy`, and `COVID_dummy` are all 0, it can be seen that the data classified into this cluster correspond to periods that are not recessions, are not within the zero lower bound period, and are not during the COVID era, thereby allowing regimes to be clearly identified. For other clusters as well, although in some cases the proportions of 0 and 1 for certain dummy variables are nearly balanced, making regime identification more difficult, in general the regimes can be clearly distinguished.
 :::
 
-::: {.text-center}
-![](results/2_Clustering/pies_hclust_label_binary_pies.png){width=100%}
+::: {.justify}
+![Distribution of dummy variables within clusters from hierarchical clustering (*k* = 11). Each donut chart shows the share of 0 vs. 1 for `USREC` (recessions), `ZLB_dummy` (zero lower bound period), and `COVID_dummy` (COVID-19 era) across clusters. Many clusters are strongly skewed toward either 0 or 1, indicating that hierarchical clustering effectively separates macroeconomic regimes such as normal periods, recessions, ZLB episodes, and the COVID-19 shock.](results/2_Clustering/pies_hclust_label_binary_pies.png){#Hierarchical-Label-Binary-Pies width=100% fig-align="center"}
 :::
 
 # Conclusions
@@ -220,7 +299,7 @@ Notes: All images displayed on this page are free-use materials, unless otherwis
 ::: {.justify}
 - This study applied both K-Means and hierarchical clustering to macroeconomic data in order to explore hidden structures related to the Phillips curve and regime shifts. The analysis shows that clustering methods can uncover meaningful groupings of economic conditions even without predefined labels.
 
-- Silhouette analysis suggests that hierarchical clustering with cosine distance provides more coherent and well-separated clusters than K-Means, with an optimal range of about 10–12 clusters. The dendrogram further highlights natural divisions that correspond to different macroeconomic states.
+- Silhouette analysis suggests that hierarchical clustering with cosine distance provides more coherent and well-separated clusters than K-Means, with an optimal range of about 11–12 clusters. The dendrogram further highlights natural divisions that correspond to different macroeconomic states.
 
 - Across business-cycle phases and policy regimes (recessions, the zero lower bound period, and the COVID-19 era), the negative relationship between unemployment and inflation—the Phillips curve—was generally preserved, though the slope varied in strength across regimes. This indicates that the short-run trade-off remains statistically observable in different contexts.
 

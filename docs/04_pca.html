@@ -185,7 +185,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#data-prep" id="toc-data-prep" class="nav-link" data-scroll-target="#data-prep">Data Prep</a></li>
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
+  <ul class="collapse">
+  <li><a href="#related-to-q3-out-of-10-research-questions-in-introduction" id="toc-related-to-q3-out-of-10-research-questions-in-introduction" class="nav-link" data-scroll-target="#related-to-q3-out-of-10-research-questions-in-introduction">Related to Q3 (out of 10 Research Questions) in Introduction</a></li>
+  </ul></li>
   <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
   </ul>
 </nav>
@@ -254,7 +257,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </div>
 <div class="text-center">
-<p><img src="results/3_PCA/data.jpg" class="img-fluid" style="width:90.0%"></p>
+<p><img src="results/3_PCA/data.jpg" class="img-fluid" style="width:100.0%"></p>
 </div>
 <div class="justify">
 <ul>
@@ -264,21 +267,66 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="code" class="level1">
 <h1>Code</h1>
+<div class="justify">
 <ul>
-<li><mark><span style="color:red">Link to Code</span></mark></li>
+<li>For the code used in this chapter (Principal Component Analysis (PCA)), please refer <a href="https://github.com/taso5789/ds-project-portfolio/blob/main/code/3_PCA.ipynb">here</a>.</li>
 </ul>
+</div>
 </section>
 <section id="results" class="level1">
 <h1>Results</h1>
+<div class="justify">
 <ul>
-<li>xxx</li>
+<li><p>The results of the principal component analysis (PCA) are discussed and illustrated using the figures.</p></li>
+<li><p><a href="#fig-PCA-score" class="quarto-xref">Figure&nbsp;1</a> shows the explained variance ratio of each principal component as well as the cumulative contribution. The first principal component accounts for about 27% of the total variance, followed by a gradual decline, and the cumulative explained variance reaches roughly 90% with the first ten components. This indicates that while a large portion of the variance can be summarized by a few principal components, multiple components are still needed to capture the overall diversity of the macroeconomic dataset. In particular, the first three components already explain more than half of the total variance, so the focus of interpretation is placed on them.</p></li>
+<li><p><a href="#fig-PCA-heatmap" class="quarto-xref">Figure&nbsp;2</a> shows the relationship between each original macroeconomic variable and the principal components. The first principal component exhibits a strong positive correlation not only with year-over-year (YoY) core inflation rate (<code>PCEPILFE YoY</code>) but also with month-over-month (MoM) core inflation rate (<code>PCEPILFE MoM</code>). It is also positively correlated with inflation expectations (<code>T5YIE</code>, <code>T10YIE</code>, <code>PX_MD</code>, and <code>PX_5MD</code>). In contrast, it shows a negative correlation with the unemployment rate (<code>UNRATE</code>), reflecting the Phillips curve trade-off between inflation and unemployment. Thus, the first component can be interpreted as a comprehensive inflation factor, capturing both the medium-term trend (YoY) and short-term fluctuations (MoM).</p></li>
+<li><p>The second and third components are more closely related to production and labor market indicators such as industrial production (<code>INDPRO</code>), retail sales (<code>RSAFS</code>), and average hourly earnings (<code>CES0500000003</code>), suggesting that they capture business cycle and labor market dynamics.</p></li>
+<li><p>In summary, the scree plot helps identify how many components are necessary to capture the majority of the variance, while the correlation heatmap reveals how the principal components are linked to the original macroeconomic variables. Together, these visualizations make it possible to label the extracted factors in economic terms, such as an inflation factor and business cycle factors. Notably, both year-over-year and month-over-month inflation measures load strongly on the first principal component, indicating that PCA successfully extracts a common factor that encompasses both persistent and short-term inflation dynamics.</p></li>
 </ul>
+<div id="fig-PCA-score" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-PCA-score-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/3_PCA/pca_scree.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-PCA-score-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Scree plot of the principal components. The bars indicate the variance explained by each component, while the line shows the cumulative explained variance. The first few components capture the majority of the total variance, after which additional components contribute marginally.
+</figcaption>
+</figure>
+</div>
+<div id="fig-PCA-heatmap" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-PCA-heatmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/3_PCA/pca_corr_heatmap.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-PCA-heatmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Heatmap of correlations between original macroeconomic variables and the first ten principal components. Red indicates positive correlation, blue indicates negative correlation, and white represents weak or no correlation.
+</figcaption>
+</figure>
+</div>
+</div>
+<section id="related-to-q3-out-of-10-research-questions-in-introduction" class="level2">
+<h2 class="anchored" data-anchor-id="related-to-q3-out-of-10-research-questions-in-introduction">Related to Q3 (out of 10 Research Questions) in <a href="./01_introduction.html">Introduction</a></h2>
+<div class="justify">
+<p><strong>How do macroeconomic factors extracted through principal component analysis (PCA) affect the dynamics of inflation and unemployment?</strong></p>
+<ul>
+<li><p>According to <a href="#fig-PCA-heatmap" class="quarto-xref">Figure&nbsp;2</a>, macroeconomic factors extracted through PCA affect the dynamics of inflation and unemployment mainly through two channels:</p>
+<ol type="1">
+<li><p><strong>Inflation factor (first principal component)</strong>: When this factor rises, both the year-over-year (YoY) and month-over-month (MoM) core inflation rates increase, while the unemployment rate decreases. This reflects a short-run Phillips curve relationship, namely <strong>higher inflationary pressures → lower unemployment</strong>.</p></li>
+<li><p><strong>Business cycle factors (second and third principal components)</strong>: These are closely linked to real economic activity (production, retail sales, and labor market indicators) and represent business cycle conditions by primarily driving unemployment fluctuations. Their effects on inflation generally emerge with a lag through the demand channel, with MoM inflation responding earlier than YoY inflation, as it is more sensitive to short-term fluctuations.</p></li>
+</ol></li>
+<li><p>In summary, PCA facilitates the identification of distinct macroeconomic drivers, isolating an inflation factor and business cycle factors, and thereby providing a structured account of how persistent price pressures and cyclical labor market conditions jointly shape the evolution of inflation and unemployment.</p></li>
+</ul>
+</div>
+</section>
 </section>
 <section id="conclusions" class="level1">
 <h1>Conclusions</h1>
+<div class="justify">
 <ul>
-<li>xxx</li>
+<li><p>This study applied principal component analysis (PCA) to macroeconomic indicators to identify latent factors shaping inflation and unemployment dynamics. The first principal component emerges as a comprehensive <strong>inflation factor</strong>, strongly correlated with both year-over-year and month-over-month measures of core inflation and inversely related to unemployment, thereby reflecting the Phillips curve trade-off. The second and third components are closely linked to production, retail sales, and labor market indicators, representing <strong>business cycle factors</strong> that primarily drive unemployment fluctuations and indirectly influence inflation.</p></li>
+<li><p>Overall, PCA proves effective in reducing the dimensionality of complex datasets while preserving meaningful macroeconomic variation. By distinguishing between inflation and business cycle drivers, PCA provides a structured framework for understanding how persistent price pressures and cyclical labor market conditions jointly shape the economy. These results highlight PCA’s value not only as a statistical tool but also as a means of generating insights relevant for macroeconomic policy analysis.</p></li>
 </ul>
+</div>
 
 
 </section>
