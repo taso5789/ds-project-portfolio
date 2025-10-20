@@ -69,6 +69,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -182,7 +211,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
+  <ul class="collapse">
+  <li><a href="#decision-trees-dts" id="toc-decision-trees-dts" class="nav-link" data-scroll-target="#decision-trees-dts">Decision Trees (DTs)</a></li>
+  <li><a href="#gini-impurity-entropy-and-information-gain" id="toc-gini-impurity-entropy-and-information-gain" class="nav-link" data-scroll-target="#gini-impurity-entropy-and-information-gain">Gini Impurity, Entropy, and Information Gain</a></li>
+  <li><a href="#a-simple-example-of-measuring-a-splits-goodness" id="toc-a-simple-example-of-measuring-a-splits-goodness" class="nav-link" data-scroll-target="#a-simple-example-of-measuring-a-splits-goodness">A Simple Example of Measuring a Split’s “Goodness”</a></li>
+  <li><a href="#why-is-it-possible-to-create-an-infinite-number-of-trees" id="toc-why-is-it-possible-to-create-an-infinite-number-of-trees" class="nav-link" data-scroll-target="#why-is-it-possible-to-create-an-infinite-number-of-trees">Why Is It Possible to Create an Infinite Number of Trees?</a></li>
+  </ul></li>
   <li><a href="#data-prep" id="toc-data-prep" class="nav-link" data-scroll-target="#data-prep">Data Prep</a></li>
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
@@ -214,9 +249,131 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="overview" class="level1">
 <h1>Overview</h1>
+<section id="decision-trees-dts" class="level2">
+<h2 class="anchored" data-anchor-id="decision-trees-dts">Decision Trees (DTs)</h2>
+<div class="justify">
 <ul>
-<li>xxx</li>
+<li><p>A <strong>Decision Tree</strong> is a supervised learning model that uses a <strong>tree-like structure similar to a flowchart</strong> to classify or regress data. It arrives at a final prediction by repeatedly asking a series of “if-then-else” questions. A major advantage of this model is that its results are very easy to interpret due to its intuitive structure.</p></li>
+<li><p>A decision tree is composed of the following elements:</p>
+<ul>
+<li><strong>Root Node:</strong> The starting point of the tree, representing the first question.</li>
+<li><strong>Decision Node:</strong> An intermediate node that represents an intermediate question used to further split the data.</li>
+<li><strong>Leaf Node (or Terminal Node):</strong> The endpoint of a branch, representing the final predicted outcome (a class label or a numerical value).</li>
+</ul></li>
+<li><p>This model is utilized in a wide range of fields, including customer purchase prediction, medical diagnosis, and credit scoring.</p></li>
 </ul>
+</div>
+<div class="justify">
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig_06_overview_01.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>A visual comparison of machine learning models. <strong>Supervised learning</strong> (left), which includes algorithms like <strong>Decision Trees</strong>, uses labeled data to classify a new point. In contrast, <strong>unsupervised learning</strong> (right) finds hidden clusters in unlabeled data. Source: <a href="https://commons.wikimedia.org/wiki/File:Supervised_and_unsupervised_learning.png" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:35%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig_06_overview_02.jpg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>A decision tree model predicting Titanic passenger survival. The structure flows from the initial <strong>root node</strong> (‘gender’), through intermediate <strong>decision nodes</strong> (‘age,’ ‘sibsp’), to the final predictions in the <strong>leaf nodes</strong> (‘survived’/‘died’). Source: <a href="https://commons.wikimedia.org/wiki/File:Decision_Tree.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="gini-impurity-entropy-and-information-gain" class="level2">
+<h2 class="anchored" data-anchor-id="gini-impurity-entropy-and-information-gain">Gini Impurity, Entropy, and Information Gain</h2>
+<div class="justify">
+<ul>
+<li><p>At each step, a decision tree must determine <strong>“which question will most efficiently split the data.”</strong> To make this judgment, it uses metrics like <strong>Gini Impurity</strong> or <strong>Entropy</strong>. These metrics measure the <strong>“impurity”</strong> or <strong>“disorder”</strong> of the data within a node.</p></li>
+<li><p><strong>Gini Impurity:</strong> This metric indicates how mixed the classes are within a node. A value close to 0 means the node is “pure” (contains data from mostly one class), while a higher value means it is “impure” (contains a mix of different classes). It is known for being relatively fast to compute. <span class="math display">\[
+Gini(S) = 1 - \sum_{i=1}^{c} (p_i)^2
+\]</span> where <span class="math inline">\(p_i\)</span> is the proportion of data belonging to class <span class="math inline">\(i\)</span>.</p></li>
+<li><p><strong>Entropy:</strong> Originating from information theory, this is another metric for measuring data impurity. Like Gini Impurity, a value of 0 indicates perfect purity, while a higher value indicates more impurity. <span class="math display">\[
+H(S) = - \sum_{i=1}^{c} p_i \log_2(p_i)
+\]</span></p></li>
+<li><p><strong>Information Gain</strong> is the metric that shows <strong>“how much the impurity decreased”</strong> as a result of splitting the data by a certain question (feature). At each step, the decision tree selects the question that <strong>maximizes this Information Gain</strong>.</p></li>
+<li><p>Information Gain is calculated with the following formula:</p>
+<blockquote class="blockquote">
+<p><strong>Information Gain = Impurity before split – (Weighted average of impurity of each node after split)</strong></p>
+</blockquote>
+<p>In other words, a split that creates purer groups (groups with lower impurity) is judged to be a “good split.”</p></li>
+</ul>
+</div>
+</section>
+<section id="a-simple-example-of-measuring-a-splits-goodness" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-example-of-measuring-a-splits-goodness">A Simple Example of Measuring a Split’s “Goodness”</h2>
+<div class="justify">
+<ul>
+<li><p>Let’s consider a small dataset used to predict “whether to play tennis or not” based on weather data.</p>
+<ul>
+<li><strong>Entire Dataset (10 instances):</strong>
+<ul>
+<li>Play Tennis: 5</li>
+<li>Don’t Play Tennis: 5</li>
+</ul></li>
+</ul></li>
+</ul>
+<section id="step-1-calculate-the-gini-impurity-before-the-split" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-calculate-the-gini-impurity-before-the-split">Step 1: Calculate the Gini Impurity Before the Split</h3>
+<ul>
+<li>First, we calculate the Gini Impurity of the entire dataset (the root node).</li>
+</ul>
+<p><span class="math display">\[Gini_{root} = 1 - ((\frac{5}{10})^2 + (\frac{5}{10})^2) = 1 - (0.25 + 0.25) = \mathbf{0.5}\]</span></p>
+</section>
+<section id="step-2-try-splitting-by-wind" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-try-splitting-by-wind">Step 2: Try Splitting by “Wind”</h3>
+<ul>
+<li><p>Now, let’s assume we split the data based on whether the “Wind is Weak or Strong.”</p>
+<ul>
+<li><strong>Weak Wind Group (6 instances):</strong>
+<ul>
+<li>Play Tennis: 5</li>
+<li>Don’t Play Tennis: 1</li>
+<li><span class="math inline">\(Gini_{weak} = 1 - ((\frac{5}{6})^2 + (\frac{1}{6})^2) \approx 1 - (0.694 + 0.028) = \mathbf{0.278}\)</span></li>
+</ul></li>
+<li><strong>Strong Wind Group (4 instances):</strong>
+<ul>
+<li>Play Tennis: 0</li>
+<li>Don’t Play Tennis: 4</li>
+<li><span class="math inline">\(Gini_{strong} = 1 - ((\frac{0}{4})^2 + (\frac{4}{4})^2) = 1 - (0 + 1) = \mathbf{0}\)</span></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="step-3-calculate-the-information-gain" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-calculate-the-information-gain">Step 3: Calculate the Information Gain</h3>
+<ul>
+<li>Calculate the weighted average Gini Impurity after the split.</li>
+</ul>
+<p><span class="math display">\[Gini_{after\_split} = (\frac{6}{10}) \times 0.278 + (\frac{4}{10}) \times 0 = 0.1668 + 0 = 0.1668\]</span></p>
+<ul>
+<li>Finally, calculate the Information Gain.</li>
+</ul>
+<p><span class="math display">\[\text{Information Gain} = Gini_{root} - Gini_{after\_split} = 0.5 - 0.1668 = \mathbf{0.3332}\]</span></p>
+<ul>
+<li>This value of 0.3332 represents the “goodness” of the split using the “Wind” feature. The decision tree performs similar calculations for other features (like Outlook, Humidity, etc.) and chooses the split rule that results in the highest Information Gain.</li>
+</ul>
+</section>
+</div>
+</section>
+<section id="why-is-it-possible-to-create-an-infinite-number-of-trees" class="level2">
+<h2 class="anchored" data-anchor-id="why-is-it-possible-to-create-an-infinite-number-of-trees">Why Is It Possible to Create an Infinite Number of Trees?</h2>
+<div class="justify">
+<ul>
+<li><p>Theoretically, it is possible to create an infinite number of decision trees. There are two main reasons for this:</p>
+<ol type="1">
+<li><p><strong>Perfectly Memorizing Data (Overfitting):</strong> If no limits are placed on the tree’s depth or splitting, the algorithm will <strong>continue splitting until every single sample in the training data is isolated in its own leaf node</strong>. This results in a model that is 100% accurate on the training data but is useless for predicting new, unseen data. This creates an overly complex tree known as an <strong>overfit</strong> model.</p></li>
+<li><p><strong>Features with Continuous Values:</strong> When features contain continuous values like “temperature” or “humidity,” there are infinitely many potential split points (e.g., split at Temp &gt; 25.0°C, Temp &gt; 25.01°C, etc.). This theoretically allows for the creation of infinitely many different tree structures.</p></li>
+</ol></li>
+<li><p>In practice, to prevent such overfitting, techniques called <strong>“Pruning”</strong> are used to properly control the tree’s complexity. This includes <strong>limiting the maximum depth of the tree</strong> or <strong>setting a minimum number of samples required to be at a leaf node</strong>.</p></li>
+</ul>
+</div>
+</section>
 </section>
 <section id="data-prep" class="level1">
 <h1>Data Prep</h1>

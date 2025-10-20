@@ -182,8 +182,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#data-prep" id="toc-data-prep" class="nav-link" data-scroll-target="#data-prep">Data Prep</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
+  <ul class="collapse">
+  <li><a href="#the-naïve-bayes-nb-classifier" id="toc-the-naïve-bayes-nb-classifier" class="nav-link" data-scroll-target="#the-naïve-bayes-nb-classifier">The Naïve Bayes (NB) Classifier</a></li>
+  <li><a href="#multinomial-naïve-bayes" id="toc-multinomial-naïve-bayes" class="nav-link" data-scroll-target="#multinomial-naïve-bayes">Multinomial Naïve Bayes</a></li>
+  <li><a href="#bernoulli-naïve-bayes" id="toc-bernoulli-naïve-bayes" class="nav-link" data-scroll-target="#bernoulli-naïve-bayes">Bernoulli Naïve Bayes</a></li>
+  </ul></li>
+  <li><a href="#data-prep" id="toc-data-prep" class="nav-link" data-scroll-target="#data-prep">Data Prep</a>
+  <ul class="collapse">
+  <li><a href="#training-and-test-data-for-yoy-inflation-prediction-high_inflation_yoy-derived-from-pcepilfe_yoy" id="toc-training-and-test-data-for-yoy-inflation-prediction-high_inflation_yoy-derived-from-pcepilfe_yoy" class="nav-link" data-scroll-target="#training-and-test-data-for-yoy-inflation-prediction-high_inflation_yoy-derived-from-pcepilfe_yoy">Training and Test Data for YoY Inflation Prediction (<code>high_inflation_YoY</code> derived from <code>PCEPILFE_YoY</code>)</a></li>
+  <li><a href="#training-and-test-data-for-mom-inflation-prediction-high_inflation_mom-derived-from-pcepilfe_mom" id="toc-training-and-test-data-for-mom-inflation-prediction-high_inflation_mom-derived-from-pcepilfe_mom" class="nav-link" data-scroll-target="#training-and-test-data-for-mom-inflation-prediction-high_inflation_mom-derived-from-pcepilfe_mom">Training and Test Data for MoM Inflation Prediction (<code>high_inflation_MoM</code> derived from <code>PCEPILFE_MoM</code>)</a></li>
+  <li><a href="#training-and-test-data-for-unemployment-rates-high_unemployment-derived-from-unrate" id="toc-training-and-test-data-for-unemployment-rates-high_unemployment-derived-from-unrate" class="nav-link" data-scroll-target="#training-and-test-data-for-unemployment-rates-high_unemployment-derived-from-unrate">Training and Test Data for Unemployment Rates (<code>high_unemployment</code> derived from <code>UNRATE</code>)</a></li>
+  </ul></li>
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
   <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
@@ -214,21 +224,226 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="overview" class="level1">
 <h1>Overview</h1>
+<section id="the-naïve-bayes-nb-classifier" class="level2">
+<h2 class="anchored" data-anchor-id="the-naïve-bayes-nb-classifier">The Naïve Bayes (NB) Classifier</h2>
+<div class="justify">
 <ul>
-<li>xxx</li>
+<li><p>Naïve Bayes is a simple yet powerful <strong>probabilistic classification algorithm</strong> based on <strong>Bayes’ Theorem</strong>. It performs especially well in tasks like text classification (e.g., spam filters) and medical diagnosis.</p></li>
+<li><p>The word “<strong>naïve</strong>” in its name comes from the very simple, yet powerful, assumption the algorithm makes: that <strong>all features are independent of one another</strong>.</p></li>
+<li><p>For example, if an email contains the words “congratulations” and “free,” Naïve Bayes treats the probability of “congratulations” appearing and the probability of “free” appearing as two separate, independent events that do not influence each other. In reality, these words are often related, but this “naïve assumption” greatly simplifies the computation and works very effectively in many cases.</p></li>
 </ul>
+</div>
+<div class="justify">
+<div class="columns">
+<div class="column" style="width:47.5%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig_05_overview_01.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>This image shows how the Naïve Bayes classifier uses <strong>Bayes’ Theorem</strong> (top) with a <strong>“naïve” assumption</strong> (bottom) that all features are independent, simplifying the calculation. Source: <a href="https://uc-r.github.io/naive_bayes" target="_blank">UC Business Analytics R Programming Guide</a></figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:47.5%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig_05_overview_02.jpg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>This diagram shows how a spam filter works. A <strong>classifier</strong>, often powered by an algorithm like <strong>Naïve Bayes</strong>, analyzes incoming emails and automatically sorts them into the <strong>INBOX</strong> for legitimate mail and the <strong>SPAM FOLDER</strong> for junk mail. Source: <a href="https://developers.google.com/machine-learning/guides/text-classification" target="_blank">Google Developers</a></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="multinomial-naïve-bayes" class="level2">
+<h2 class="anchored" data-anchor-id="multinomial-naïve-bayes">Multinomial Naïve Bayes</h2>
+<div class="justify">
+<ul>
+<li><p><strong>Multinomial Naïve Bayes</strong> is a model that is particularly effective when features represent <strong>counts or frequencies</strong>. Text classification is a classic example.</p></li>
+<li><p><strong>Definition:</strong> It assumes that each feature (e.g., each word in a document) is drawn from a multinomial distribution. This is a model for counting how many times an event occurred.</p></li>
+<li><p><strong>Explanation:</strong> Taking email classification as an example, Multinomial NB calculates the probability that an email is spam based on the <strong>frequency of words</strong> like “congratulations,” “sale,” or “urgent.” The feature values are discrete counts, such as 0, 1, 2, 3, and so on.</p></li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li><p><strong>Spam Filtering:</strong> Classifying an email as spam or not based on the frequency of words it contains.</p></li>
+<li><p><strong>Document Classification:</strong> Categorizing news articles into topics like “sports,” “business,” or “politics.”</p></li>
+</ul>
+</blockquote>
+</div>
+</section>
+<section id="bernoulli-naïve-bayes" class="level2">
+<h2 class="anchored" data-anchor-id="bernoulli-naïve-bayes">Bernoulli Naïve Bayes</h2>
+<div class="justify">
+<ul>
+<li><p><strong>Bernoulli Naïve Bayes</strong> is a model used when features are <strong>binary</strong> (i.e., they take one of two values, like “yes” or “no”).</p></li>
+<li><p><strong>Definition:</strong> It assumes that each feature is drawn from a Bernoulli distribution (a trial with only two outcomes, like a coin flip).</p></li>
+<li><p><strong>Explanation:</strong> Using text classification as an example again, while Multinomial NB counts word <em>occurrences</em>, Bernoulli NB only considers the <strong>presence (1) or absence (0)</strong> of a specific word in a document. Whether a word appears 10 times or just once, Bernoulli NB treats it as “1” (present).</p></li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li><p><strong>Text Classification:</strong> Classifying documents based on whether or not they contain specific keywords.</p></li>
+<li><p><strong>Sentiment Analysis:</strong> Determining if a review is positive or negative based on the presence of words like “excellent” or “terrible.”</p></li>
+</ul>
+</blockquote>
+</div>
+</section>
 </section>
 <section id="data-prep" class="level1">
 <h1>Data Prep</h1>
+<div class="justify">
 <ul>
-<li>xxx</li>
+<li><p>The fundamental prerequisite for building a supervised learning model is the use of <strong>“labeled data.”</strong> This refers to a dataset where each data point is provided with a “correct answer” or label in advance. For example, this could be email data where each message is labeled as either “Spam” or “Not Spam.” The model uses these correct labels as a target to learn patterns within the data.</p></li>
+<li><p>Furthermore, to fairly evaluate the model’s performance on new, unseen data, the dataset is split into a <strong>Training Set</strong> and a <strong>Testing Set</strong>. This division prevents <strong>“overfitting,”</strong> where the model simply memorizes the training data, and allows for a proper measurement of its ability to generalize.</p>
+<ul>
+<li><strong>Training Set</strong>: The majority of the dataset, used for the model to learn the patterns and relationships in the data.</li>
+<li><strong>Testing Set</strong>: A portion of the data held back from the training process, used only to verify the final performance of the trained model.</li>
+</ul></li>
+<li><p>The training and testing data must be <strong>disjoint</strong> sets, meaning they have no data points in common. The reason is to get an honest evaluation of the model’s ability to generalize to new, unseen data. If the sets overlap, the model is being tested on data it has already “seen” during training, which would be like giving a student an exam with questions they had already memorized. Keeping the training and testing sets <strong>disjoint</strong> is the only way to get a true measure of the model’s predictive performance.</p></li>
+<li><p>The sample image of the data used in the analysis on this page is shown below. This dataset corresponds to the one shown in “Merged Cleaned Data” at the end of <a href="./02_02_data_gathering_and_cleaning.html">Data Gathering and Data Cleaning</a>. The dataset can be found <a href="https://github.com/taso5789/ds-project-portfolio/tree/main/data/df_merged.csv">here</a>.</p>
+<ul>
+<li>For this analysis, the target variables—inflation rates (<code>PCEPILFE_YoY</code>, <code>PCEPILFE_MoM</code>) and the unemployment rate (<code>UNRATE</code>)—were binarized to apply the Naïve Bayes classifier. The historical median of each variable was used as a threshold; periods with values above the median were defined as “High Inflation” or “High Unemployment” (1), and all others as “Low” (0).</li>
+</ul></li>
 </ul>
+</div>
+<div class="text-center">
+<p><img src="results/4_Naive_Bayes/data.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div class="justify">
+<ul>
+<li>The training and testing data used to predict the year-over-year (YoY) inflation (<code>PCEPILFE_YoY</code>), month-over-month (MoM) inflation (<code>PCEPILFE_MoM</code>), and unemployment rates (<code>UNRATE</code>) are shown in <a href="#fig-inf-YoY-train" class="quarto-xref">Figure&nbsp;1</a> ~ <a href="#fig-unemp-test" class="quarto-xref">Figure&nbsp;6</a>, respectively. Each dataset was created as follows:</li>
+</ul>
+</div>
+<section id="training-and-test-data-for-yoy-inflation-prediction-high_inflation_yoy-derived-from-pcepilfe_yoy" class="level2">
+<h2 class="anchored" data-anchor-id="training-and-test-data-for-yoy-inflation-prediction-high_inflation_yoy-derived-from-pcepilfe_yoy">Training and Test Data for YoY Inflation Prediction (<code>high_inflation_YoY</code> derived from <code>PCEPILFE_YoY</code>)</h2>
+<div class="justify">
+<ol type="1">
+<li><p><strong>Feature Engineering</strong>: <strong>Lag variables</strong> (from 1 to 13 months prior) were added for each economic indicator to expand the feature set.</p></li>
+<li><p><strong>Defining Predictors and Target</strong>: The binarized YoY inflation rate (<code>high_inflation_YoY</code>) was set as the target variable (y). All other potential target variables regarding inflation and unemployment were excluded from the feature set (X) to prevent data leakage.</p></li>
+<li><p><strong>Data Splitting</strong>: The dataset was divided into a <strong>70% training set</strong> and a <strong>30% testing set</strong> using stratified sampling to ensure the class proportions were identical in both sets.</p></li>
+<li><p><strong>Selective Scaling</strong>: <strong>Only continuous variables were standardized</strong> using <code>StandardScaler</code>, while dummy variables (e.g., for recessions) were excluded from this process. The scaler was fit on the training data and then applied to the test data to prevent data leakage.</p></li>
+</ol>
+</div>
+<div class="justify">
+<div class="columns">
+<div class="column" style="width:47.5%;">
+<div id="fig-inf-YoY-train" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-inf-YoY-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/4_Naive_Bayes/inflation_YoY_train_data.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inf-YoY-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: The Training Data for YoY Inflation
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:47.5%;">
+<div id="fig-inf-YoY-test" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-inf-YoY-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/4_Naive_Bayes/inflation_YoY_test_data.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inf-YoY-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: The Test Data for YoY Inflation
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="training-and-test-data-for-mom-inflation-prediction-high_inflation_mom-derived-from-pcepilfe_mom" class="level2">
+<h2 class="anchored" data-anchor-id="training-and-test-data-for-mom-inflation-prediction-high_inflation_mom-derived-from-pcepilfe_mom">Training and Test Data for MoM Inflation Prediction (<code>high_inflation_MoM</code> derived from <code>PCEPILFE_MoM</code>)</h2>
+<div class="justify">
+<ol type="1">
+<li><p><strong>Feature Engineering</strong>: To capture recent trends and volatility, <strong>6-month rolling window statistics</strong> (e.g., mean, standard deviation) were calculated for key economic indicators and added as features. For this specific model, no lag variables were used.</p></li>
+<li><p><strong>Defining Predictors and Target</strong>: The binarized MoM inflation rate (<code>high_inflation_MoM</code>) was set as the target variable (y). All other potential target variables regarding inflation and unemployment were excluded from the feature set (X) to prevent data leakage.</p></li>
+<li><p><strong>Data Splitting</strong>: The dataset was divided into a <strong>70% training set</strong> and a <strong>30% testing set</strong> using stratified sampling to ensure the class proportions were identical in both sets.</p></li>
+<li><p><strong>Selective Scaling</strong>: <strong>Only continuous variables were standardized</strong> using <code>StandardScaler</code>, while dummy variables (e.g., for recessions) were excluded from this process. The scaler was fit on the training data and then applied to the test data to prevent data leakage.</p></li>
+<li><p><strong>Oversampling the Training Data</strong>: To address the difficulty of classifying the “High Inflation” periods, the training data was resampled using <strong>SMOTE</strong>. A custom sampling strategy was employed to oversample the minority class to be <strong>twice the size of the majority class</strong>, compelling the model to learn its characteristics more thoroughly. This resampling was applied <em>only</em> to the training set.</p></li>
+</ol>
+</div>
+<div class="justify">
+<div class="columns">
+<div class="column" style="width:47.5%;">
+<div id="fig-inf-MoM-train" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-inf-MoM-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/4_Naive_Bayes/inflation_MoM_train_data.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inf-MoM-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: The Training Data for MoM Inflation
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:47.5%;">
+<div id="fig-inf-MoM-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-inf-MoM-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/4_Naive_Bayes/inflation_MoM_test_data.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inf-MoM-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: The Test Data for MoM Inflation
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="training-and-test-data-for-unemployment-rates-high_unemployment-derived-from-unrate" class="level2">
+<h2 class="anchored" data-anchor-id="training-and-test-data-for-unemployment-rates-high_unemployment-derived-from-unrate">Training and Test Data for Unemployment Rates (<code>high_unemployment</code> derived from <code>UNRATE</code>)</h2>
+<div class="justify">
+<ol type="1">
+<li><p><strong>Feature Engineering</strong>: To provide the model with historical context, the feature set was expanded. Specifically, <strong>3-month lag variables</strong> and <strong>12-month rolling window statistics</strong> (e.g., mean, standard deviation) were calculated for each economic indicator and added as features.</p></li>
+<li><p><strong>Defining Predictors and Target</strong>: The binarized unemployment rate (<code>high_unemployment</code>) was set as the target variable (y). All other potential target variables regarding inflation and unemployment were excluded from the feature set (X) to prevent data leakage.</p></li>
+<li><p><strong>Data Splitting</strong>: The dataset was divided into a <strong>70% training set</strong> and a <strong>30% testing set</strong> using stratified sampling to ensure the class proportions were identical in both sets.</p></li>
+<li><p><strong>Selective Scaling</strong>: <strong>Only continuous variables were standardized</strong> using <code>StandardScaler</code>, while dummy variables (e.g., for recessions) were excluded from this process. The scaler was fit on the training data and then applied to the test data to prevent data leakage.</p></li>
+</ol>
+</div>
+<div class="justify">
+<div class="columns">
+<div class="column" style="width:47.5%;">
+<div id="fig-unemp-train" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/4_Naive_Bayes/unemp_train_data.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: The Training Data for Unemployment Rates
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:47.5%;">
+<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/4_Naive_Bayes/unemp_test_data.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: The Test Data for Unemployment Rates
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="code" class="level1">
 <h1>Code</h1>
+<div class="justify">
 <ul>
-<li>xxx</li>
+<li>For the code used in this chapter (Naïve Bayes), please refer <a href="https://github.com/taso5789/ds-project-portfolio/blob/main/code/4_Naive_Bayes.ipynb">here</a>.</li>
 </ul>
+</div>
 </section>
 <section id="results" class="level1">
 <h1>Results</h1>

@@ -4,7 +4,107 @@ title: "Decision Trees"
 
 # Overview
 
-- xxx
+## Decision Trees (DTs)
+
+::: {.justify}
+- A **Decision Tree** is a supervised learning model that uses a **tree-like structure similar to a flowchart** to classify or regress data. It arrives at a final prediction by repeatedly asking a series of "if-then-else" questions. A major advantage of this model is that its results are very easy to interpret due to its intuitive structure.
+
+- A decision tree is composed of the following elements:
+  -  **Root Node:** The starting point of the tree, representing the first question.
+  -  **Decision Node:** An intermediate node that represents an intermediate question used to further split the data.
+  -  **Leaf Node (or Terminal Node):** The endpoint of a branch, representing the final predicted outcome (a class label or a numerical value).
+
+- This model is utilized in a wide range of fields, including customer purchase prediction, medical diagnosis, and credit scoring.
+:::
+
+::: {.justify}
+::: {.columns}
+::: {.column width="60%"}
+![A visual comparison of machine learning models. **Supervised learning** (left), which includes algorithms like **Decision Trees**, uses labeled data to classify a new point. In contrast, **unsupervised learning** (right) finds hidden clusters in unlabeled data. Source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Supervised_and_unsupervised_learning.png){target="_blank"}](images/fig_06_overview_01.png){fig-align="center" width="100%"}
+:::
+::: {.column width="5%"}
+:::
+::: {.column width="35%"}
+![A decision tree model predicting Titanic passenger survival. The structure flows from the initial **root node** ('gender'), through intermediate **decision nodes** ('age,' 'sibsp'), to the final predictions in the **leaf nodes** ('survived'/'died'). Source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Decision_Tree.jpg){target="_blank"}](images/fig_06_overview_02.jpg){fig-align="center" width="100%"}
+:::
+:::
+:::
+
+## Gini Impurity, Entropy, and Information Gain
+
+::: {.justify}
+- At each step, a decision tree must determine **"which question will most efficiently split the data."** To make this judgment, it uses metrics like **Gini Impurity** or **Entropy**. These metrics measure the **"impurity"** or **"disorder"** of the data within a node.
+
+-  **Gini Impurity:** This metric indicates how mixed the classes are within a node. A value close to 0 means the node is "pure" (contains data from mostly one class), while a higher value means it is "impure" (contains a mix of different classes). It is known for being relatively fast to compute.
+    $$
+    Gini(S) = 1 - \sum_{i=1}^{c} (p_i)^2
+    $$
+    where $p_i$ is the proportion of data belonging to class $i$.
+
+-  **Entropy:** Originating from information theory, this is another metric for measuring data impurity. Like Gini Impurity, a value of 0 indicates perfect purity, while a higher value indicates more impurity.
+    $$
+    H(S) = - \sum_{i=1}^{c} p_i \log_2(p_i)
+    $$
+
+- **Information Gain** is the metric that shows **"how much the impurity decreased"** as a result of splitting the data by a certain question (feature). At each step, the decision tree selects the question that **maximizes this Information Gain**.
+
+- Information Gain is calculated with the following formula:
+
+  > **Information Gain = Impurity before split – (Weighted average of impurity of each node after split)**
+  
+  In other words, a split that creates purer groups (groups with lower impurity) is judged to be a "good split."
+:::
+
+## A Simple Example of Measuring a Split's "Goodness"
+
+::: {.justify}
+- Let's consider a small dataset used to predict "whether to play tennis or not" based on weather data.
+
+  - **Entire Dataset (10 instances):**
+      * Play Tennis: 5
+      * Don't Play Tennis: 5
+
+### Step 1: Calculate the Gini Impurity Before the Split
+- First, we calculate the Gini Impurity of the entire dataset (the root node).
+
+$$Gini_{root} = 1 - ((\frac{5}{10})^2 + (\frac{5}{10})^2) = 1 - (0.25 + 0.25) = \mathbf{0.5}$$
+
+### Step 2: Try Splitting by "Wind"
+- Now, let's assume we split the data based on whether the "Wind is Weak or Strong."
+ 
+  - **Weak Wind Group (6 instances):**
+      * Play Tennis: 5
+      * Don't Play Tennis: 1
+      * $Gini_{weak} = 1 - ((\frac{5}{6})^2 + (\frac{1}{6})^2) \approx 1 - (0.694 + 0.028) = \mathbf{0.278}$
+  
+  - **Strong Wind Group (4 instances):**
+      * Play Tennis: 0
+      * Don't Play Tennis: 4
+      * $Gini_{strong} = 1 - ((\frac{0}{4})^2 + (\frac{4}{4})^2) = 1 - (0 + 1) = \mathbf{0}$
+
+### Step 3: Calculate the Information Gain
+- Calculate the weighted average Gini Impurity after the split.
+
+$$Gini_{after\_split} = (\frac{6}{10}) \times 0.278 + (\frac{4}{10}) \times 0 = 0.1668 + 0 = 0.1668$$
+
+- Finally, calculate the Information Gain.
+
+$$\text{Information Gain} = Gini_{root} - Gini_{after\_split} = 0.5 - 0.1668 = \mathbf{0.3332}$$
+
+- This value of 0.3332 represents the "goodness" of the split using the "Wind" feature. The decision tree performs similar calculations for other features (like Outlook, Humidity, etc.) and chooses the split rule that results in the highest Information Gain.
+:::
+
+## Why Is It Possible to Create an Infinite Number of Trees?
+
+::: {.justify}
+- Theoretically, it is possible to create an infinite number of decision trees. There are two main reasons for this:
+
+  1.  **Perfectly Memorizing Data (Overfitting):** If no limits are placed on the tree's depth or splitting, the algorithm will **continue splitting until every single sample in the training data is isolated in its own leaf node**. This results in a model that is 100% accurate on the training data but is useless for predicting new, unseen data. This creates an overly complex tree known as an **overfit** model.
+  
+  2.  **Features with Continuous Values:** When features contain continuous values like "temperature" or "humidity," there are infinitely many potential split points (e.g., split at Temp > 25.0°C, Temp > 25.01°C, etc.). This theoretically allows for the creation of infinitely many different tree structures.
+
+- In practice, to prevent such overfitting, techniques called **"Pruning"** are used to properly control the tree's complexity. This includes **limiting the maximum depth of the tree** or **setting a minimum number of samples required to be at a leaf node**.
+:::
 
 # Data Prep
 
