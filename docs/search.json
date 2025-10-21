@@ -49,6 +49,55 @@
     "text": "Theoretically, it is possible to create an infinite number of decision trees. There are two main reasons for this:\n\nPerfectly Memorizing Data (Overfitting): If no limits are placed on the tree’s depth or splitting, the algorithm will continue splitting until every single sample in the training data is isolated in its own leaf node. This results in a model that is 100% accurate on the training data but is useless for predicting new, unseen data. This creates an overly complex tree known as an overfit model.\nFeatures with Continuous Values: When features contain continuous values like “temperature” or “humidity,” there are infinitely many potential split points (e.g., split at Temp &gt; 25.0°C, Temp &gt; 25.01°C, etc.). This theoretically allows for the creation of infinitely many different tree structures.\n\nIn practice, to prevent such overfitting, techniques called “Pruning” are used to properly control the tree’s complexity. This includes limiting the maximum depth of the tree or setting a minimum number of samples required to be at a leaf node."
   },
   {
+    "objectID": "06_decision_trees.html#training-and-test-data-for-yoy-inflation-prediction-high_inflation_yoy-derived-from-pcepilfe_yoy",
+    "href": "06_decision_trees.html#training-and-test-data-for-yoy-inflation-prediction-high_inflation_yoy-derived-from-pcepilfe_yoy",
+    "title": "Decision Trees",
+    "section": "Training and Test Data for YoY Inflation Prediction (high_inflation_YoY derived from PCEPILFE_YoY)",
+    "text": "Training and Test Data for YoY Inflation Prediction (high_inflation_YoY derived from PCEPILFE_YoY)\n\n\nFeature Engineering: To provide the model with historical context, the feature set was expanded. Specifically, 1, 2, and 3-month lag variables, as well as 2- and 3-month rolling window statistics (e.g., mean, standard deviation), were calculated for each economic indicator and added as features.\nDefining Predictors and Target: The binarized YoY inflation rate (high_inflation_YoY) was set as the target variable (y). All other potential target variables regarding inflation and unemployment were excluded from the feature set (X) to prevent data leakage.\nData Splitting: The dataset was divided into a 70% training set and a 30% testing set using stratified sampling to ensure the class proportions were identical in both sets.\nSelective Scaling: Only continuous variables were standardized using StandardScaler, while dummy variables (e.g., for recessions) were excluded from this process. The scaler was fit on the training data and then applied to the test data to prevent data leakage.\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: The Training Data for YoY Inflation\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: The Test Data for YoY Inflation"
+  },
+  {
+    "objectID": "06_decision_trees.html#training-and-test-data-for-mom-inflation-prediction-high_inflation_mom-derived-from-pcepilfe_mom",
+    "href": "06_decision_trees.html#training-and-test-data-for-mom-inflation-prediction-high_inflation_mom-derived-from-pcepilfe_mom",
+    "title": "Decision Trees",
+    "section": "Training and Test Data for MoM Inflation Prediction (high_inflation_MoM derived from PCEPILFE_MoM)",
+    "text": "Training and Test Data for MoM Inflation Prediction (high_inflation_MoM derived from PCEPILFE_MoM)\n\n\nFeature Engineering: To provide the model with historical context, the feature set was expanded. Specifically, 1-month lag variables and 2-month rolling window statistics (e.g., mean, standard deviation) were calculated for each economic indicator and added as features.\nDefining Predictors and Target: The binarized MoM inflation rate (high_inflation_MoM) was set as the target variable (y). All other potential target variables regarding inflation and unemployment were excluded from the feature set (X) to prevent data leakage.\nData Splitting: The dataset was divided into a 70% training set and a 30% testing set using stratified sampling to ensure the class proportions were identical in both sets.\nSelective Scaling: Only continuous variables were standardized using StandardScaler, while dummy variables (e.g., for recessions) were excluded from this process. The scaler was fit on the training data and then applied to the test data to prevent data leakage.\n\n\n\n\n\n\n\n\n\n\n\nFigure 3: The Training Data for MoM Inflation\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 4: The Test Data for MoM Inflation"
+  },
+  {
+    "objectID": "06_decision_trees.html#training-and-test-data-for-unemployment-rates-high_unemployment-derived-from-unrate",
+    "href": "06_decision_trees.html#training-and-test-data-for-unemployment-rates-high_unemployment-derived-from-unrate",
+    "title": "Decision Trees",
+    "section": "Training and Test Data for Unemployment Rates (high_unemployment derived from UNRATE)",
+    "text": "Training and Test Data for Unemployment Rates (high_unemployment derived from UNRATE)\n\n\nFeature Engineering: To provide the model with historical context, the feature set was expanded. Specifically, 8-month lag variables and 3-month rolling window statistics (e.g., mean, standard deviation) were calculated for each economic indicator and added as features.\nDefining Predictors and Target: The binarized unemployment rate (high_unemployment) was set as the target variable (y). All other potential target variables regarding inflation and unemployment were excluded from the feature set (X) to prevent data leakage.\nData Splitting: The dataset was divided into a 70% training set and a 30% testing set using stratified sampling to ensure the class proportions were identical in both sets.\nSelective Scaling: Only continuous variables were standardized using StandardScaler, while dummy variables (e.g., for recessions) were excluded from this process. The scaler was fit on the training data and then applied to the test data to prevent data leakage.\n\n\n\n\n\n\n\n\n\n\n\nFigure 5: The Training Data for Unemployment Rates\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 6: The Test Data for Unemployment Rates"
+  },
+  {
+    "objectID": "06_decision_trees.html#confusion-matrix-for-yoy-inflation-prediction",
+    "href": "06_decision_trees.html#confusion-matrix-for-yoy-inflation-prediction",
+    "title": "Decision Trees",
+    "section": "Confusion Matrix for YoY Inflation Prediction",
+    "text": "Confusion Matrix for YoY Inflation Prediction\n\n\nAccuracy: 92.5%\nThis is an exceptionally high-performing and well-balanced model. Its primary strength is that both precision and recall are above 90% for both the “High Inflation” and “Low Inflation” classes.\nThis indicates the model is simultaneously excellent at finding nearly all high inflation periods (94% recall) and ensuring that its predictions are highly reliable (91% precision). With only 5 total misclassifications, this Decision Tree model serves as an ideal and effective classifier for this task.\n\n\n\n\n\n\n\n\n\nFigure 7: Confusion Matrix for YoY Inflation Prediction"
+  },
+  {
+    "objectID": "06_decision_trees.html#confusion-matrix-for-mom-inflation-prediction",
+    "href": "06_decision_trees.html#confusion-matrix-for-mom-inflation-prediction",
+    "title": "Decision Trees",
+    "section": "Confusion Matrix for MoM Inflation Prediction",
+    "text": "Confusion Matrix for MoM Inflation Prediction\n\n\nAccuracy: 65.2%\nThis model’s performance is poor, with an accuracy only slightly better than a random guess.\nIts primary weakness is low precision across both classes (e.g., 63% for “High Inflation”), which means its predictions are unreliable. When the model signals “High Inflation,” it is incorrect more than a third of the time.\nAlthough it manages to find a majority of the high inflation periods (71% recall), it does so by generating a high number of false alarms. Overall, the model lacks the reliability required for practical use.\n\n\n\n\n\n\n\n\n\nFigure 8: Confusion Matrix for MoM Inflation Prediction"
+  },
+  {
+    "objectID": "06_decision_trees.html#confusion-matrix-for-unemployment-rates-prediction",
+    "href": "06_decision_trees.html#confusion-matrix-for-unemployment-rates-prediction",
+    "title": "Decision Trees",
+    "section": "Confusion Matrix for Unemployment Rates Prediction",
+    "text": "Confusion Matrix for Unemployment Rates Prediction\n\n\nAccuracy: 97.0%\n\n-This is an exceptionally high-performing and reliable model, demonstrating near-perfect results.\n-Its most notable strengths are two perfect metrics: 1. 100% precision for “High Unemployment,” which means its predictions of a high unemployment period are never wrong. 2. 100% recall for “Low Unemployment,” meaning it never misclassifies a low unemployment period.\n\nThe model’s only minor imperfection is missing 2 out of 32 high unemployment events, still resulting in a very strong 94% recall for that class. Overall, this Decision Tree model shows nearly ideal performance for this task.\n\n\n\n\n\n\n\n\n\nFigure 9: Confusion Matrix for Unemployment Rates Prediction"
+  },
+  {
+    "objectID": "06_decision_trees.html#related-to-q5-out-of-10-research-questions-in-introduction",
+    "href": "06_decision_trees.html#related-to-q5-out-of-10-research-questions-in-introduction",
+    "title": "Decision Trees",
+    "section": "Related to Q5 (out of 10 Research Questions) in Introduction",
+    "text": "Related to Q5 (out of 10 Research Questions) in Introduction\n\n\nRefer to the conclusion below."
+  },
+  {
     "objectID": "04_pca.html",
     "href": "04_pca.html",
     "title": "Principal Component Analysis (PCA)",
@@ -411,6 +460,34 @@
     "title": "Naïve Bayes",
     "section": "Training and Test Data for Unemployment Rates (high_unemployment derived from UNRATE)",
     "text": "Training and Test Data for Unemployment Rates (high_unemployment derived from UNRATE)\n\n\nFeature Engineering: To provide the model with historical context, the feature set was expanded. Specifically, 3-month lag variables and 12-month rolling window statistics (e.g., mean, standard deviation) were calculated for each economic indicator and added as features.\nDefining Predictors and Target: The binarized unemployment rate (high_unemployment) was set as the target variable (y). All other potential target variables regarding inflation and unemployment were excluded from the feature set (X) to prevent data leakage.\nData Splitting: The dataset was divided into a 70% training set and a 30% testing set using stratified sampling to ensure the class proportions were identical in both sets.\nSelective Scaling: Only continuous variables were standardized using StandardScaler, while dummy variables (e.g., for recessions) were excluded from this process. The scaler was fit on the training data and then applied to the test data to prevent data leakage.\n\n\n\n\n\n\n\n\n\n\n\nFigure 5: The Training Data for Unemployment Rates\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 6: The Test Data for Unemployment Rates"
+  },
+  {
+    "objectID": "05_naive_bayes.html#confusion-matrix-for-yoy-inflation-prediction",
+    "href": "05_naive_bayes.html#confusion-matrix-for-yoy-inflation-prediction",
+    "title": "Naïve Bayes",
+    "section": "Confusion Matrix for YoY Inflation Prediction",
+    "text": "Confusion Matrix for YoY Inflation Prediction\n\n\nAccuracy: 86.4%\nThis is a strong and well-balanced model. Its key strength is a very high recall for “Low Inflation” (94%), meaning it is excellent at correctly identifying low inflation periods.\nThe model is also very reliable when it predicts high inflation (precision of 92%). Its main weakness is a slightly lower recall for “High Inflation” (77%), indicating it occasionally misses identifying a high inflation period. Overall, its performance is robust.\n\n\n\n\n\n\n\n\n\nFigure 7: Confusion Matrix for YoY Inflation Prediction"
+  },
+  {
+    "objectID": "05_naive_bayes.html#confusion-matrix-for-mom-inflation-prediction",
+    "href": "05_naive_bayes.html#confusion-matrix-for-mom-inflation-prediction",
+    "title": "Naïve Bayes",
+    "section": "Confusion Matrix for MoM Inflation Prediction",
+    "text": "Confusion Matrix for MoM Inflation Prediction\n\n\nAccuracy: 70.6%\nThis model’s performance is mixed. Its main strength is a high recall (86%) for “Low Inflation,” meaning it is effective at identifying low inflation periods.\nHowever, its primary weakness is a low recall (55%) for the “High Inflation” class, indicating that it fails to detect a significant portion (45%) of the actual high inflation periods. While its precision for predicting “High Inflation” is solid (78%), the model is clearly more skilled at identifying low inflation than high inflation.\n\n\n\n\n\n\n\n\n\nFigure 8: Confusion Matrix for MoM Inflation Prediction"
+  },
+  {
+    "objectID": "05_naive_bayes.html#confusion-matrix-for-unemployment-rates-prediction",
+    "href": "05_naive_bayes.html#confusion-matrix-for-unemployment-rates-prediction",
+    "title": "Naïve Bayes",
+    "section": "Confusion Matrix for Unemployment Rates Prediction",
+    "text": "Confusion Matrix for Unemployment Rates Prediction\n\n\nAccuracy: 86.4%\nThis is a strong and reliable model. Its most notable strengths are its perfect recall (100%) for “Low Unemployment” and its perfect precision (100%) for “High Unemployment.” This means the model never misclassifies a low unemployment period and its predictions of high unemployment are never wrong.\nThe model’s main weakness is a good but not perfect recall for “High Unemployment” (72%), indicating that it fails to detect more than a quarter (~28%) of the high unemployment periods. Overall, despite this, the model is highly accurate and its predictions are very trustworthy.\n\n\n\n\n\n\n\n\n\nFigure 9: Confusion Matrix for Unemployment Rates Prediction"
+  },
+  {
+    "objectID": "05_naive_bayes.html#related-to-q5-out-of-10-research-questions-in-introduction",
+    "href": "05_naive_bayes.html#related-to-q5-out-of-10-research-questions-in-introduction",
+    "title": "Naïve Bayes",
+    "section": "Related to Q5 (out of 10 Research Questions) in Introduction",
+    "text": "Related to Q5 (out of 10 Research Questions) in Introduction\n\n\nRefer to the conclusion below."
   },
   {
     "objectID": "07_svm.html",

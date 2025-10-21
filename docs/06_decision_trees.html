@@ -218,9 +218,20 @@ window.Quarto = {
   <li><a href="#a-simple-example-of-measuring-a-splits-goodness" id="toc-a-simple-example-of-measuring-a-splits-goodness" class="nav-link" data-scroll-target="#a-simple-example-of-measuring-a-splits-goodness">A Simple Example of Measuring a Split’s “Goodness”</a></li>
   <li><a href="#why-is-it-possible-to-create-an-infinite-number-of-trees" id="toc-why-is-it-possible-to-create-an-infinite-number-of-trees" class="nav-link" data-scroll-target="#why-is-it-possible-to-create-an-infinite-number-of-trees">Why Is It Possible to Create an Infinite Number of Trees?</a></li>
   </ul></li>
-  <li><a href="#data-prep" id="toc-data-prep" class="nav-link" data-scroll-target="#data-prep">Data Prep</a></li>
+  <li><a href="#data-prep" id="toc-data-prep" class="nav-link" data-scroll-target="#data-prep">Data Prep</a>
+  <ul class="collapse">
+  <li><a href="#training-and-test-data-for-yoy-inflation-prediction-high_inflation_yoy-derived-from-pcepilfe_yoy" id="toc-training-and-test-data-for-yoy-inflation-prediction-high_inflation_yoy-derived-from-pcepilfe_yoy" class="nav-link" data-scroll-target="#training-and-test-data-for-yoy-inflation-prediction-high_inflation_yoy-derived-from-pcepilfe_yoy">Training and Test Data for YoY Inflation Prediction (<code>high_inflation_YoY</code> derived from <code>PCEPILFE_YoY</code>)</a></li>
+  <li><a href="#training-and-test-data-for-mom-inflation-prediction-high_inflation_mom-derived-from-pcepilfe_mom" id="toc-training-and-test-data-for-mom-inflation-prediction-high_inflation_mom-derived-from-pcepilfe_mom" class="nav-link" data-scroll-target="#training-and-test-data-for-mom-inflation-prediction-high_inflation_mom-derived-from-pcepilfe_mom">Training and Test Data for MoM Inflation Prediction (<code>high_inflation_MoM</code> derived from <code>PCEPILFE_MoM</code>)</a></li>
+  <li><a href="#training-and-test-data-for-unemployment-rates-high_unemployment-derived-from-unrate" id="toc-training-and-test-data-for-unemployment-rates-high_unemployment-derived-from-unrate" class="nav-link" data-scroll-target="#training-and-test-data-for-unemployment-rates-high_unemployment-derived-from-unrate">Training and Test Data for Unemployment Rates (<code>high_unemployment</code> derived from <code>UNRATE</code>)</a></li>
+  </ul></li>
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
+  <ul class="collapse">
+  <li><a href="#confusion-matrix-for-yoy-inflation-prediction" id="toc-confusion-matrix-for-yoy-inflation-prediction" class="nav-link" data-scroll-target="#confusion-matrix-for-yoy-inflation-prediction">Confusion Matrix for YoY Inflation Prediction</a></li>
+  <li><a href="#confusion-matrix-for-mom-inflation-prediction" id="toc-confusion-matrix-for-mom-inflation-prediction" class="nav-link" data-scroll-target="#confusion-matrix-for-mom-inflation-prediction">Confusion Matrix for MoM Inflation Prediction</a></li>
+  <li><a href="#confusion-matrix-for-unemployment-rates-prediction" id="toc-confusion-matrix-for-unemployment-rates-prediction" class="nav-link" data-scroll-target="#confusion-matrix-for-unemployment-rates-prediction">Confusion Matrix for Unemployment Rates Prediction</a></li>
+  <li><a href="#related-to-q5-out-of-10-research-questions-in-introduction" id="toc-related-to-q5-out-of-10-research-questions-in-introduction" class="nav-link" data-scroll-target="#related-to-q5-out-of-10-research-questions-in-introduction">Related to Q5 (out of 10 Research Questions) in Introduction</a></li>
+  </ul></li>
   <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
   </ul>
 </nav>
@@ -377,27 +388,251 @@ H(S) = - \sum_{i=1}^{c} p_i \log_2(p_i)
 </section>
 <section id="data-prep" class="level1">
 <h1>Data Prep</h1>
+<div class="justify">
 <ul>
-<li>xxx</li>
+<li><p>The fundamental prerequisite for building a supervised learning model is the use of <strong>“labeled data.”</strong> This refers to a dataset where each data point is provided with a “correct answer” or label in advance. For example, this could be email data where each message is labeled as either “Spam” or “Not Spam.” The model uses these correct labels as a target to learn patterns within the data.</p></li>
+<li><p>Furthermore, to fairly evaluate the model’s performance on new, unseen data, the dataset is split into a <strong>Training Set</strong> and a <strong>Testing Set</strong>. This division prevents <strong>“overfitting,”</strong> where the model simply memorizes the training data, and allows for a proper measurement of its ability to generalize.</p>
+<ul>
+<li><strong>Training Set</strong>: The majority of the dataset, used for the model to learn the patterns and relationships in the data.</li>
+<li><strong>Testing Set</strong>: A portion of the data held back from the training process, used only to verify the final performance of the trained model.</li>
+</ul></li>
+<li><p>The training and testing data must be <strong>disjoint</strong> sets, meaning they have no data points in common. The reason is to get an honest evaluation of the model’s ability to generalize to new, unseen data. If the sets overlap, the model is being tested on data it has already “seen” during training, which would be like giving a student an exam with questions they had already memorized. Keeping the training and testing sets <strong>disjoint</strong> is the only way to get a true measure of the model’s predictive performance.</p></li>
+<li><p>The sample image of the data used in the analysis on this page is shown below. This dataset corresponds to the one shown in “Merged Cleaned Data” at the end of <a href="./02_02_data_gathering_and_cleaning.html">Data Gathering and Data Cleaning</a>. The dataset can be found <a href="https://github.com/taso5789/ds-project-portfolio/tree/main/data/df_merged.csv">here</a>.</p>
+<ul>
+<li>For this analysis, the target variables—inflation rates (<code>PCEPILFE_YoY</code>, <code>PCEPILFE_MoM</code>) and the unemployment rate (<code>UNRATE</code>)—were binarized to apply the Naïve Bayes classifier. The historical median of each variable was used as a threshold; periods with values above the median were defined as “High Inflation” or “High Unemployment” (1), and all others as “Low” (0).</li>
+</ul></li>
 </ul>
+</div>
+<div class="text-center">
+<p><img src="results/5_Decision_Trees/data.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<div class="justify">
+<ul>
+<li>The training and testing data used to predict the year-over-year (YoY) inflation (<code>PCEPILFE_YoY</code>), month-over-month (MoM) inflation (<code>PCEPILFE_MoM</code>), and unemployment rates (<code>UNRATE</code>) are shown in <a href="#fig-inf-YoY-train" class="quarto-xref">Figure&nbsp;1</a> ~ <a href="#fig-unemp-test" class="quarto-xref">Figure&nbsp;6</a>, respectively. Each dataset was created as follows:</li>
+</ul>
+</div>
+<section id="training-and-test-data-for-yoy-inflation-prediction-high_inflation_yoy-derived-from-pcepilfe_yoy" class="level2">
+<h2 class="anchored" data-anchor-id="training-and-test-data-for-yoy-inflation-prediction-high_inflation_yoy-derived-from-pcepilfe_yoy">Training and Test Data for YoY Inflation Prediction (<code>high_inflation_YoY</code> derived from <code>PCEPILFE_YoY</code>)</h2>
+<div class="justify">
+<ol type="1">
+<li><p><strong>Feature Engineering</strong>: To provide the model with historical context, the feature set was expanded. Specifically, <strong>1, 2, and 3-month lag variables</strong>, as well as <strong>2- and 3-month rolling window statistics</strong> (e.g., mean, standard deviation), were calculated for each economic indicator and added as features.</p></li>
+<li><p><strong>Defining Predictors and Target</strong>: The binarized YoY inflation rate (<code>high_inflation_YoY</code>) was set as the target variable (y). All other potential target variables regarding inflation and unemployment were excluded from the feature set (X) to prevent data leakage.</p></li>
+<li><p><strong>Data Splitting</strong>: The dataset was divided into a <strong>70% training set</strong> and a <strong>30% testing set</strong> using stratified sampling to ensure the class proportions were identical in both sets.</p></li>
+<li><p><strong>Selective Scaling</strong>: <strong>Only continuous variables were standardized</strong> using <code>StandardScaler</code>, while dummy variables (e.g., for recessions) were excluded from this process. The scaler was fit on the training data and then applied to the test data to prevent data leakage.</p></li>
+</ol>
+</div>
+<div class="justify">
+<div class="columns">
+<div class="column" style="width:47.5%;">
+<div id="fig-inf-YoY-train" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-inf-YoY-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/5_Decision_Trees/inflation_YoY_train_data.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inf-YoY-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: The Training Data for YoY Inflation
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:47.5%;">
+<div id="fig-inf-YoY-test" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-inf-YoY-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/5_Decision_Trees/inflation_YoY_test_data.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inf-YoY-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: The Test Data for YoY Inflation
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="training-and-test-data-for-mom-inflation-prediction-high_inflation_mom-derived-from-pcepilfe_mom" class="level2">
+<h2 class="anchored" data-anchor-id="training-and-test-data-for-mom-inflation-prediction-high_inflation_mom-derived-from-pcepilfe_mom">Training and Test Data for MoM Inflation Prediction (<code>high_inflation_MoM</code> derived from <code>PCEPILFE_MoM</code>)</h2>
+<div class="justify">
+<ol type="1">
+<li><p><strong>Feature Engineering</strong>: To provide the model with historical context, the feature set was expanded. Specifically, <strong>1-month lag variables</strong> and <strong>2-month rolling window statistics</strong> (e.g., mean, standard deviation) were calculated for each economic indicator and added as features.</p></li>
+<li><p><strong>Defining Predictors and Target</strong>: The binarized MoM inflation rate (<code>high_inflation_MoM</code>) was set as the target variable (y). All other potential target variables regarding inflation and unemployment were excluded from the feature set (X) to prevent data leakage.</p></li>
+<li><p><strong>Data Splitting</strong>: The dataset was divided into a <strong>70% training set</strong> and a <strong>30% testing set</strong> using stratified sampling to ensure the class proportions were identical in both sets.</p></li>
+<li><p><strong>Selective Scaling</strong>: <strong>Only continuous variables were standardized</strong> using <code>StandardScaler</code>, while dummy variables (e.g., for recessions) were excluded from this process. The scaler was fit on the training data and then applied to the test data to prevent data leakage.</p></li>
+</ol>
+</div>
+<div class="justify">
+<div class="columns">
+<div class="column" style="width:47.5%;">
+<div id="fig-inf-MoM-train" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-inf-MoM-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/5_Decision_Trees/inflation_MoM_train_data.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inf-MoM-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: The Training Data for MoM Inflation
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:47.5%;">
+<div id="fig-inf-MoM-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-inf-MoM-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/5_Decision_Trees/inflation_MoM_test_data.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inf-MoM-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: The Test Data for MoM Inflation
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="training-and-test-data-for-unemployment-rates-high_unemployment-derived-from-unrate" class="level2">
+<h2 class="anchored" data-anchor-id="training-and-test-data-for-unemployment-rates-high_unemployment-derived-from-unrate">Training and Test Data for Unemployment Rates (<code>high_unemployment</code> derived from <code>UNRATE</code>)</h2>
+<div class="justify">
+<ol type="1">
+<li><p><strong>Feature Engineering</strong>: To provide the model with historical context, the feature set was expanded. Specifically, <strong>8-month lag variables</strong> and <strong>3-month rolling window statistics</strong> (e.g., mean, standard deviation) were calculated for each economic indicator and added as features.</p></li>
+<li><p><strong>Defining Predictors and Target</strong>: The binarized unemployment rate (<code>high_unemployment</code>) was set as the target variable (y). All other potential target variables regarding inflation and unemployment were excluded from the feature set (X) to prevent data leakage.</p></li>
+<li><p><strong>Data Splitting</strong>: The dataset was divided into a <strong>70% training set</strong> and a <strong>30% testing set</strong> using stratified sampling to ensure the class proportions were identical in both sets.</p></li>
+<li><p><strong>Selective Scaling</strong>: <strong>Only continuous variables were standardized</strong> using <code>StandardScaler</code>, while dummy variables (e.g., for recessions) were excluded from this process. The scaler was fit on the training data and then applied to the test data to prevent data leakage.</p></li>
+</ol>
+</div>
+<div class="justify">
+<div class="columns">
+<div class="column" style="width:47.5%;">
+<div id="fig-unemp-train" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/5_Decision_Trees/unemp_train_data.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: The Training Data for Unemployment Rates
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:47.5%;">
+<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/5_Decision_Trees/unemp_test_data.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: The Test Data for Unemployment Rates
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="code" class="level1">
 <h1>Code</h1>
+<div class="justify">
 <ul>
-<li>xxx</li>
+<li>For the code used in this chapter (Naïve Bayes), please refer <a href="https://github.com/taso5789/ds-project-portfolio/blob/main/code/5_Decision_Trees.ipynb">here</a>.</li>
 </ul>
+</div>
 </section>
 <section id="results" class="level1">
 <h1>Results</h1>
+<section id="confusion-matrix-for-yoy-inflation-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="confusion-matrix-for-yoy-inflation-prediction">Confusion Matrix for YoY Inflation Prediction</h2>
+<div class="justify">
 <ul>
-<li>xxx</li>
+<li><p><strong>Accuracy</strong>: <strong>92.5%</strong></p></li>
+<li><p>This is an <strong>exceptionally high-performing and well-balanced model</strong>. Its primary strength is that both <strong>precision and recall are above 90%</strong> for both the “High Inflation” and “Low Inflation” classes.</p></li>
+<li><p>This indicates the model is simultaneously excellent at finding nearly all high inflation periods (94% recall) and ensuring that its predictions are highly reliable (91% precision). With only 5 total misclassifications, this Decision Tree model serves as an ideal and effective classifier for this task.</p></li>
 </ul>
+</div>
+<div class="justify">
+<div id="fig-inf-YoY-matrix" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-inf-YoY-matrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/5_Decision_Trees/inflation_YoY_confusion_matrix.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inf-YoY-matrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Confusion Matrix for YoY Inflation Prediction
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="confusion-matrix-for-mom-inflation-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="confusion-matrix-for-mom-inflation-prediction">Confusion Matrix for MoM Inflation Prediction</h2>
+<div class="justify">
+<ul>
+<li><p><strong>Accuracy</strong>: <strong>65.2%</strong></p></li>
+<li><p>This model’s performance is <strong>poor</strong>, with an accuracy only slightly better than a random guess.</p></li>
+<li><p>Its primary weakness is <strong>low precision</strong> across both classes (e.g., 63% for “High Inflation”), which means its predictions are unreliable. When the model signals “High Inflation,” it is incorrect more than a third of the time.</p></li>
+<li><p>Although it manages to find a majority of the high inflation periods (<strong>71% recall</strong>), it does so by generating a high number of false alarms. Overall, the model lacks the reliability required for practical use.</p></li>
+</ul>
+</div>
+<div class="justify">
+<div id="fig-inf-MoM-matrix" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-inf-MoM-matrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/5_Decision_Trees/inflation_MoM_confusion_matrix.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inf-MoM-matrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Confusion Matrix for MoM Inflation Prediction
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="confusion-matrix-for-unemployment-rates-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="confusion-matrix-for-unemployment-rates-prediction">Confusion Matrix for Unemployment Rates Prediction</h2>
+<div class="justify">
+<ul>
+<li><strong>Accuracy</strong>: <strong>97.0%</strong></li>
+</ul>
+<p>-This is an <strong>exceptionally high-performing and reliable model</strong>, demonstrating near-perfect results.</p>
+<p>-Its most notable strengths are two perfect metrics: 1. <strong>100% precision</strong> for “High Unemployment,” which means its predictions of a high unemployment period are <strong>never wrong</strong>. 2. <strong>100% recall</strong> for “Low Unemployment,” meaning it <strong>never misclassifies</strong> a low unemployment period.</p>
+<ul>
+<li>The model’s only minor imperfection is missing 2 out of 32 high unemployment events, still resulting in a very strong <strong>94% recall</strong> for that class. Overall, this Decision Tree model shows nearly ideal performance for this task.</li>
+</ul>
+</div>
+<div class="justify">
+<div id="fig-unemp-matrix" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unemp-matrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/5_Decision_Trees/unemp_confusion_matrix.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-matrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Confusion Matrix for Unemployment Rates Prediction
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="related-to-q5-out-of-10-research-questions-in-introduction" class="level2">
+<h2 class="anchored" data-anchor-id="related-to-q5-out-of-10-research-questions-in-introduction">Related to Q5 (out of 10 Research Questions) in <a href="./01_introduction.html">Introduction</a></h2>
+<div class="justify">
+<ul>
+<li>Refer to the conclusion below.</li>
+</ul>
+</div>
+</section>
 </section>
 <section id="conclusions" class="level1">
 <h1>Conclusions</h1>
+<div class="justify">
 <ul>
-<li>xxx</li>
+<li><p>The Decision Tree model demonstrated markedly different performance depending on the prediction target, revealing that while it can be a powerful tool for identifying macroeconomic regimes, it also has clear limitations.</p>
+<ol type="1">
+<li><p><strong>High Efficacy in Predicting Persistent States</strong>: The model achieved extremely high accuracy when predicting indicators with relatively persistent trends, such as the <strong>unemployment rate</strong> and <strong>year-over-year (YoY) inflation</strong>. The unemployment prediction (97.0% accuracy), in particular, was nearly perfect in its reliability, showing that the Decision Tree is adept at capturing the patterns of stable economic states. The YoY inflation prediction (92.5% accuracy) also yielded high-performing and well-balanced results.</p></li>
+<li><p><strong>Challenges in Predicting Short-Term Fluctuations</strong>: Conversely, for predicting noisy data with high short-term volatility, such as <strong>month-over-month (MoM) inflation</strong>, performance dropped significantly, resulting in unreliable results (65.2% accuracy). This suggests that the model struggles to distinguish between short-term random noise and the underlying signal.</p></li>
+</ol></li>
+<li><p>In summary, the Decision Tree model is <strong>highly effective for the task of classifying persistent economic states</strong> like unemployment and annual inflation but is <strong>not well-suited for predicting volatile, short-term indicators</strong> like month-to-month inflation rates. It was confirmed that the model’s effectiveness is strongly dependent on the characteristics (e.g., stability, noise level) of the time-series data being predicted.</p></li>
 </ul>
+</div>
 
 
 </section>

@@ -195,7 +195,13 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#training-and-test-data-for-unemployment-rates-high_unemployment-derived-from-unrate" id="toc-training-and-test-data-for-unemployment-rates-high_unemployment-derived-from-unrate" class="nav-link" data-scroll-target="#training-and-test-data-for-unemployment-rates-high_unemployment-derived-from-unrate">Training and Test Data for Unemployment Rates (<code>high_unemployment</code> derived from <code>UNRATE</code>)</a></li>
   </ul></li>
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
+  <ul class="collapse">
+  <li><a href="#confusion-matrix-for-yoy-inflation-prediction" id="toc-confusion-matrix-for-yoy-inflation-prediction" class="nav-link" data-scroll-target="#confusion-matrix-for-yoy-inflation-prediction">Confusion Matrix for YoY Inflation Prediction</a></li>
+  <li><a href="#confusion-matrix-for-mom-inflation-prediction" id="toc-confusion-matrix-for-mom-inflation-prediction" class="nav-link" data-scroll-target="#confusion-matrix-for-mom-inflation-prediction">Confusion Matrix for MoM Inflation Prediction</a></li>
+  <li><a href="#confusion-matrix-for-unemployment-rates-prediction" id="toc-confusion-matrix-for-unemployment-rates-prediction" class="nav-link" data-scroll-target="#confusion-matrix-for-unemployment-rates-prediction">Confusion Matrix for Unemployment Rates Prediction</a></li>
+  <li><a href="#related-to-q5-out-of-10-research-questions-in-introduction" id="toc-related-to-q5-out-of-10-research-questions-in-introduction" class="nav-link" data-scroll-target="#related-to-q5-out-of-10-research-questions-in-introduction">Related to Q5 (out of 10 Research Questions) in Introduction</a></li>
+  </ul></li>
   <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
   </ul>
 </nav>
@@ -447,15 +453,94 @@ Figure&nbsp;6: The Test Data for Unemployment Rates
 </section>
 <section id="results" class="level1">
 <h1>Results</h1>
+<section id="confusion-matrix-for-yoy-inflation-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="confusion-matrix-for-yoy-inflation-prediction">Confusion Matrix for YoY Inflation Prediction</h2>
+<div class="justify">
 <ul>
-<li>xxx</li>
+<li><p><strong>Accuracy</strong>: <strong>86.4%</strong></p></li>
+<li><p>This is a <strong>strong and well-balanced model</strong>. Its key strength is a very high <strong>recall for “Low Inflation” (94%)</strong>, meaning it is excellent at correctly identifying low inflation periods.</p></li>
+<li><p>The model is also very reliable when it predicts high inflation (<strong>precision of 92%</strong>). Its main weakness is a slightly lower <strong>recall for “High Inflation” (77%)</strong>, indicating it occasionally misses identifying a high inflation period. Overall, its performance is robust.</p></li>
 </ul>
+</div>
+<div class="justify">
+<div id="fig-inf-YoY-matrix" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-inf-YoY-matrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/4_Naive_Bayes/inflation_YoY_confusion_matrix.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inf-YoY-matrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Confusion Matrix for YoY Inflation Prediction
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="confusion-matrix-for-mom-inflation-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="confusion-matrix-for-mom-inflation-prediction">Confusion Matrix for MoM Inflation Prediction</h2>
+<div class="justify">
+<ul>
+<li><p><strong>Accuracy</strong>: <strong>70.6%</strong></p></li>
+<li><p>This model’s performance is mixed. Its main strength is a high <strong>recall (86%)</strong> for “Low Inflation,” meaning it is effective at identifying low inflation periods.</p></li>
+<li><p>However, its primary weakness is a low <strong>recall (55%)</strong> for the “High Inflation” class, indicating that it fails to detect a significant portion (45%) of the actual high inflation periods. While its precision for predicting “High Inflation” is solid (<strong>78%</strong>), the model is clearly more skilled at identifying low inflation than high inflation.</p></li>
+</ul>
+</div>
+<div class="justify">
+<div id="fig-inf-MoM-matrix" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-inf-MoM-matrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/4_Naive_Bayes/inflation_MoM_confusion_matrix.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inf-MoM-matrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Confusion Matrix for MoM Inflation Prediction
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="confusion-matrix-for-unemployment-rates-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="confusion-matrix-for-unemployment-rates-prediction">Confusion Matrix for Unemployment Rates Prediction</h2>
+<div class="justify">
+<ul>
+<li><p><strong>Accuracy</strong>: <strong>86.4%</strong></p></li>
+<li><p>This is a <strong>strong and reliable model</strong>. Its most notable strengths are its <strong>perfect recall (100%)</strong> for “Low Unemployment” and its <strong>perfect precision (100%)</strong> for “High Unemployment.” This means the model never misclassifies a low unemployment period and its predictions of high unemployment are never wrong.</p></li>
+<li><p>The model’s main weakness is a good but not perfect <strong>recall for “High Unemployment” (72%)</strong>, indicating that it fails to detect more than a quarter (~28%) of the high unemployment periods. Overall, despite this, the model is highly accurate and its predictions are very trustworthy.</p></li>
+</ul>
+</div>
+<div class="justify">
+<div id="fig-unemp-matrix" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unemp-matrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/4_Naive_Bayes/unemp_confusion_matrix.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-matrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Confusion Matrix for Unemployment Rates Prediction
+</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="related-to-q5-out-of-10-research-questions-in-introduction" class="level2">
+<h2 class="anchored" data-anchor-id="related-to-q5-out-of-10-research-questions-in-introduction">Related to Q5 (out of 10 Research Questions) in <a href="./01_introduction.html">Introduction</a></h2>
+<div class="justify">
+<ul>
+<li>Refer to the conclusion below.</li>
+</ul>
+</div>
+</section>
 </section>
 <section id="conclusions" class="level1">
 <h1>Conclusions</h1>
+<div class="justify">
 <ul>
-<li>xxx</li>
+<li><p>The results of this analysis clearly demonstrate that the performance of the Naïve Bayes model is <strong>extremely dependent on the quality of feature engineering and data preprocessing</strong>.</p>
+<ol type="1">
+<li><p><strong>Dramatic Performance Improvement via Preprocessing</strong>: The initial, simple model showed low accuracy and a tendency to miss important periods, especially for predicting month-over-month (MoM) inflation. However, after applying advanced preprocessing techniques—including <strong>feature engineering with lag variables and rolling statistics</strong>, as well as <strong>oversampling with SMOTE</strong>—the same Naïve Bayes model achieved a <strong>remarkable improvement in performance</strong>.</p></li>
+<li><p><strong>Final High Predictive Accuracy</strong>: Ultimately, the model achieved strong and comparable accuracy scores of <strong>86.4% for both unemployment and year-over-year (YoY) inflation prediction</strong>. The unemployment model was particularly noteworthy, demonstrating exceptional reliability by achieving <strong>perfect precision (100%)</strong> for its “high unemployment” predictions and <strong>perfect recall (100%)</strong> for “low unemployment” periods.</p></li>
+<li><p><strong>Remaining Challenges</strong>: On the other hand, predicting the noisy, short-term MoM inflation rate remained a challenge (with 70.6% accuracy), suggesting limitations stemming from the model’s fundamental assumption of feature independence.</p></li>
+</ol></li>
+<li><p><strong>In summary</strong>, while Naïve Bayes is often considered a simple baseline, this analysis concludes that <strong>it can be transformed into a powerful and high-accuracy tool for identifying macroeconomic regimes, provided it is supported by robust feature engineering and data preprocessing</strong>. The results confirm that the quality of the input features was a more critical factor in determining predictive accuracy than the initial complexity of the model.</p></li>
 </ul>
+</div>
 
 
 </section>

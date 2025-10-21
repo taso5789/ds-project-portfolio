@@ -166,8 +166,64 @@ title: "Naïve Bayes"
 
 # Results
 
-- xxx
+## Confusion Matrix for YoY Inflation Prediction
+
+::: {.justify}
+- **Accuracy**: **86.4%**
+
+- This is a **strong and well-balanced model**. Its key strength is a very high **recall for "Low Inflation" (94%)**, meaning it is excellent at correctly identifying low inflation periods.
+
+- The model is also very reliable when it predicts high inflation (**precision of 92%**). Its main weakness is a slightly lower **recall for "High Inflation" (77%)**, indicating it occasionally misses identifying a high inflation period. Overall, its performance is robust.
+:::
+
+::: {.justify}
+![Confusion Matrix for YoY Inflation Prediction](results/4_Naive_Bayes/inflation_YoY_confusion_matrix.jpg){#fig-inf-YoY-matrix fig-align="center" width="100%"}
+:::
+
+## Confusion Matrix for MoM Inflation Prediction
+
+::: {.justify}
+- **Accuracy**: **70.6%**
+
+- This model's performance is mixed. Its main strength is a high **recall (86%)** for "Low Inflation," meaning it is effective at identifying low inflation periods.
+
+- However, its primary weakness is a low **recall (55%)** for the "High Inflation" class, indicating that it fails to detect a significant portion (45%) of the actual high inflation periods. While its precision for predicting "High Inflation" is solid (**78%**), the model is clearly more skilled at identifying low inflation than high inflation.
+:::
+
+::: {.justify}
+![Confusion Matrix for MoM Inflation Prediction](results/4_Naive_Bayes/inflation_MoM_confusion_matrix.jpg){#fig-inf-MoM-matrix fig-align="center" width="100%"}
+:::
+
+## Confusion Matrix for Unemployment Rates Prediction
+
+::: {.justify}
+- **Accuracy**: **86.4%**
+
+- This is a **strong and reliable model**. Its most notable strengths are its **perfect recall (100%)** for "Low Unemployment" and its **perfect precision (100%)** for "High Unemployment." This means the model never misclassifies a low unemployment period and its predictions of high unemployment are never wrong.
+
+- The model's main weakness is a good but not perfect **recall for "High Unemployment" (72%)**, indicating that it fails to detect more than a quarter (~28%) of the high unemployment periods. Overall, despite this, the model is highly accurate and its predictions are very trustworthy.
+:::
+
+::: {.justify}
+![Confusion Matrix for Unemployment Rates Prediction](results/4_Naive_Bayes/unemp_confusion_matrix.jpg){#fig-unemp-matrix fig-align="center" width="100%"}
+:::
+
+## Related to Q5 (out of 10 Research Questions) in [Introduction](01_introduction.qmd)
+
+::: {.justify}
+- Refer to the conclusion below.
+:::
 
 # Conclusions
 
-- xxx
+::: {.justify}
+- The results of this analysis clearly demonstrate that the performance of the Naïve Bayes model is **extremely dependent on the quality of feature engineering and data preprocessing**.
+
+  1.  **Dramatic Performance Improvement via Preprocessing**: The initial, simple model showed low accuracy and a tendency to miss important periods, especially for predicting month-over-month (MoM) inflation. However, after applying advanced preprocessing techniques—including **feature engineering with lag variables and rolling statistics**, as well as **oversampling with SMOTE**—the same Naïve Bayes model achieved a **remarkable improvement in performance**.
+
+  2.  **Final High Predictive Accuracy**: Ultimately, the model achieved strong and comparable accuracy scores of **86.4% for both unemployment and year-over-year (YoY) inflation prediction**. The unemployment model was particularly noteworthy, demonstrating exceptional reliability by achieving **perfect precision (100%)** for its "high unemployment" predictions and **perfect recall (100%)** for "low unemployment" periods.
+
+  3.  **Remaining Challenges**: On the other hand, predicting the noisy, short-term MoM inflation rate remained a challenge (with 70.6% accuracy), suggesting limitations stemming from the model's fundamental assumption of feature independence.
+
+- **In summary**, while Naïve Bayes is often considered a simple baseline, this analysis concludes that **it can be transformed into a powerful and high-accuracy tool for identifying macroeconomic regimes, provided it is supported by robust feature engineering and data preprocessing**. The results confirm that the quality of the input features was a more critical factor in determining predictive accuracy than the initial complexity of the model.
+:::
