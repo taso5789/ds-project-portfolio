@@ -127,10 +127,10 @@ $$\text{Information Gain} = Gini_{root} - Gini_{after\_split} = 0.5 - 0.1668 = \
 :::
 
 ::: {.justify}
-- The training and testing data used to predict the year-over-year (YoY) inflation (`PCEPILFE_YoY`), month-over-month (MoM) inflation (`PCEPILFE_MoM`), and unemployment rates (`UNRATE`) are shown in @fig-inf-YoY-train ~ @fig-unemp-test, respectively. Each dataset was created as follows:
+- The training and testing data used to predict the year-over-year (YoY) inflation (`high_inflation_YoY` derived from `PCEPILFE_YoY`), month-over-month (MoM) inflation (`high_inflation_MoM` derived from `PCEPILFE_MoM`), and unemployment rates (`high_unemployment` derived from `UNRATE`) are shown in @fig-inf-YoY-train ~ @fig-unemp-test, respectively. Each dataset was created as follows:
 :::
 
-## Training and Test Data for YoY Inflation Prediction (`high_inflation_YoY` derived from `PCEPILFE_YoY`)
+## Training and Test Data for YoY Inflation Prediction
 
 ::: {.justify}
 1.  **Feature Engineering**: To capture past trends and volatility, **9-month rolling window statistics** (e.g., mean, standard deviation) were calculated for key economic indicators and added as features. For this specific model, no lag variables were used.
@@ -155,7 +155,7 @@ $$\text{Information Gain} = Gini_{root} - Gini_{after\_split} = 0.5 - 0.1668 = \
 :::
 :::
 
-## Training and Test Data for MoM Inflation Prediction (`high_inflation_MoM` derived from `PCEPILFE_MoM`)
+## Training and Test Data for MoM Inflation Prediction
 
 ::: {.justify}
 1.  **Feature Engineering**: To capture past trends and volatility, **4-month rolling window statistics** (e.g., mean, standard deviation) were calculated for key economic indicators and added as features. For this specific model, no lag variables were used.
@@ -180,7 +180,7 @@ $$\text{Information Gain} = Gini_{root} - Gini_{after\_split} = 0.5 - 0.1668 = \
 :::
 :::
 
-## Training and Test Data for Unemployment Rates (`high_unemployment` derived from `UNRATE`)
+## Training and Test Data for Unemployment Rates
 
 ::: {.justify}
 1.  **Feature Engineering**: To provide the model with historical context, the feature set was expanded. Specifically, **8-month lag variables** and **3-month rolling window statistics** (e.g., mean, standard deviation) were calculated for each economic indicator and added as features.
@@ -208,7 +208,7 @@ $$\text{Information Gain} = Gini_{root} - Gini_{after\_split} = 0.5 - 0.1668 = \
 # Code
 
 ::: {.justify}
-- For the code used in this chapter (Naïve Bayes), please refer [here](https://github.com/taso5789/ds-project-portfolio/blob/main/code/5_Decision_Trees.ipynb).
+- For the code used in this chapter (Decision Trees), please refer [here](https://github.com/taso5789/ds-project-portfolio/blob/main/code/5_Decision_Trees.ipynb).
 :::
 
 # Results

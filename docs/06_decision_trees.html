@@ -220,9 +220,9 @@ window.Quarto = {
   </ul></li>
   <li><a href="#data-prep" id="toc-data-prep" class="nav-link" data-scroll-target="#data-prep">Data Prep</a>
   <ul class="collapse">
-  <li><a href="#training-and-test-data-for-yoy-inflation-prediction-high_inflation_yoy-derived-from-pcepilfe_yoy" id="toc-training-and-test-data-for-yoy-inflation-prediction-high_inflation_yoy-derived-from-pcepilfe_yoy" class="nav-link" data-scroll-target="#training-and-test-data-for-yoy-inflation-prediction-high_inflation_yoy-derived-from-pcepilfe_yoy">Training and Test Data for YoY Inflation Prediction (<code>high_inflation_YoY</code> derived from <code>PCEPILFE_YoY</code>)</a></li>
-  <li><a href="#training-and-test-data-for-mom-inflation-prediction-high_inflation_mom-derived-from-pcepilfe_mom" id="toc-training-and-test-data-for-mom-inflation-prediction-high_inflation_mom-derived-from-pcepilfe_mom" class="nav-link" data-scroll-target="#training-and-test-data-for-mom-inflation-prediction-high_inflation_mom-derived-from-pcepilfe_mom">Training and Test Data for MoM Inflation Prediction (<code>high_inflation_MoM</code> derived from <code>PCEPILFE_MoM</code>)</a></li>
-  <li><a href="#training-and-test-data-for-unemployment-rates-high_unemployment-derived-from-unrate" id="toc-training-and-test-data-for-unemployment-rates-high_unemployment-derived-from-unrate" class="nav-link" data-scroll-target="#training-and-test-data-for-unemployment-rates-high_unemployment-derived-from-unrate">Training and Test Data for Unemployment Rates (<code>high_unemployment</code> derived from <code>UNRATE</code>)</a></li>
+  <li><a href="#training-and-test-data-for-yoy-inflation-prediction" id="toc-training-and-test-data-for-yoy-inflation-prediction" class="nav-link" data-scroll-target="#training-and-test-data-for-yoy-inflation-prediction">Training and Test Data for YoY Inflation Prediction</a></li>
+  <li><a href="#training-and-test-data-for-mom-inflation-prediction" id="toc-training-and-test-data-for-mom-inflation-prediction" class="nav-link" data-scroll-target="#training-and-test-data-for-mom-inflation-prediction">Training and Test Data for MoM Inflation Prediction</a></li>
+  <li><a href="#training-and-test-data-for-unemployment-rates" id="toc-training-and-test-data-for-unemployment-rates" class="nav-link" data-scroll-target="#training-and-test-data-for-unemployment-rates">Training and Test Data for Unemployment Rates</a></li>
   </ul></li>
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
@@ -408,11 +408,11 @@ H(S) = - \sum_{i=1}^{c} p_i \log_2(p_i)
 </div>
 <div class="justify">
 <ul>
-<li>The training and testing data used to predict the year-over-year (YoY) inflation (<code>PCEPILFE_YoY</code>), month-over-month (MoM) inflation (<code>PCEPILFE_MoM</code>), and unemployment rates (<code>UNRATE</code>) are shown in <a href="#fig-inf-YoY-train" class="quarto-xref">Figure&nbsp;1</a> ~ <a href="#fig-unemp-test" class="quarto-xref">Figure&nbsp;6</a>, respectively. Each dataset was created as follows:</li>
+<li>The training and testing data used to predict the year-over-year (YoY) inflation (<code>high_inflation_YoY</code> derived from <code>PCEPILFE_YoY</code>), month-over-month (MoM) inflation (<code>high_inflation_MoM</code> derived from <code>PCEPILFE_MoM</code>), and unemployment rates (<code>high_unemployment</code> derived from <code>UNRATE</code>) are shown in <a href="#fig-inf-YoY-train" class="quarto-xref">Figure&nbsp;1</a> ~ <a href="#fig-unemp-test" class="quarto-xref">Figure&nbsp;6</a>, respectively. Each dataset was created as follows:</li>
 </ul>
 </div>
-<section id="training-and-test-data-for-yoy-inflation-prediction-high_inflation_yoy-derived-from-pcepilfe_yoy" class="level2">
-<h2 class="anchored" data-anchor-id="training-and-test-data-for-yoy-inflation-prediction-high_inflation_yoy-derived-from-pcepilfe_yoy">Training and Test Data for YoY Inflation Prediction (<code>high_inflation_YoY</code> derived from <code>PCEPILFE_YoY</code>)</h2>
+<section id="training-and-test-data-for-yoy-inflation-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="training-and-test-data-for-yoy-inflation-prediction">Training and Test Data for YoY Inflation Prediction</h2>
 <div class="justify">
 <ol type="1">
 <li><p><strong>Feature Engineering</strong>: To capture past trends and volatility, <strong>9-month rolling window statistics</strong> (e.g., mean, standard deviation) were calculated for key economic indicators and added as features. For this specific model, no lag variables were used.</p></li>
@@ -451,8 +451,8 @@ Figure&nbsp;2: The Test Data for YoY Inflation
 </div>
 </div>
 </section>
-<section id="training-and-test-data-for-mom-inflation-prediction-high_inflation_mom-derived-from-pcepilfe_mom" class="level2">
-<h2 class="anchored" data-anchor-id="training-and-test-data-for-mom-inflation-prediction-high_inflation_mom-derived-from-pcepilfe_mom">Training and Test Data for MoM Inflation Prediction (<code>high_inflation_MoM</code> derived from <code>PCEPILFE_MoM</code>)</h2>
+<section id="training-and-test-data-for-mom-inflation-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="training-and-test-data-for-mom-inflation-prediction">Training and Test Data for MoM Inflation Prediction</h2>
 <div class="justify">
 <ol type="1">
 <li><p><strong>Feature Engineering</strong>: To capture past trends and volatility, <strong>4-month rolling window statistics</strong> (e.g., mean, standard deviation) were calculated for key economic indicators and added as features. For this specific model, no lag variables were used.</p></li>
@@ -491,8 +491,8 @@ Figure&nbsp;4: The Test Data for MoM Inflation
 </div>
 </div>
 </section>
-<section id="training-and-test-data-for-unemployment-rates-high_unemployment-derived-from-unrate" class="level2">
-<h2 class="anchored" data-anchor-id="training-and-test-data-for-unemployment-rates-high_unemployment-derived-from-unrate">Training and Test Data for Unemployment Rates (<code>high_unemployment</code> derived from <code>UNRATE</code>)</h2>
+<section id="training-and-test-data-for-unemployment-rates" class="level2">
+<h2 class="anchored" data-anchor-id="training-and-test-data-for-unemployment-rates">Training and Test Data for Unemployment Rates</h2>
 <div class="justify">
 <ol type="1">
 <li><p><strong>Feature Engineering</strong>: To provide the model with historical context, the feature set was expanded. Specifically, <strong>8-month lag variables</strong> and <strong>3-month rolling window statistics</strong> (e.g., mean, standard deviation) were calculated for each economic indicator and added as features.</p></li>
@@ -536,7 +536,7 @@ Figure&nbsp;6: The Test Data for Unemployment Rates
 <h1>Code</h1>
 <div class="justify">
 <ul>
-<li>For the code used in this chapter (Naïve Bayes), please refer <a href="https://github.com/taso5789/ds-project-portfolio/blob/main/code/5_Decision_Trees.ipynb">here</a>.</li>
+<li>For the code used in this chapter (Decision Trees), please refer <a href="https://github.com/taso5789/ds-project-portfolio/blob/main/code/5_Decision_Trees.ipynb">here</a>.</li>
 </ul>
 </div>
 </section>

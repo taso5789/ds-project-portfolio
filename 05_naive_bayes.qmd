@@ -78,10 +78,10 @@ title: "Naïve Bayes"
 :::
 
 ::: {.justify}
-- The training and testing data used to predict the year-over-year (YoY) inflation (`PCEPILFE_YoY`), month-over-month (MoM) inflation (`PCEPILFE_MoM`), and unemployment rates (`UNRATE`) are shown in @fig-inf-YoY-train ~ @fig-unemp-test, respectively. Each dataset was created as follows:
+- The training and testing data used to predict the year-over-year (YoY) inflation (`high_inflation_YoY` derived from `PCEPILFE_YoY`), month-over-month (MoM) inflation (`high_inflation_MoM` derived from `PCEPILFE_MoM`), and unemployment rates (`high_unemployment` derived from `UNRATE`) are shown in @fig-inf-YoY-train ~ @fig-unemp-test, respectively. Each dataset was created as follows:
 :::
 
-## Training and Test Data for YoY Inflation Prediction (`high_inflation_YoY` derived from `PCEPILFE_YoY`)
+## Training and Test Data for YoY Inflation Prediction
 
 ::: {.justify}
 1.  **Feature Engineering**: **Lag variables** (from 1 to 13 months prior) were added for each economic indicator to expand the feature set.
@@ -106,7 +106,7 @@ title: "Naïve Bayes"
 :::
 :::
 
-## Training and Test Data for MoM Inflation Prediction (`high_inflation_MoM` derived from `PCEPILFE_MoM`)
+## Training and Test Data for MoM Inflation Prediction
 
 ::: {.justify}
 1.  **Feature Engineering**: To capture past trends and volatility, **8-month rolling window statistics** (e.g., mean, standard deviation) were calculated for key economic indicators and added as features. For this specific model, no lag variables were used.
@@ -133,7 +133,7 @@ title: "Naïve Bayes"
 :::
 :::
 
-## Training and Test Data for Unemployment Rates (`high_unemployment` derived from `UNRATE`)
+## Training and Test Data for Unemployment Rates
 
 ::: {.justify}
 1.  **Feature Engineering**: To capture past trends and volatility, **12-month rolling window statistics** (e.g., mean, standard deviation) were calculated for key economic indicators and added as features. For this specific model, no lag variables were used.
