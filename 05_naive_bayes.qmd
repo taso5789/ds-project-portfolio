@@ -109,7 +109,7 @@ title: "Naïve Bayes"
 ## Training and Test Data for MoM Inflation Prediction (`high_inflation_MoM` derived from `PCEPILFE_MoM`)
 
 ::: {.justify}
-1.  **Feature Engineering**: To capture recent trends and volatility, **6-month rolling window statistics** (e.g., mean, standard deviation) were calculated for key economic indicators and added as features. For this specific model, no lag variables were used.
+1.  **Feature Engineering**: To capture past trends and volatility, **8-month rolling window statistics** (e.g., mean, standard deviation) were calculated for key economic indicators and added as features. For this specific model, no lag variables were used.
 
 2.  **Defining Predictors and Target**: The binarized MoM inflation rate (`high_inflation_MoM`) was set as the target variable (y). All other potential target variables regarding inflation and unemployment were excluded from the feature set (X) to prevent data leakage.
 
@@ -136,7 +136,7 @@ title: "Naïve Bayes"
 ## Training and Test Data for Unemployment Rates (`high_unemployment` derived from `UNRATE`)
 
 ::: {.justify}
-1.  **Feature Engineering**: To provide the model with historical context, the feature set was expanded. Specifically, **3-month lag variables** and **12-month rolling window statistics** (e.g., mean, standard deviation) were calculated for each economic indicator and added as features.
+1.  **Feature Engineering**: To capture past trends and volatility, **12-month rolling window statistics** (e.g., mean, standard deviation) were calculated for key economic indicators and added as features. For this specific model, no lag variables were used.
 
 2.  **Defining Predictors and Target**: The binarized unemployment rate (`high_unemployment`) was set as the target variable (y). All other potential target variables regarding inflation and unemployment were excluded from the feature set (X) to prevent data leakage.
 
