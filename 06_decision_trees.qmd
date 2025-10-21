@@ -227,6 +227,10 @@ $$\text{Information Gain} = Gini_{root} - Gini_{after\_split} = 0.5 - 0.1668 = \
 ![Confusion Matrix for YoY Inflation Prediction](results/5_Decision_Trees/inflation_YoY_confusion_matrix.jpg){#fig-inf-YoY-matrix fig-align="center" width="100%"}
 :::
 
+::: {.justify}
+![Decision Tree for YoY Inflation Prediction](results/5_Decision_Trees/decision_tree_inf_YoY.jpg){#fig-inf-YoY-dt fig-align="center" width="100%"}
+:::
+
 ## Confusion Matrix for MoM Inflation Prediction
 
 ::: {.justify}
@@ -241,6 +245,10 @@ $$\text{Information Gain} = Gini_{root} - Gini_{after\_split} = 0.5 - 0.1668 = \
 
 ::: {.justify}
 ![Confusion Matrix for MoM Inflation Prediction](results/5_Decision_Trees/inflation_MoM_confusion_matrix.jpg){#fig-inf-MoM-matrix fig-align="center" width="100%"}
+:::
+
+::: {.justify}
+![Decision Tree for MoM Inflation Prediction](results/5_Decision_Trees/decision_tree_inf_MoM.jpg){#fig-inf-MoM-dt fig-align="center" width="100%"}
 :::
 
 ## Confusion Matrix for Unemployment Rates Prediction
@@ -259,6 +267,10 @@ $$\text{Information Gain} = Gini_{root} - Gini_{after\_split} = 0.5 - 0.1668 = \
 
 ::: {.justify}
 ![Confusion Matrix for Unemployment Rates Prediction](results/5_Decision_Trees/unemp_confusion_matrix.jpg){#fig-unemp-matrix fig-align="center" width="100%"}
+:::
+
+::: {.justify}
+![Decision Tree for Unemployment Rates Prediction](results/5_Decision_Trees/decision_tree_unemp.jpg){#fig-unemp-dt fig-align="center" width="100%"}
 :::
 
 ## Related to Q5 (out of 10 Research Questions) in [Introduction](01_introduction.qmd)
