@@ -248,9 +248,9 @@ $$\text{Information Gain} = Gini_{root} - Gini_{after\_split} = 0.5 - 0.1668 = \
 ::: {.justify}
 - **Accuracy**: **97.0%**
 
--This is an **exceptionally high-performing and reliable model**, demonstrating near-perfect results.
+- This is an **exceptionally high-performing and reliable model**, demonstrating near-perfect results.
 
--Its most notable strengths are two perfect metrics:
+- Its most notable strengths are two perfect metrics:
   1.  **100% precision** for "High Unemployment," which means its predictions of a high unemployment period are **never wrong**.
   2.  **100% recall** for "Low Unemployment," meaning it **never misclassifies** a low unemployment period.
 
