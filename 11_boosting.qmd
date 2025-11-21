@@ -1,0 +1,165 @@
+---
+title: "Boosting"
+---
+
+# Overview
+
+::: {.justify}
+- Ensemble learning refers to methods that combine multiple models to achieve higher predictive accuracy than any single model could provide. Among ensemble techniques, boosting is a powerful approach that builds a strong predictive model by sequentially adding many weak learners. A weak learner is a simple model—often a shallow decision tree—that performs only slightly better than random guessing. Although each weak learner has limited predictive capability, boosting improves overall performance by allowing each new learner to correct the errors of the previous ones.
+
+- Boosting operates through an iterative refinement process. Each weak learner focuses on the mistakes made by the ensemble so far, gradually reducing both bias and variance. In early iterations, boosting decreases bias by adding learners that capture patterns missed by prior models. Later iterations refine the decision boundaries more carefully, with learning-rate regularization preventing excessive variance or overfitting.
+
+### Differences Between AdaBoost, Gradient Boosting, and XGBoost
+
+- **AdaBoost**
+  - Adjusts the weights of individual samples based on whether they were misclassified.
+  - Misclassified samples receive higher weights so the next learner focuses on harder cases.
+  - Works especially well for classification with simple decision stumps or shallow trees.
+
+- **Gradient Boosting**
+  - Each new learner fits the residuals (errors) of the previous model.
+  - Uses gradient descent on the loss function, allowing flexibility for regression or classification.
+  - Each tree incrementally improves the prediction by reducing the remaining error.
+
+- **XGBoost**
+  - An optimized and regularized version of Gradient Boosting.
+  - Incorporates L1/L2 regularization to control model complexity.
+  - Includes system-level optimizations such as parallelization, sparse-aware learning, and efficient tree-splitting algorithms.
+  - Known for high speed and state-of-the-art performance on large datasets.
+
+### Concepts: Bias, Variance, and Iterative Error Reduction
+
+- Boosting reduces bias by adding learners that progressively capture more structure in the data. Learning rate regulates how strongly each new learner influences the ensemble, helping prevent overfitting. As more learners are added, the ensemble can represent increasingly complex relationships, but careful tuning of hyperparameters is necessary to control variance.
+
+### Weighting Samples and Minimizing Residuals
+
+- Boosting emphasizes improvement on the model’s weaknesses:
+  - AdaBoost increases the weights of misclassified samples.
+  - Gradient Boosting models the residuals directly.
+  - XGBoost further optimizes residual fitting through second-order gradient information and regularization.
+
+- These mechanisms ensure that each iteration focuses on the most informative parts of the error landscape.
+
+### Key Hyperparameters
+
+- **Learning Rate**  
+  Controls the contribution of each weak learner. Lower values improve generalization but require more estimators.
+
+- **Number of Estimators**  
+  Determines how many weak learners are combined. More estimators increase model capacity but may lead to overfitting if not balanced.
+
+- **Tree Depth**  
+  Controls the complexity of each weak learner. Shallow trees reduce variance, while deeper trees capture more structure but risk overfitting.
+:::
+
+::: {.justify}
+::: {.columns}
+::: {.column width="46%"}
+![Schematic diagram showing the concept of ensemble learning. Source: [Tiwari, S., Das, S. Explainable Artificial Intelligence-Driven Ensemble Learning for Liquefaction Susceptibility Analysis. Transp. Infrastruct. Geotech. 12, 171 (2025).](https://doi.org/10.1007/s40515-025-00628-2){target="_blank"}](images/fig_11_overview_01.jpg){fig-align="center" width="100%"}
+:::
+::: {.column width="5%"}
+:::
+::: {.column width="49%"}
+![Illustration of gradient descent and its continuous surrogate gradient flow. Source: [Nadav Cohen, Does Gradient Flow Over Neural Networks Really Represent Gradient Descent? (2022).](https://www.offconvex.org/2022/01/06/gf-gd/){target="_blank"}](images/fig_11_overview_02.png){fig-align="center" width="100%"}
+:::
+:::
+:::
+
+# Data Prep
+
+::: {.justify}
+- The sample image of the data used in the analysis on this page is shown below. This dataset corresponds to the one shown in "Merged Cleaned Data" at the end of [Data Gathering and Data Cleaning](02_02_data_gathering_and_cleaning.qmd). The dataset can be found [here](https://github.com/taso5789/ds-project-portfolio/tree/main/data/df_merged.csv).
+  - For this analysis, the target variables—inflation rates (`PCEPILFE_YoY`, `PCEPILFE_MoM`) and the unemployment rate (`UNRATE`)—were binarized to apply the boosting. The historical median of each variable was used as a threshold; periods with values above the median were defined as "High Inflation" or "High Unemployment" (1), and all others as "Low" (0).
+
+::: {.text-center}
+![](results/11_Boosting/data.jpg){width=100%}
+:::
+
+- The training and testing data must be **disjoint** sets, meaning they have no data points in common. The reason is to get an honest evaluation of the model's ability to generalize to new, unseen data. If the sets overlap, the model is being tested on data it has already "seen" during training, which would be like giving a student an exam with questions they had already memorized. Keeping the training and testing sets **disjoint** is the only way to get a true measure of the model's predictive performance.
+
+- The training and testing data used to predict the year-over-year (YoY) inflation (`high_inflation_YoY` derived from `PCEPILFE_YoY`), month-over-month (MoM) inflation (`high_inflation_MoM` derived from `PCEPILFE_MoM`), and unemployment rates (`high_unemployment` derived from `UNRATE`) are shown in @fig-inf-YoY-train ~ @fig-unemp-test, respectively.
+:::
+
+
+## Training and Test Data for YoY Inflation Prediction
+
+::: {.justify}
+1.  **Defining Predictors and Target**:  The binarized YoY inflation rate (`high_inflation_YoY`) was set as the target variable (y). All other potential target variables regarding inflation and unemployment were excluded from the feature set (X) to prevent data leakage.
+
+2.  **Data Splitting**: The dataset was divided into a **70% training set** and a **30% testing set** using stratified sampling to ensure the class proportions were identical in both sets.
+
+3.  **Selective Scaling**: **Only continuous variables were standardized** using `StandardScaler`, while dummy variables (e.g., for recessions) were excluded from this process. The scaler was fit on the training data and then applied to the test data to prevent data leakage.
+:::
+
+::: {.justify}
+::: {.columns}
+::: {.column width="47.5%"}
+![The Training Data for YoY Inflation](results/11_Boosting/inflation_YoY_train_data.jpg){#fig-inf-YoY-train}
+:::
+::: {.column width="5%"}
+:::
+::: {.column width="47.5%"}
+![The Test Data for YoY Inflation](results/11_Boosting/inflation_YoY_test_data.jpg){#fig-inf-YoY-test}
+:::
+:::
+:::
+
+## Training and Test Data for MoM Inflation Prediction
+
+::: {.justify}
+1.  **Defining Predictors and Target**: The binarized MoM inflation rate (`high_inflation_MoM`) was set as the target variable (y). All other potential target variables regarding inflation and unemployment were excluded from the feature set (X) to prevent data leakage.
+
+2.  **Data Splitting**: The dataset was divided into a **70% training set** and a **30% testing set** using stratified sampling to ensure the class proportions were identical in both sets.
+
+3.  **Selective Scaling**: **Only continuous variables were standardized** using `StandardScaler`, while dummy variables (e.g., for recessions) were excluded from this process. The scaler was fit on the training data and then applied to the test data to prevent data leakage.
+:::
+
+::: {.justify}
+::: {.columns}
+::: {.column width="47.5%"}
+![The Training Data for MoM Inflation](results/11_Boosting/inflation_MoM_train_data.jpg){#fig-inf-MoM-train fig-align="center" width="100%"}
+:::
+::: {.column width="5%"}
+:::
+::: {.column width="47.5%"}
+![The Test Data for MoM Inflation](results/11_Boosting/inflation_MoM_test_data.jpg){#fig-inf-MoM-test fig-align="center" width="100%"}
+:::
+:::
+:::
+
+## Training and Test Data for Unemployment Rates
+
+::: {.justify}
+1.  **Defining Predictors and Target**: The binarized unemployment rate (`high_unemployment`) was set as the target variable (y). All other potential target variables regarding inflation and unemployment were excluded from the feature set (X) to prevent data leakage.
+
+2.  **Data Splitting**: The dataset was divided into a **70% training set** and a **30% testing set** using stratified sampling to ensure the class proportions were identical in both sets.
+
+3.  **Selective Scaling**: **Only continuous variables were standardized** using `StandardScaler`, while dummy variables (e.g., for recessions) were excluded from this process. The scaler was fit on the training data and then applied to the test data to prevent data leakage.
+:::
+
+::: {.justify}
+::: {.columns}
+::: {.column width="47.5%"}
+![The Training Data for Unemployment Rates](results/11_Boosting/unemp_train_data.jpg){#fig-unemp-train fig-align="center" width="100%"}
+:::
+::: {.column width="5%"}
+:::
+::: {.column width="47.5%"}
+![The Test Data for Unemployment Rates](results/11_Boosting/unemp_test_data.jpg){#fig-unemp-test fig-align="center" width="100%"}
+:::
+:::
+:::
+
+# Code
+
+::: {.justify}
+- For the code used in this chapter (Boosting), please refer [here](https://github.com/taso5789/ds-project-portfolio/blob/main/code/6_Boosting.ipynb).
+:::
+
+# Results
+
+- xxx
+
+# Conclusions
+
+- xxx

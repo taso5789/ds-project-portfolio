@@ -14,6 +14,7 @@ project:
     - 08_regression.qmd
     - 09_nn.qmd
     - 10_conclusions.qmd
+    - 11_boosting.qmd
   output-dir: docs
   resources:
     - images/**
@@ -51,6 +52,8 @@ website:
           href: 08_regression.qmd
         - text: "Neural Network (NN)"
           href: 09_nn.qmd
+        - text: "Boosting"
+          href: 11_boosting.qmd
       - text: "Conclusions"
         href: 10_conclusions.qmd
     right:

@@ -119,7 +119,7 @@ $$\text{Information Gain} = Gini_{root} - Gini_{after\_split} = 0.5 - 0.1668 = \
 - The training and testing data must be **disjoint** sets, meaning they have no data points in common. The reason is to get an honest evaluation of the model's ability to generalize to new, unseen data. If the sets overlap, the model is being tested on data it has already "seen" during training, which would be like giving a student an exam with questions they had already memorized. Keeping the training and testing sets **disjoint** is the only way to get a true measure of the model's predictive performance.
 
 - The sample image of the data used in the analysis on this page is shown below. This dataset corresponds to the one shown in "Merged Cleaned Data" at the end of [Data Gathering and Data Cleaning](02_02_data_gathering_and_cleaning.qmd). The dataset can be found [here](https://github.com/taso5789/ds-project-portfolio/tree/main/data/df_merged.csv).
-  - For this analysis, the target variables—inflation rates (`PCEPILFE_YoY`, `PCEPILFE_MoM`) and the unemployment rate (`UNRATE`)—were binarized to apply the Naïve Bayes classifier. The historical median of each variable was used as a threshold; periods with values above the median were defined as "High Inflation" or "High Unemployment" (1), and all others as "Low" (0).
+  - For this analysis, the target variables—inflation rates (`PCEPILFE_YoY`, `PCEPILFE_MoM`) and the unemployment rate (`UNRATE`)—were binarized to apply the decision trees. The historical median of each variable was used as a threshold; periods with values above the median were defined as "High Inflation" or "High Unemployment" (1), and all others as "Low" (0).
 :::
 
 ::: {.text-center}

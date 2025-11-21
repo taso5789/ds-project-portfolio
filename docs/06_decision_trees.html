@@ -177,6 +177,10 @@ window.Quarto = {
     <a class="dropdown-item" href="./09_nn.html">
  <span class="dropdown-text">Neural Network (NN)</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./11_boosting.html">
+ <span class="dropdown-text">Boosting</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item">
@@ -399,7 +403,7 @@ H(S) = - \sum_{i=1}^{c} p_i \log_2(p_i)
 <li><p>The training and testing data must be <strong>disjoint</strong> sets, meaning they have no data points in common. The reason is to get an honest evaluation of the model’s ability to generalize to new, unseen data. If the sets overlap, the model is being tested on data it has already “seen” during training, which would be like giving a student an exam with questions they had already memorized. Keeping the training and testing sets <strong>disjoint</strong> is the only way to get a true measure of the model’s predictive performance.</p></li>
 <li><p>The sample image of the data used in the analysis on this page is shown below. This dataset corresponds to the one shown in “Merged Cleaned Data” at the end of <a href="./02_02_data_gathering_and_cleaning.html">Data Gathering and Data Cleaning</a>. The dataset can be found <a href="https://github.com/taso5789/ds-project-portfolio/tree/main/data/df_merged.csv">here</a>.</p>
 <ul>
-<li>For this analysis, the target variables—inflation rates (<code>PCEPILFE_YoY</code>, <code>PCEPILFE_MoM</code>) and the unemployment rate (<code>UNRATE</code>)—were binarized to apply the Naïve Bayes classifier. The historical median of each variable was used as a threshold; periods with values above the median were defined as “High Inflation” or “High Unemployment” (1), and all others as “Low” (0).</li>
+<li>For this analysis, the target variables—inflation rates (<code>PCEPILFE_YoY</code>, <code>PCEPILFE_MoM</code>) and the unemployment rate (<code>UNRATE</code>)—were binarized to apply the decision trees. The historical median of each variable was used as a threshold; periods with values above the median were defined as “High Inflation” or “High Unemployment” (1), and all others as “Low” (0).</li>
 </ul></li>
 </ul>
 </div>

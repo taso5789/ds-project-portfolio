@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Visualization – Data Science Project</title>
+<title>Boosting – Data Science Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -186,27 +186,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#static-visualization" id="toc-static-visualization" class="nav-link active" data-scroll-target="#static-visualization">Static Visualization</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#data-prep" id="toc-data-prep" class="nav-link" data-scroll-target="#data-prep">Data Prep</a>
   <ul class="collapse">
-  <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics">Summary Statistics</a></li>
-  <li><a href="#histograms" id="toc-histograms" class="nav-link" data-scroll-target="#histograms">Histograms</a></li>
-  <li><a href="#violin-plots-of-macroeconomic-indicators" id="toc-violin-plots-of-macroeconomic-indicators" class="nav-link" data-scroll-target="#violin-plots-of-macroeconomic-indicators">Violin Plots of Macroeconomic Indicators</a>
-  <ul class="collapse">
-  <li><a href="#grouped-by-usrec" id="toc-grouped-by-usrec" class="nav-link" data-scroll-target="#grouped-by-usrec">Grouped by USREC</a></li>
-  <li><a href="#grouped-by-zlb_dummy" id="toc-grouped-by-zlb_dummy" class="nav-link" data-scroll-target="#grouped-by-zlb_dummy">Grouped by ZLB_dummy</a></li>
-  <li><a href="#grouped-by-covid_dummy" id="toc-grouped-by-covid_dummy" class="nav-link" data-scroll-target="#grouped-by-covid_dummy">Grouped by COVID_dummy</a></li>
+  <li><a href="#training-and-test-data-for-yoy-inflation-prediction" id="toc-training-and-test-data-for-yoy-inflation-prediction" class="nav-link" data-scroll-target="#training-and-test-data-for-yoy-inflation-prediction">Training and Test Data for YoY Inflation Prediction</a></li>
+  <li><a href="#training-and-test-data-for-mom-inflation-prediction" id="toc-training-and-test-data-for-mom-inflation-prediction" class="nav-link" data-scroll-target="#training-and-test-data-for-mom-inflation-prediction">Training and Test Data for MoM Inflation Prediction</a></li>
+  <li><a href="#training-and-test-data-for-unemployment-rates" id="toc-training-and-test-data-for-unemployment-rates" class="nav-link" data-scroll-target="#training-and-test-data-for-unemployment-rates">Training and Test Data for Unemployment Rates</a></li>
   </ul></li>
-  <li><a href="#correlation-heatmap" id="toc-correlation-heatmap" class="nav-link" data-scroll-target="#correlation-heatmap">Correlation Heatmap</a></li>
-  </ul></li>
-  <li><a href="#dynamic-visualization" id="toc-dynamic-visualization" class="nav-link" data-scroll-target="#dynamic-visualization">Dynamic Visualization</a>
-  <ul class="collapse">
-  <li><a href="#time-series-of-macroeconomic-indicators" id="toc-time-series-of-macroeconomic-indicators" class="nav-link" data-scroll-target="#time-series-of-macroeconomic-indicators">Time Series of Macroeconomic Indicators</a></li>
-  <li><a href="#locally-estimated-scatterplot-smoothing-loess" id="toc-locally-estimated-scatterplot-smoothing-loess" class="nav-link" data-scroll-target="#locally-estimated-scatterplot-smoothing-loess">Locally Estimated Scatterplot Smoothing (LOESS)</a></li>
-  <li><a href="#hodrickprescott-filter-hp-filtrer-trend" id="toc-hodrickprescott-filter-hp-filtrer-trend" class="nav-link" data-scroll-target="#hodrickprescott-filter-hp-filtrer-trend">Hodrick–Prescott Filter (HP Filtrer): Trend</a></li>
-  <li><a href="#hodrickprescott-filter-hp-filtrer-cycle" id="toc-hodrickprescott-filter-hp-filtrer-cycle" class="nav-link" data-scroll-target="#hodrickprescott-filter-hp-filtrer-cycle">Hodrick–Prescott Filter (HP Filtrer): Cycle</a></li>
-  <li><a href="#autocorrelation-function-acf" id="toc-autocorrelation-function-acf" class="nav-link" data-scroll-target="#autocorrelation-function-acf">Autocorrelation Function (ACF)</a></li>
-  <li><a href="#partial-autocorrelation-function-pacf" id="toc-partial-autocorrelation-function-pacf" class="nav-link" data-scroll-target="#partial-autocorrelation-function-pacf">Partial Autocorrelation Function (PACF)</a></li>
-  </ul></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
   </ul>
 </nav>
     </div>
@@ -215,7 +204,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Visualization</h1>
+<h1 class="title">Boosting</h1>
 </div>
 
 
@@ -232,211 +221,245 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="static-visualization" class="level1">
-<h1>Static Visualization</h1>
-<section id="summary-statistics" class="level2">
-<h2 class="anchored" data-anchor-id="summary-statistics">Summary Statistics</h2>
-<div class="justify">
-<div id="fig-describe" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-describe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/1_DatPrep_EDA/EDA_describe.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-describe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Descriptive Statistics of Macroeconomic Indicators. The summary highlights central tendencies and variability across variables, revealing substantial dispersion in indicators such as industrial production (INDPRO) and retail sales (RSAFS), while others like labor force participation (CIVPART) and inflation (PCEPILFE_YoY and PCEPILFE_MoM) show more stable ranges.
-</figcaption>
-</figure>
-</div>
-</div>
-</section>
-<section id="histograms" class="level2">
-<h2 class="anchored" data-anchor-id="histograms">Histograms</h2>
-<div class="justify">
-<div id="fig-hist" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/1_DatPrep_EDA/EDA_histograms_grid_all_series.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Histograms of Macroeconomic Indicators. The distributions reveal that many variables, such as inflation (PCEPILFE_YoY and PCEPILFE_MoM) and labor force participation (CIVPART), cluster around specific ranges with relatively symmetric shapes, while others like unemployment rate (UNRATE) and money supply (M2SL) display skewness or heavy tails, indicating the presence of outliers and structural differences across indicators.
-</figcaption>
-</figure>
-</div>
-</div>
-</section>
-<section id="violin-plots-of-macroeconomic-indicators" class="level2">
-<h2 class="anchored" data-anchor-id="violin-plots-of-macroeconomic-indicators">Violin Plots of Macroeconomic Indicators</h2>
-<section id="grouped-by-usrec" class="level3">
-<h3 class="anchored" data-anchor-id="grouped-by-usrec">Grouped by USREC</h3>
+<section id="overview" class="level1">
+<h1>Overview</h1>
 <div class="justify">
 <ul>
-<li>A value of 1 is a recessionary period, while a value of 0 is an expansionary period.</li>
+<li><p>Ensemble learning refers to methods that combine multiple models to achieve higher predictive accuracy than any single model could provide. Among ensemble techniques, boosting is a powerful approach that builds a strong predictive model by sequentially adding many weak learners. A weak learner is a simple model—often a shallow decision tree—that performs only slightly better than random guessing. Although each weak learner has limited predictive capability, boosting improves overall performance by allowing each new learner to correct the errors of the previous ones.</p></li>
+<li><p>Boosting operates through an iterative refinement process. Each weak learner focuses on the mistakes made by the ensemble so far, gradually reducing both bias and variance. In early iterations, boosting decreases bias by adding learners that capture patterns missed by prior models. Later iterations refine the decision boundaries more carefully, with learning-rate regularization preventing excessive variance or overfitting.</p></li>
 </ul>
+<section id="differences-between-adaboost-gradient-boosting-and-xgboost" class="level3">
+<h3 class="anchored" data-anchor-id="differences-between-adaboost-gradient-boosting-and-xgboost">Differences Between AdaBoost, Gradient Boosting, and XGBoost</h3>
+<ul>
+<li><strong>AdaBoost</strong>
+<ul>
+<li>Adjusts the weights of individual samples based on whether they were misclassified.</li>
+<li>Misclassified samples receive higher weights so the next learner focuses on harder cases.</li>
+<li>Works especially well for classification with simple decision stumps or shallow trees.</li>
+</ul></li>
+<li><strong>Gradient Boosting</strong>
+<ul>
+<li>Each new learner fits the residuals (errors) of the previous model.</li>
+<li>Uses gradient descent on the loss function, allowing flexibility for regression or classification.</li>
+<li>Each tree incrementally improves the prediction by reducing the remaining error.</li>
+</ul></li>
+<li><strong>XGBoost</strong>
+<ul>
+<li>An optimized and regularized version of Gradient Boosting.</li>
+<li>Incorporates L1/L2 regularization to control model complexity.</li>
+<li>Includes system-level optimizations such as parallelization, sparse-aware learning, and efficient tree-splitting algorithms.</li>
+<li>Known for high speed and state-of-the-art performance on large datasets.</li>
+</ul></li>
+</ul>
+</section>
+<section id="concepts-bias-variance-and-iterative-error-reduction" class="level3">
+<h3 class="anchored" data-anchor-id="concepts-bias-variance-and-iterative-error-reduction">Concepts: Bias, Variance, and Iterative Error Reduction</h3>
+<ul>
+<li>Boosting reduces bias by adding learners that progressively capture more structure in the data. Learning rate regulates how strongly each new learner influences the ensemble, helping prevent overfitting. As more learners are added, the ensemble can represent increasingly complex relationships, but careful tuning of hyperparameters is necessary to control variance.</li>
+</ul>
+</section>
+<section id="weighting-samples-and-minimizing-residuals" class="level3">
+<h3 class="anchored" data-anchor-id="weighting-samples-and-minimizing-residuals">Weighting Samples and Minimizing Residuals</h3>
+<ul>
+<li>Boosting emphasizes improvement on the model’s weaknesses:
+<ul>
+<li>AdaBoost increases the weights of misclassified samples.</li>
+<li>Gradient Boosting models the residuals directly.</li>
+<li>XGBoost further optimizes residual fitting through second-order gradient information and regularization.</li>
+</ul></li>
+<li>These mechanisms ensure that each iteration focuses on the most informative parts of the error landscape.</li>
+</ul>
+</section>
+<section id="key-hyperparameters" class="level3">
+<h3 class="anchored" data-anchor-id="key-hyperparameters">Key Hyperparameters</h3>
+<ul>
+<li><p><strong>Learning Rate</strong><br>
+Controls the contribution of each weak learner. Lower values improve generalization but require more estimators.</p></li>
+<li><p><strong>Number of Estimators</strong><br>
+Determines how many weak learners are combined. More estimators increase model capacity but may lead to overfitting if not balanced.</p></li>
+<li><p><strong>Tree Depth</strong><br>
+Controls the complexity of each weak learner. Shallow trees reduce variance, while deeper trees capture more structure but risk overfitting.</p></li>
+</ul>
+</section>
 </div>
 <div class="justify">
-<div id="fig-vio-USREC" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-vio-USREC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/1_DatPrep_EDA/EDA_violins_by_USREC.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+<div class="columns">
+<div class="column" style="width:46%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig_11_overview_01.jpg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Schematic diagram showing the concept of ensemble learning. Source: <a href="https://doi.org/10.1007/s40515-025-00628-2" target="_blank">Tiwari, S., Das, S. Explainable Artificial Intelligence-Driven Ensemble Learning for Liquefaction Susceptibility Analysis. Transp. Infrastruct. Geotech. 12, 171 (2025).</a></figcaption>
+</figure>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vio-USREC-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Violin Plots of Macroeconomic Indicators Grouped by USREC. The distributions show that during recession periods (USREC=1), unemployment (UNRATE) shifts upward in its violin plot, while inflation (PCEPILFE_YoY and PCEPILFE_MoM) and output growth (GDPC1) violins are generally lower, reflecting typical cyclical dynamics of economic downturns.
-</figcaption>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:49%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/fig_11_overview_02.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Illustration of gradient descent and its continuous surrogate gradient flow. Source: <a href="https://www.offconvex.org/2022/01/06/gf-gd/" target="_blank">Nadav Cohen, Does Gradient Flow Over Neural Networks Really Represent Gradient Descent? (2022).</a></figcaption>
 </figure>
 </div>
 </div>
+</div>
+</div>
 </section>
-<section id="grouped-by-zlb_dummy" class="level3">
-<h3 class="anchored" data-anchor-id="grouped-by-zlb_dummy">Grouped by ZLB_dummy</h3>
+<section id="data-prep" class="level1">
+<h1>Data Prep</h1>
 <div class="justify">
 <ul>
-<li>A value of 1 is a zero lower bound constraint period, while a value of 0 is not.</li>
+<li>The sample image of the data used in the analysis on this page is shown below. This dataset corresponds to the one shown in “Merged Cleaned Data” at the end of <a href="./02_02_data_gathering_and_cleaning.html">Data Gathering and Data Cleaning</a>. The dataset can be found <a href="https://github.com/taso5789/ds-project-portfolio/tree/main/data/df_merged.csv">here</a>.
+<ul>
+<li>For this analysis, the target variables—inflation rates (<code>PCEPILFE_YoY</code>, <code>PCEPILFE_MoM</code>) and the unemployment rate (<code>UNRATE</code>)—were binarized to apply the boosting. The historical median of each variable was used as a threshold; periods with values above the median were defined as “High Inflation” or “High Unemployment” (1), and all others as “Low” (0).</li>
+</ul></li>
+</ul>
+<div class="text-center">
+<p><img src="results/11_Boosting/data.jpg" class="img-fluid" style="width:100.0%"></p>
+</div>
+<ul>
+<li><p>The training and testing data must be <strong>disjoint</strong> sets, meaning they have no data points in common. The reason is to get an honest evaluation of the model’s ability to generalize to new, unseen data. If the sets overlap, the model is being tested on data it has already “seen” during training, which would be like giving a student an exam with questions they had already memorized. Keeping the training and testing sets <strong>disjoint</strong> is the only way to get a true measure of the model’s predictive performance.</p></li>
+<li><p>The training and testing data used to predict the year-over-year (YoY) inflation (<code>high_inflation_YoY</code> derived from <code>PCEPILFE_YoY</code>), month-over-month (MoM) inflation (<code>high_inflation_MoM</code> derived from <code>PCEPILFE_MoM</code>), and unemployment rates (<code>high_unemployment</code> derived from <code>UNRATE</code>) are shown in <a href="#fig-inf-YoY-train" class="quarto-xref">Figure&nbsp;1</a> ~ <a href="#fig-unemp-test" class="quarto-xref">Figure&nbsp;6</a>, respectively.</p></li>
 </ul>
 </div>
+<section id="training-and-test-data-for-yoy-inflation-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="training-and-test-data-for-yoy-inflation-prediction">Training and Test Data for YoY Inflation Prediction</h2>
 <div class="justify">
-<div id="fig-vio-zlb" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-vio-zlb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/1_DatPrep_EDA/EDA_violins_by_ZLB_dummy.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+<ol type="1">
+<li><p><strong>Defining Predictors and Target</strong>: The binarized YoY inflation rate (<code>high_inflation_YoY</code>) was set as the target variable (y). All other potential target variables regarding inflation and unemployment were excluded from the feature set (X) to prevent data leakage.</p></li>
+<li><p><strong>Data Splitting</strong>: The dataset was divided into a <strong>70% training set</strong> and a <strong>30% testing set</strong> using stratified sampling to ensure the class proportions were identical in both sets.</p></li>
+<li><p><strong>Selective Scaling</strong>: <strong>Only continuous variables were standardized</strong> using <code>StandardScaler</code>, while dummy variables (e.g., for recessions) were excluded from this process. The scaler was fit on the training data and then applied to the test data to prevent data leakage.</p></li>
+</ol>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vio-zlb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Violin Plots of Macroeconomic Indicators Grouped by ZLB_dummy. The plots show that under the zero lower bound period (ZLB_dummy=1), the federal funds rate (FEDFUNDS) violin collapses near zero by definition, while the unemployment rate (UNRATE) violin shifts upward, indicating looser monetary conditions accompanied by labor market weakness.
+<div class="justify">
+<div class="columns">
+<div class="column" style="width:47.5%;">
+<div id="fig-inf-YoY-train" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-inf-YoY-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/11_Boosting/inflation_YoY_train_data.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inf-YoY-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: The Training Data for YoY Inflation
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:47.5%;">
+<div id="fig-inf-YoY-test" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-inf-YoY-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/11_Boosting/inflation_YoY_test_data.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inf-YoY-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: The Test Data for YoY Inflation
 </figcaption>
 </figure>
 </div>
 </div>
+</div>
+</div>
 </section>
-<section id="grouped-by-covid_dummy" class="level3">
-<h3 class="anchored" data-anchor-id="grouped-by-covid_dummy">Grouped by COVID_dummy</h3>
+<section id="training-and-test-data-for-mom-inflation-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="training-and-test-data-for-mom-inflation-prediction">Training and Test Data for MoM Inflation Prediction</h2>
+<div class="justify">
+<ol type="1">
+<li><p><strong>Defining Predictors and Target</strong>: The binarized MoM inflation rate (<code>high_inflation_MoM</code>) was set as the target variable (y). All other potential target variables regarding inflation and unemployment were excluded from the feature set (X) to prevent data leakage.</p></li>
+<li><p><strong>Data Splitting</strong>: The dataset was divided into a <strong>70% training set</strong> and a <strong>30% testing set</strong> using stratified sampling to ensure the class proportions were identical in both sets.</p></li>
+<li><p><strong>Selective Scaling</strong>: <strong>Only continuous variables were standardized</strong> using <code>StandardScaler</code>, while dummy variables (e.g., for recessions) were excluded from this process. The scaler was fit on the training data and then applied to the test data to prevent data leakage.</p></li>
+</ol>
+</div>
+<div class="justify">
+<div class="columns">
+<div class="column" style="width:47.5%;">
+<div id="fig-inf-MoM-train" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-inf-MoM-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/11_Boosting/inflation_MoM_train_data.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inf-MoM-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: The Training Data for MoM Inflation
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:47.5%;">
+<div id="fig-inf-MoM-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-inf-MoM-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/11_Boosting/inflation_MoM_test_data.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inf-MoM-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: The Test Data for MoM Inflation
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="training-and-test-data-for-unemployment-rates" class="level2">
+<h2 class="anchored" data-anchor-id="training-and-test-data-for-unemployment-rates">Training and Test Data for Unemployment Rates</h2>
+<div class="justify">
+<ol type="1">
+<li><p><strong>Defining Predictors and Target</strong>: The binarized unemployment rate (<code>high_unemployment</code>) was set as the target variable (y). All other potential target variables regarding inflation and unemployment were excluded from the feature set (X) to prevent data leakage.</p></li>
+<li><p><strong>Data Splitting</strong>: The dataset was divided into a <strong>70% training set</strong> and a <strong>30% testing set</strong> using stratified sampling to ensure the class proportions were identical in both sets.</p></li>
+<li><p><strong>Selective Scaling</strong>: <strong>Only continuous variables were standardized</strong> using <code>StandardScaler</code>, while dummy variables (e.g., for recessions) were excluded from this process. The scaler was fit on the training data and then applied to the test data to prevent data leakage.</p></li>
+</ol>
+</div>
+<div class="justify">
+<div class="columns">
+<div class="column" style="width:47.5%;">
+<div id="fig-unemp-train" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/11_Boosting/unemp_train_data.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: The Training Data for Unemployment Rates
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:47.5%;">
+<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/11_Boosting/unemp_test_data.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: The Test Data for Unemployment Rates
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="code" class="level1">
+<h1>Code</h1>
 <div class="justify">
 <ul>
-<li>A value of 1 is a COVID period, while a value of 0 is not.</li>
+<li>For the code used in this chapter (Boosting), please refer <a href="https://github.com/taso5789/ds-project-portfolio/blob/main/code/6_Boosting.ipynb">here</a>.</li>
 </ul>
 </div>
-<div class="justify">
-<div id="fig-vio-covid" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-vio-covid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/1_DatPrep_EDA/EDA_violins_by_COVID_dummy.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vio-covid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: Violin Plots of Macroeconomic Indicators Grouped by COVID_dummy. The plots show that during the COVID period (COVID_dummy=1), unemployment (UNRATE) rises sharply while labor force participation (CIVPART) declines, and output growth (GDPC1) and industrial production (INDPRO) distributions widen considerably, reflecting heightened volatility and economic disruption.
-</figcaption>
-</figure>
-</div>
-</div>
 </section>
+<section id="results" class="level1">
+<h1>Results</h1>
+<ul>
+<li>xxx</li>
+</ul>
 </section>
-<section id="correlation-heatmap" class="level2">
-<h2 class="anchored" data-anchor-id="correlation-heatmap">Correlation Heatmap</h2>
-<div class="justify">
-<div id="fig-corr-heatmap" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-corr-heatmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/1_DatPrep_EDA/EDA_correlation_heatmap.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-heatmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: Correlation Heatmap of Macroeconomic Indicators. The plot shows both positive (red) and negative (blue) correlations, highlighting strong positive relationships such as between inflation (PCEPILFE_YoY and PCEPILFE_MoM) and inflation expectations (T5YIE, T10YIE, PX_MD, and PX5_MD), and strong negative relationships such as between unemployment rate (UNRATE) and the federal funds effective rate (FEDFUNDS), which can guide variable selection and interpretation in further analysis.
-</figcaption>
-</figure>
-</div>
-</div>
-</section>
-</section>
-<section id="dynamic-visualization" class="level1">
-<h1>Dynamic Visualization</h1>
-<section id="time-series-of-macroeconomic-indicators" class="level2">
-<h2 class="anchored" data-anchor-id="time-series-of-macroeconomic-indicators">Time Series of Macroeconomic Indicators</h2>
-<div class="justify">
-<div id="fig-timeseries" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-timeseries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/1_DatPrep_EDA/EDA_all_columns_timeseries.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-timeseries-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: Time Series of Macroeconomic Indicators. The plots reveal diverse dynamics across variables, with some showing steady long-term trends while others exhibit sharp fluctuations or structural breaks, reflecting economic cycles and major events such as recessions or policy shifts.
-</figcaption>
-</figure>
-</div>
-</div>
-</section>
-<section id="locally-estimated-scatterplot-smoothing-loess" class="level2">
-<h2 class="anchored" data-anchor-id="locally-estimated-scatterplot-smoothing-loess">Locally Estimated Scatterplot Smoothing (LOESS)</h2>
-<div class="justify">
-<div id="fig-loess" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-loess-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/1_DatPrep_EDA/EDA_loess_grid_all_series.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-loess-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8: LOESS-Smoothed Trends of Macroeconomic Indicators. The orange smoothed lines highlight underlying trajectories across variables, effectively filtering out short-term noise and revealing the baseline movement of each indicator.
-</figcaption>
-</figure>
-</div>
-</div>
-</section>
-<section id="hodrickprescott-filter-hp-filtrer-trend" class="level2">
-<h2 class="anchored" data-anchor-id="hodrickprescott-filter-hp-filtrer-trend">Hodrick–Prescott Filter (HP Filtrer): Trend</h2>
-<div class="justify">
-<div id="fig-hp-trend" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-hp-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/1_DatPrep_EDA/EDA_hp_trend_grid_all_series.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hp-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9: HP-Trend Decomposition of Macroeconomic Indicators. The orange lines extracted by the HP filter reveal the long-term trend components of each series, smoothing out short-term fluctuations and highlighting gradual shifts such as the steady decline in the natural rate of unemployment (NROU).
-</figcaption>
-</figure>
-</div>
-</div>
-</section>
-<section id="hodrickprescott-filter-hp-filtrer-cycle" class="level2">
-<h2 class="anchored" data-anchor-id="hodrickprescott-filter-hp-filtrer-cycle">Hodrick–Prescott Filter (HP Filtrer): Cycle</h2>
-<div class="justify">
-<div id="fig-hp-cycle" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-hp-cycle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/1_DatPrep_EDA/EDA_hp_cycle_grid_all_series.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hp-cycle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10: HP-Cycle Components of Macroeconomic Indicators. The plots show short-term deviations from long-term trends, with most series fluctuating around zero, indicating cyclical dynamics and temporary shocks rather than persistent structural shifts.
-</figcaption>
-</figure>
-</div>
-</div>
-</section>
-<section id="autocorrelation-function-acf" class="level2">
-<h2 class="anchored" data-anchor-id="autocorrelation-function-acf">Autocorrelation Function (ACF)</h2>
-<div class="justify">
-<div id="fig-acf" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-acf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/1_DatPrep_EDA/EDA_acf_grid_all_series.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-acf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11: Autocorrelation Functions (ACF) of Macroeconomic Indicators with 36 Monthly Lags. The plots reveal persistent autocorrelation in many variables such as unemployment (UNRATE and NROU) and inflation measures (PCEPILFE_YoY and PCEPILFE_MoM), suggesting strong serial dependence, while others like industrial production (INDPRO) and retail sales (RSAFS) exhibit weaker or rapidly decaying correlations, indicating more short-term variability.
-</figcaption>
-</figure>
-</div>
-</div>
-</section>
-<section id="partial-autocorrelation-function-pacf" class="level2">
-<h2 class="anchored" data-anchor-id="partial-autocorrelation-function-pacf">Partial Autocorrelation Function (PACF)</h2>
-<div class="justify">
-<div id="fig-pacf" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-pacf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/1_DatPrep_EDA/EDA_pacf_grid_all_series.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pacf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12: Partial Autocorrelation Functions (PACF) of Macroeconomic Indicators with 36 Monthly Lags. Many variables show significant spikes only at the first few lags—typical of autoregressive processes—while others display more persistent or irregular patterns, indicating potential higher-order dynamics or structural shocks in the data.
-</figcaption>
-</figure>
-</div>
-</div>
+<section id="conclusions" class="level1">
+<h1>Conclusions</h1>
+<ul>
+<li>xxx</li>
+</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
