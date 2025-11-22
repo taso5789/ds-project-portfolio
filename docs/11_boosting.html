@@ -194,7 +194,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#training-and-test-data-for-unemployment-rates" id="toc-training-and-test-data-for-unemployment-rates" class="nav-link" data-scroll-target="#training-and-test-data-for-unemployment-rates">Training and Test Data for Unemployment Rates</a></li>
   </ul></li>
   <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a>
+  <ul class="collapse">
+  <li><a href="#confusion-matrix-for-yoy-inflation-prediction" id="toc-confusion-matrix-for-yoy-inflation-prediction" class="nav-link" data-scroll-target="#confusion-matrix-for-yoy-inflation-prediction">Confusion Matrix for YoY Inflation Prediction</a></li>
+  <li><a href="#confusion-matrix-for-mom-inflation-prediction" id="toc-confusion-matrix-for-mom-inflation-prediction" class="nav-link" data-scroll-target="#confusion-matrix-for-mom-inflation-prediction">Confusion Matrix for MoM Inflation Prediction</a></li>
+  <li><a href="#confusion-matrix-for-unemployment-rates-prediction" id="toc-confusion-matrix-for-unemployment-rates-prediction" class="nav-link" data-scroll-target="#confusion-matrix-for-unemployment-rates-prediction">Confusion Matrix for Unemployment Rates Prediction</a></li>
+  </ul></li>
   <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
   </ul>
 </nav>
@@ -318,7 +323,7 @@ Controls the complexity of each weak learner. Shallow trees reduce variance, whi
 </div>
 <ul>
 <li><p>The training and testing data must be <strong>disjoint</strong> sets, meaning they have no data points in common. The reason is to get an honest evaluation of the model’s ability to generalize to new, unseen data. If the sets overlap, the model is being tested on data it has already “seen” during training, which would be like giving a student an exam with questions they had already memorized. Keeping the training and testing sets <strong>disjoint</strong> is the only way to get a true measure of the model’s predictive performance.</p></li>
-<li><p>The training and testing data used to predict the year-over-year (YoY) inflation (<code>high_inflation_YoY</code> derived from <code>PCEPILFE_YoY</code>), month-over-month (MoM) inflation (<code>high_inflation_MoM</code> derived from <code>PCEPILFE_MoM</code>), and unemployment rates (<code>high_unemployment</code> derived from <code>UNRATE</code>) are shown in <a href="#fig-inf-YoY-train" class="quarto-xref">Figure&nbsp;1</a> ~ <a href="#fig-unemp-test" class="quarto-xref">Figure&nbsp;6</a>, respectively.</p></li>
+<li><p>The training and testing data used to predict the year-over-year (YoY) inflation (<code>high_inflation_YoY</code> derived from <code>PCEPILFE_YoY</code>), month-over-month (MoM) inflation (<code>high_inflation_MoM</code> derived from <code>PCEPILFE_MoM</code>), and unemployment rates (<code>high_unemployment</code> derived from <code>UNRATE</code>) are shown in <a href="#fig-inf-YoY-train" class="quarto-xref">Figure&nbsp;1</a> ~ <a href="#fig-unemp-test" class="quarto-xref">Figure&nbsp;24</a>, respectively.</p></li>
 </ul>
 </div>
 <section id="training-and-test-data-for-yoy-inflation-prediction" class="level2">
@@ -449,15 +454,357 @@ Figure&nbsp;6: The Test Data for Unemployment Rates
 </section>
 <section id="results" class="level1">
 <h1>Results</h1>
+<div class="justify">
 <ul>
-<li>xxx</li>
+<li><p>To evaluate how different hyperparameter configurations affect model performance, three XGBoost models—Model A, Model B, and Model C—were trained and compared. These models vary in model depth, number of boosting rounds, learning rate, and sampling ratios, allowing for a systematic assessment of the bias–variance trade-off.</p>
+<ul>
+<li><p><strong>Model A</strong> is designed as a balanced and stable baseline, with moderate tree depth and a standard learning rate that avoids excessive complexity.</p></li>
+<li><p><strong>Model B</strong> increases both the number and depth of trees, enhancing the model’s capacity to capture nonlinear patterns but potentially raising the risk of overfitting.</p></li>
+<li><p><strong>Model C</strong> uses shallower trees combined with a higher learning rate, creating a lightweight model that emphasizes generalization through increased bias.</p></li>
+</ul></li>
 </ul>
+<section id="model-parameter-summary" class="level3" style="text-align: center;">
+<h3 class="anchored" data-anchor-id="model-parameter-summary">Model Parameter Summary</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 17%">
+<col style="width: 13%">
+<col style="width: 18%">
+<col style="width: 13%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>n_estimators</th>
+<th>max_depth</th>
+<th>learning_rate</th>
+<th>subsample</th>
+<th>colsample_bytree</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Model A</strong></td>
+<td>200</td>
+<td>3</td>
+<td>0.05</td>
+<td>0.8</td>
+<td>0.8</td>
+</tr>
+<tr class="even">
+<td><strong>Model B</strong></td>
+<td>300</td>
+<td>4</td>
+<td>0.03</td>
+<td>0.7</td>
+<td>0.9</td>
+</tr>
+<tr class="odd">
+<td><strong>Model C</strong></td>
+<td>150</td>
+<td>2</td>
+<td>0.1</td>
+<td>0.9</td>
+<td>0.7</td>
+</tr>
+</tbody>
+</table>
+</section>
+<ul>
+<li>These three configurations enable a structured comparison of performance metrics such as accuracy, confusion matrices, and feature importance across varying model complexities.</li>
+</ul>
+</div>
+<section id="confusion-matrix-for-yoy-inflation-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="confusion-matrix-for-yoy-inflation-prediction">Confusion Matrix for YoY Inflation Prediction</h2>
+<div class="justify">
+<ul>
+<li><p>The three XGBoost models show broadly similar patterns in their confusion matrices. All models classify low-inflation periods with high accuracy, correctly identifying 33 out of 35 observations. The main differences arise in their ability to detect high-inflation periods. Model C performs best, correctly identifying 27 out of 35 high-inflation months, followed by Model A (26/35) and Model B (25/35). This indicates that Model C offers the most balanced performance across both classes, while Model A and Model B tend to slightly underpredict high-inflation episodes.</p></li>
+<li><p>The feature importance results show that a few macroeconomic indicators are particularly influential in predicting high-inflation periods. The federal funds rate (<code>FEDFUNDS</code>) is consistently the strongest predictor across all models. Average Hourly Earnings of All Employees, Total Private (<code>CES0500000003</code>), 1-Year Expected Changes in Inflation Rates (<code>PX_MD</code>), and Real Potential GDP (<code>GDPPOT</code>) also rank highly. These variables capture wage pressures, inflation expectations, and long-run economic capacity—factors closely tied to inflation dynamics. Although minor differences appear across models, the same key predictors consistently dominate, indicating stable and robust signals.</p></li>
+</ul>
+</div>
+<div class="justify">
+<div class="columns">
+<div class="column" style="width:30%;">
+<div id="fig-unemp-train" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/11_Boosting/cm_inf_YoY_model_A.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Confusion Matrix of Model A
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:30%;">
+<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/11_Boosting/cm_inf_YoY_model_B.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Confusion Matrix of Model B
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:30%;">
+<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/11_Boosting/cm_inf_YoY_model_C.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Confusion Matrix of Model C
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="justify">
+<div class="columns">
+<div class="column" style="width:30%;">
+<div id="fig-unemp-train" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/11_Boosting/fi_inf_YoY_Model_A.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: Feature Importance of Model A
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:30%;">
+<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/11_Boosting/fi_inf_YoY_Model_B.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11: Feature Importance of Model B
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:30%;">
+<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/11_Boosting/fi_inf_YoY_Model_C.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12: Feature Importance of Model C
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="confusion-matrix-for-mom-inflation-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="confusion-matrix-for-mom-inflation-prediction">Confusion Matrix for MoM Inflation Prediction</h2>
+<div class="justify">
+<ul>
+<li><p>The three XGBoost models exhibit broadly similar patterns in their confusion matrices for MoM inflation prediction. Overall performance is weaker than in the YoY setting, reflecting the higher volatility and noise in month-to-month inflation changes. Model B performs best, correctly identifying 24 low-inflation and 21 high-inflation observations. Model C performs moderately, while Model A yields the weakest results. All three models misclassify a sizable number of observations in both directions, indicating that MoM inflation is inherently more difficult to predict using the available macroeconomic indicators.</p></li>
+<li><p>The feature importance results similarly highlight a small set of dominant predictors. The noncyclical rate of unemployment (<code>NROU</code>) and the federal funds rate (<code>FEDFUNDS</code>) consistently appear as the most influential variables, followed by import prices (<code>IR</code>), labor-market participation measures (<code>CIVPART</code>), real potential GDP (<code>GDPPOT</code>), and the money supply (<code>M2SL</code>). These indicators capture labor-market slack, monetary policy stance, and real-economic conditions, all of which contribute to explaining rapid month-to-month inflation movements. As with the YoY model, the ranking differs slightly across specifications, but the central macroeconomic drivers remain stable and robust.</p></li>
+</ul>
+</div>
+<div class="justify">
+<div class="columns">
+<div class="column" style="width:30%;">
+<div id="fig-unemp-train" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/11_Boosting/cm_inf_MoM_model_A.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13: Confusion Matrix of Model A
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:30%;">
+<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/11_Boosting/cm_inf_MoM_model_B.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14: Confusion Matrix of Model B
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:30%;">
+<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/11_Boosting/cm_inf_MoM_model_C.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15: Confusion Matrix of Model C
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="justify">
+<div class="columns">
+<div class="column" style="width:30%;">
+<div id="fig-unemp-train" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/11_Boosting/fi_inf_MoM_Model_A.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16: Feature Importance of Model A
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:30%;">
+<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/11_Boosting/fi_inf_MoM_Model_B.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17: Feature Importance of Model B
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:30%;">
+<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/11_Boosting/fi_inf_MoM_Model_C.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;18: Feature Importance of Model C
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="confusion-matrix-for-unemployment-rates-prediction" class="level2">
+<h2 class="anchored" data-anchor-id="confusion-matrix-for-unemployment-rates-prediction">Confusion Matrix for Unemployment Rates Prediction</h2>
+<div class="justify">
+<ul>
+<li><p>The confusion matrices for the unemployment prediction models show that all three XGBoost configurations achieve very high and nearly identical performance. Each model correctly classifies almost all observations in both categories, with only three high-unemployment months misclassified as low. As a result, all models attain the same accuracy of 0.9571, indicating that the underlying features provide strong and stable signals for distinguishing between low- and high-unemployment periods.</p></li>
+<li><p>The feature importance results highlight a consistent set of dominant predictors across models. Average Hourly Earnings of All Employees, Total Private (<code>CES0500000003</code>), 1-Year Expected Changes in Inflation Rates (<code>PX_MD</code>), and the 10-Year Breakeven Inflation Rate (<code>T10YIE</code>) appear as the most influential variables, followed by monetary and real-activity indicators such as the total assets of Federal Reserve (<code>WALCL</code>), the federal funds rate (<code>FEDFUNDS</code>), and industrial production (<code>INDPRO</code>). These features collectively capture labor market conditions, price expectations, interest rate dynamics, and broader economic activity. Although minor differences appear across models, the same key predictors consistently dominate, indicating stable and robust signals.</p></li>
+</ul>
+</div>
+<div class="justify">
+<div class="columns">
+<div class="column" style="width:30%;">
+<div id="fig-unemp-train" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/11_Boosting/cm_unemp_model_A.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;19: Confusion Matrix of Model A
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:30%;">
+<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/11_Boosting/cm_unemp_model_B.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20: Confusion Matrix of Model B
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:30%;">
+<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/11_Boosting/cm_unemp_model_C.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;21: Confusion Matrix of Model C
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="justify">
+<div class="columns">
+<div class="column" style="width:30%;">
+<div id="fig-unemp-train" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/11_Boosting/fi_unemp_Model_A.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;22: Feature Importance of Model A
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:30%;">
+<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/11_Boosting/fi_unemp_Model_B.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;23: Feature Importance of Model B
+</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:30%;">
+<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="results/11_Boosting/fi_unemp_Model_C.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;24: Feature Importance of Model C
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="conclusions" class="level1">
 <h1>Conclusions</h1>
+<div class="justify">
 <ul>
-<li>xxx</li>
+<li><p>The boosting models revealed clear patterns in the inflation and unemployment data. Across tasks, boosting helped capture nonlinear interactions among macroeconomic variables and produced stable and interpretable results. The models consistently highlighted the importance of monetary policy indicators and labor market conditions in predicting inflation regimes, while unemployment classifications were highly accurate across all parameter settings.</p></li>
+<li><p>The comparison of hyperparameters showed that model performance is sensitive to the chosen level of complexity. Moderate tree depth and learning rates often provided a good balance between capturing relevant structure and avoiding overfitting, though deeper trees performed best in a few cases—particularly for the more volatile month-to-month inflation predictions. This suggests that the optimal hyperparameter configuration depends on the characteristics of each prediction task.</p></li>
+<li><p>Future improvements could include using cross-validation for more reliable model selection, applying alternative boosting algorithms such as LightGBM or CatBoost, and incorporating SHAP values to better explain individual feature contributions. Expanding the feature set or integrating time-series-oriented methods may further strengthen predictive performance, especially for high-frequency outcomes like MoM inflation.</p></li>
 </ul>
+</div>
 
 
 </section>

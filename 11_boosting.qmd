@@ -158,8 +158,229 @@ title: "Boosting"
 
 # Results
 
-- xxx
+::: {.justify}
+- To evaluate how different hyperparameter configurations affect model performance, three XGBoost models—Model A, Model B, and Model C—were trained and compared.
+These models vary in model depth, number of boosting rounds, learning rate, and sampling ratios, allowing for a systematic assessment of the bias–variance trade-off.
+
+  - **Model A** is designed as a balanced and stable baseline, with moderate tree depth and a standard learning rate that avoids excessive complexity.
+  
+  - **Model B** increases both the number and depth of trees, enhancing the model’s capacity to capture nonlinear patterns but potentially raising the risk of overfitting.
+  
+  - **Model C** uses shallower trees combined with a higher learning rate, creating a lightweight model that emphasizes generalization through increased bias.
+
+<div style="text-align: center;">
+
+### Model Parameter Summary
+
+| Model      | n_estimators | max_depth | learning_rate | subsample | colsample_bytree |
+|------------|--------------|-----------|---------------|-----------|------------------|
+| **Model A** | 200          | 3         | 0.05          | 0.8       | 0.8              |
+| **Model B** | 300          | 4         | 0.03          | 0.7       | 0.9              |
+| **Model C** | 150          | 2         | 0.1           | 0.9       | 0.7              |
+
+</div>
+
+- These three configurations enable a structured comparison of performance metrics such as accuracy, confusion matrices, and feature importance across varying model complexities.
+:::
+
+## Confusion Matrix for YoY Inflation Prediction
+
+::: {.justify}
+- The three XGBoost models show broadly similar patterns in their confusion matrices. 
+  All models classify low-inflation periods with high accuracy, correctly identifying 
+  33 out of 35 observations. The main differences arise in their ability to detect 
+  high-inflation periods. Model C performs best, correctly identifying 27 out of 35 
+  high-inflation months, followed by Model A (26/35) and Model B (25/35). This indicates 
+  that Model C offers the most balanced performance across both classes, while Model A 
+  and Model B tend to slightly underpredict high-inflation episodes.
+
+- The feature importance results show that a few macroeconomic indicators are
+  particularly influential in predicting high-inflation periods. The federal funds
+  rate (`FEDFUNDS`) is consistently the strongest predictor across all models.
+  Average Hourly Earnings of All Employees, Total Private (`CES0500000003`),
+  1-Year Expected Changes in Inflation Rates (`PX_MD`), and Real Potential GDP
+  (`GDPPOT`) also rank highly. These variables capture wage pressures, inflation
+  expectations, and long-run economic capacity—factors closely tied to inflation
+  dynamics. Although minor differences appear across models, the same key
+  predictors consistently dominate, indicating stable and robust signals.
+:::
+
+::: {.justify}
+::: {.columns}
+::: {.column width="30%"}
+![Confusion Matrix of Model A](results/11_Boosting/cm_inf_YoY_model_A.jpg){#fig-unemp-train fig-align="center" width="100%"}
+:::
+::: {.column width="5%"}
+:::
+::: {.column width="30%"}
+![Confusion Matrix of Model B](results/11_Boosting/cm_inf_YoY_model_B.jpg){#fig-unemp-test fig-align="center" width="100%"}
+:::
+::: {.column width="5%"}
+:::
+::: {.column width="30%"}
+![Confusion Matrix of Model C](results/11_Boosting/cm_inf_YoY_model_C.jpg){#fig-unemp-test fig-align="center" width="100%"}
+:::
+:::
+:::
+
+::: {.justify}
+::: {.columns}
+::: {.column width="30%"}
+![Feature Importance of Model A](results/11_Boosting/fi_inf_YoY_Model_A.png){#fig-unemp-train fig-align="center" width="100%"}
+:::
+::: {.column width="5%"}
+:::
+::: {.column width="30%"}
+![Feature Importance of Model B](results/11_Boosting/fi_inf_YoY_Model_B.png){#fig-unemp-test fig-align="center" width="100%"}
+:::
+::: {.column width="5%"}
+:::
+::: {.column width="30%"}
+![Feature Importance of Model C](results/11_Boosting/fi_inf_YoY_Model_C.png){#fig-unemp-test fig-align="center" width="100%"}
+:::
+:::
+:::
+
+## Confusion Matrix for MoM Inflation Prediction
+
+::: {.justify}
+- The three XGBoost models exhibit broadly similar patterns in their confusion
+  matrices for MoM inflation prediction. Overall performance is weaker than in
+  the YoY setting, reflecting the higher volatility and noise in month-to-month
+  inflation changes. Model B performs best, correctly identifying 24 low-inflation
+  and 21 high-inflation observations. Model C performs moderately, while Model A
+  yields the weakest results. All three models misclassify a sizable number of
+  observations in both directions, indicating that MoM inflation is inherently
+  more difficult to predict using the available macroeconomic indicators.
+
+- The feature importance results similarly highlight a small set of dominant
+  predictors. The noncyclical rate of unemployment (`NROU`) and the federal funds rate
+  (`FEDFUNDS`) consistently appear as the most influential variables, followed by 
+  import prices (`IR`), labor-market participation measures (`CIVPART`), 
+  real potential GDP (`GDPPOT`), and the money supply (`M2SL`). These indicators 
+  capture labor-market slack, monetary policy stance, and real-economic conditions, 
+  all of which contribute to explaining rapid month-to-month inflation movements. 
+  As with the YoY model, the ranking differs slightly across specifications, but 
+  the central macroeconomic drivers remain stable and robust.
+:::
+
+::: {.justify}
+::: {.columns}
+::: {.column width="30%"}
+![Confusion Matrix of Model A](results/11_Boosting/cm_inf_MoM_model_A.jpg){#fig-unemp-train fig-align="center" width="100%"}
+:::
+::: {.column width="5%"}
+:::
+::: {.column width="30%"}
+![Confusion Matrix of Model B](results/11_Boosting/cm_inf_MoM_model_B.jpg){#fig-unemp-test fig-align="center" width="100%"}
+:::
+::: {.column width="5%"}
+:::
+::: {.column width="30%"}
+![Confusion Matrix of Model C](results/11_Boosting/cm_inf_MoM_model_C.jpg){#fig-unemp-test fig-align="center" width="100%"}
+:::
+:::
+:::
+
+::: {.justify}
+::: {.columns}
+::: {.column width="30%"}
+![Feature Importance of Model A](results/11_Boosting/fi_inf_MoM_Model_A.png){#fig-unemp-train fig-align="center" width="100%"}
+:::
+::: {.column width="5%"}
+:::
+::: {.column width="30%"}
+![Feature Importance of Model B](results/11_Boosting/fi_inf_MoM_Model_B.png){#fig-unemp-test fig-align="center" width="100%"}
+:::
+::: {.column width="5%"}
+:::
+::: {.column width="30%"}
+![Feature Importance of Model C](results/11_Boosting/fi_inf_MoM_Model_C.png){#fig-unemp-test fig-align="center" width="100%"}
+:::
+:::
+:::
+
+## Confusion Matrix for Unemployment Rates Prediction
+
+::: {.justify}
+- The confusion matrices for the unemployment prediction models show that all
+  three XGBoost configurations achieve very high and nearly identical
+  performance. Each model correctly classifies almost all observations in both
+  categories, with only three high-unemployment months misclassified as low.
+  As a result, all models attain the same accuracy of 0.9571, indicating that the
+  underlying features provide strong and stable signals for distinguishing
+  between low- and high-unemployment periods.
+
+- The feature importance results highlight a consistent set of dominant
+  predictors across models. Average Hourly Earnings of All Employees, Total
+  Private (`CES0500000003`), 1-Year Expected Changes in Inflation Rates
+  (`PX_MD`), and the 10-Year Breakeven Inflation Rate (`T10YIE`) appear as the most
+  influential variables, followed by monetary and real-activity indicators such
+  as the total assets of Federal Reserve (`WALCL`), the federal funds rate (`FEDFUNDS`),
+  and  industrial production (`INDPRO`). These features collectively capture 
+  labor market conditions, price expectations, interest rate dynamics, 
+  and broader economic activity. Although minor differences appear across models, 
+  the same key predictors consistently dominate, indicating stable and robust signals.
+:::
+
+::: {.justify}
+::: {.columns}
+::: {.column width="30%"}
+![Confusion Matrix of Model A](results/11_Boosting/cm_unemp_model_A.jpg){#fig-unemp-train fig-align="center" width="100%"}
+:::
+::: {.column width="5%"}
+:::
+::: {.column width="30%"}
+![Confusion Matrix of Model B](results/11_Boosting/cm_unemp_model_B.jpg){#fig-unemp-test fig-align="center" width="100%"}
+:::
+::: {.column width="5%"}
+:::
+::: {.column width="30%"}
+![Confusion Matrix of Model C](results/11_Boosting/cm_unemp_model_C.jpg){#fig-unemp-test fig-align="center" width="100%"}
+:::
+:::
+:::
+
+::: {.justify}
+::: {.columns}
+::: {.column width="30%"}
+![Feature Importance of Model A](results/11_Boosting/fi_unemp_Model_A.png){#fig-unemp-train fig-align="center" width="100%"}
+:::
+::: {.column width="5%"}
+:::
+::: {.column width="30%"}
+![Feature Importance of Model B](results/11_Boosting/fi_unemp_Model_B.png){#fig-unemp-test fig-align="center" width="100%"}
+:::
+::: {.column width="5%"}
+:::
+::: {.column width="30%"}
+![Feature Importance of Model C](results/11_Boosting/fi_unemp_Model_C.png){#fig-unemp-test fig-align="center" width="100%"}
+:::
+:::
+:::
 
 # Conclusions
 
-- xxx
+::: {.justify}
+- The boosting models revealed clear patterns in the inflation and unemployment
+data. Across tasks, boosting helped capture nonlinear interactions among
+macroeconomic variables and produced stable and interpretable results. The
+models consistently highlighted the importance of monetary policy indicators 
+and labor market conditions in predicting inflation regimes, while
+unemployment classifications were highly accurate across all parameter settings.
+
+- The comparison of hyperparameters showed that model performance is sensitive to
+the chosen level of complexity. Moderate tree depth and learning rates often
+provided a good balance between capturing relevant structure and avoiding
+overfitting, though deeper trees performed best in a few cases—particularly for
+the more volatile month-to-month inflation predictions. This suggests that the
+optimal hyperparameter configuration depends on the characteristics of each
+prediction task.
+
+- Future improvements could include using cross-validation for more reliable model
+selection, applying alternative boosting algorithms such as LightGBM or
+CatBoost, and incorporating SHAP values to better explain individual feature
+contributions. Expanding the feature set or integrating time-series-oriented
+methods may further strengthen predictive performance, especially for
+high-frequency outcomes like MoM inflation.
+:::
