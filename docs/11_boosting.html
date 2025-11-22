@@ -323,7 +323,7 @@ Controls the complexity of each weak learner. Shallow trees reduce variance, whi
 </div>
 <ul>
 <li><p>The training and testing data must be <strong>disjoint</strong> sets, meaning they have no data points in common. The reason is to get an honest evaluation of the model’s ability to generalize to new, unseen data. If the sets overlap, the model is being tested on data it has already “seen” during training, which would be like giving a student an exam with questions they had already memorized. Keeping the training and testing sets <strong>disjoint</strong> is the only way to get a true measure of the model’s predictive performance.</p></li>
-<li><p>The training and testing data used to predict the year-over-year (YoY) inflation (<code>high_inflation_YoY</code> derived from <code>PCEPILFE_YoY</code>), month-over-month (MoM) inflation (<code>high_inflation_MoM</code> derived from <code>PCEPILFE_MoM</code>), and unemployment rates (<code>high_unemployment</code> derived from <code>UNRATE</code>) are shown in <a href="#fig-inf-YoY-train" class="quarto-xref">Figure&nbsp;1</a> ~ <a href="#fig-unemp-test" class="quarto-xref">Figure&nbsp;24</a>, respectively.</p></li>
+<li><p>The training and testing data used to predict the year-over-year (YoY) inflation (<code>high_inflation_YoY</code> derived from <code>PCEPILFE_YoY</code>), month-over-month (MoM) inflation (<code>high_inflation_MoM</code> derived from <code>PCEPILFE_MoM</code>), and unemployment rates (<code>high_unemployment</code> derived from <code>UNRATE</code>) are shown in <a href="#fig-inf-YoY-train" class="quarto-xref">Figure&nbsp;1</a> ~ <a href="#fig-unemp-test" class="quarto-xref">Figure&nbsp;6</a>, respectively.</p></li>
 </ul>
 </div>
 <section id="training-and-test-data-for-yoy-inflation-prediction" class="level2">
@@ -527,40 +527,28 @@ Figure&nbsp;6: The Test Data for Unemployment Rates
 <div class="justify">
 <div class="columns">
 <div class="column" style="width:30%;">
-<div id="fig-unemp-train" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/11_Boosting/cm_inf_YoY_model_A.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: Confusion Matrix of Model A
-</figcaption>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/11_Boosting/cm_inf_YoY_model_A.jpg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Confusion Matrix of Model A</figcaption>
 </figure>
 </div>
 </div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:30%;">
-<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/11_Boosting/cm_inf_YoY_model_B.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8: Confusion Matrix of Model B
-</figcaption>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/11_Boosting/cm_inf_YoY_model_B.jpg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Confusion Matrix of Model B</figcaption>
 </figure>
 </div>
 </div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:30%;">
-<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/11_Boosting/cm_inf_YoY_model_C.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9: Confusion Matrix of Model C
-</figcaption>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/11_Boosting/cm_inf_YoY_model_C.jpg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Confusion Matrix of Model C</figcaption>
 </figure>
 </div>
 </div>
@@ -569,40 +557,28 @@ Figure&nbsp;9: Confusion Matrix of Model C
 <div class="justify">
 <div class="columns">
 <div class="column" style="width:30%;">
-<div id="fig-unemp-train" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/11_Boosting/fi_inf_YoY_Model_A.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10: Feature Importance of Model A
-</figcaption>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/11_Boosting/fi_inf_YoY_Model_A.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Feature Importance of Model A</figcaption>
 </figure>
 </div>
 </div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:30%;">
-<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/11_Boosting/fi_inf_YoY_Model_B.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11: Feature Importance of Model B
-</figcaption>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/11_Boosting/fi_inf_YoY_Model_B.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Feature Importance of Model B</figcaption>
 </figure>
 </div>
 </div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:30%;">
-<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/11_Boosting/fi_inf_YoY_Model_C.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12: Feature Importance of Model C
-</figcaption>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/11_Boosting/fi_inf_YoY_Model_C.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Feature Importance of Model C</figcaption>
 </figure>
 </div>
 </div>
@@ -620,40 +596,28 @@ Figure&nbsp;12: Feature Importance of Model C
 <div class="justify">
 <div class="columns">
 <div class="column" style="width:30%;">
-<div id="fig-unemp-train" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/11_Boosting/cm_inf_MoM_model_A.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13: Confusion Matrix of Model A
-</figcaption>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/11_Boosting/cm_inf_MoM_model_A.jpg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Confusion Matrix of Model A</figcaption>
 </figure>
 </div>
 </div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:30%;">
-<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/11_Boosting/cm_inf_MoM_model_B.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14: Confusion Matrix of Model B
-</figcaption>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/11_Boosting/cm_inf_MoM_model_B.jpg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Confusion Matrix of Model B</figcaption>
 </figure>
 </div>
 </div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:30%;">
-<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/11_Boosting/cm_inf_MoM_model_C.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;15: Confusion Matrix of Model C
-</figcaption>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/11_Boosting/cm_inf_MoM_model_C.jpg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Confusion Matrix of Model C</figcaption>
 </figure>
 </div>
 </div>
@@ -662,40 +626,28 @@ Figure&nbsp;15: Confusion Matrix of Model C
 <div class="justify">
 <div class="columns">
 <div class="column" style="width:30%;">
-<div id="fig-unemp-train" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/11_Boosting/fi_inf_MoM_Model_A.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;16: Feature Importance of Model A
-</figcaption>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/11_Boosting/fi_inf_MoM_Model_A.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Feature Importance of Model A</figcaption>
 </figure>
 </div>
 </div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:30%;">
-<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/11_Boosting/fi_inf_MoM_Model_B.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;17: Feature Importance of Model B
-</figcaption>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/11_Boosting/fi_inf_MoM_Model_B.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Feature Importance of Model B</figcaption>
 </figure>
 </div>
 </div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:30%;">
-<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/11_Boosting/fi_inf_MoM_Model_C.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18: Feature Importance of Model C
-</figcaption>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/11_Boosting/fi_inf_MoM_Model_C.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Feature Importance of Model C</figcaption>
 </figure>
 </div>
 </div>
@@ -713,40 +665,28 @@ Figure&nbsp;18: Feature Importance of Model C
 <div class="justify">
 <div class="columns">
 <div class="column" style="width:30%;">
-<div id="fig-unemp-train" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/11_Boosting/cm_unemp_model_A.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;19: Confusion Matrix of Model A
-</figcaption>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/11_Boosting/cm_unemp_model_A.jpg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Confusion Matrix of Model A</figcaption>
 </figure>
 </div>
 </div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:30%;">
-<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/11_Boosting/cm_unemp_model_B.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;20: Confusion Matrix of Model B
-</figcaption>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/11_Boosting/cm_unemp_model_B.jpg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Confusion Matrix of Model B</figcaption>
 </figure>
 </div>
 </div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:30%;">
-<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/11_Boosting/cm_unemp_model_C.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;21: Confusion Matrix of Model C
-</figcaption>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/11_Boosting/cm_unemp_model_C.jpg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Confusion Matrix of Model C</figcaption>
 </figure>
 </div>
 </div>
@@ -755,40 +695,28 @@ Figure&nbsp;21: Confusion Matrix of Model C
 <div class="justify">
 <div class="columns">
 <div class="column" style="width:30%;">
-<div id="fig-unemp-train" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/11_Boosting/fi_unemp_Model_A.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-train-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;22: Feature Importance of Model A
-</figcaption>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/11_Boosting/fi_unemp_Model_A.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Feature Importance of Model A</figcaption>
 </figure>
 </div>
 </div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:30%;">
-<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/11_Boosting/fi_unemp_Model_B.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;23: Feature Importance of Model B
-</figcaption>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/11_Boosting/fi_unemp_Model_B.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Feature Importance of Model B</figcaption>
 </figure>
 </div>
 </div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:30%;">
-<div id="fig-unemp-test" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="results/11_Boosting/fi_unemp_Model_C.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unemp-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;24: Feature Importance of Model C
-</figcaption>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="results/11_Boosting/fi_unemp_Model_C.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Feature Importance of Model C</figcaption>
 </figure>
 </div>
 </div>

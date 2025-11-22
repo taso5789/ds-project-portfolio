@@ -208,17 +208,17 @@ These models vary in model depth, number of boosting rounds, learning rate, and 
 ::: {.justify}
 ::: {.columns}
 ::: {.column width="30%"}
-![Confusion Matrix of Model A](results/11_Boosting/cm_inf_YoY_model_A.jpg){#fig-unemp-train fig-align="center" width="100%"}
+![Confusion Matrix of Model A](results/11_Boosting/cm_inf_YoY_model_A.jpg){fig-align="center" width="100%"}
 :::
 ::: {.column width="5%"}
 :::
 ::: {.column width="30%"}
-![Confusion Matrix of Model B](results/11_Boosting/cm_inf_YoY_model_B.jpg){#fig-unemp-test fig-align="center" width="100%"}
+![Confusion Matrix of Model B](results/11_Boosting/cm_inf_YoY_model_B.jpg){fig-align="center" width="100%"}
 :::
 ::: {.column width="5%"}
 :::
 ::: {.column width="30%"}
-![Confusion Matrix of Model C](results/11_Boosting/cm_inf_YoY_model_C.jpg){#fig-unemp-test fig-align="center" width="100%"}
+![Confusion Matrix of Model C](results/11_Boosting/cm_inf_YoY_model_C.jpg){fig-align="center" width="100%"}
 :::
 :::
 :::
@@ -226,17 +226,17 @@ These models vary in model depth, number of boosting rounds, learning rate, and 
 ::: {.justify}
 ::: {.columns}
 ::: {.column width="30%"}
-![Feature Importance of Model A](results/11_Boosting/fi_inf_YoY_Model_A.png){#fig-unemp-train fig-align="center" width="100%"}
+![Feature Importance of Model A](results/11_Boosting/fi_inf_YoY_Model_A.png){fig-align="center" width="100%"}
 :::
 ::: {.column width="5%"}
 :::
 ::: {.column width="30%"}
-![Feature Importance of Model B](results/11_Boosting/fi_inf_YoY_Model_B.png){#fig-unemp-test fig-align="center" width="100%"}
+![Feature Importance of Model B](results/11_Boosting/fi_inf_YoY_Model_B.png){fig-align="center" width="100%"}
 :::
 ::: {.column width="5%"}
 :::
 ::: {.column width="30%"}
-![Feature Importance of Model C](results/11_Boosting/fi_inf_YoY_Model_C.png){#fig-unemp-test fig-align="center" width="100%"}
+![Feature Importance of Model C](results/11_Boosting/fi_inf_YoY_Model_C.png){fig-align="center" width="100%"}
 :::
 :::
 :::
@@ -267,17 +267,17 @@ These models vary in model depth, number of boosting rounds, learning rate, and 
 ::: {.justify}
 ::: {.columns}
 ::: {.column width="30%"}
-![Confusion Matrix of Model A](results/11_Boosting/cm_inf_MoM_model_A.jpg){#fig-unemp-train fig-align="center" width="100%"}
+![Confusion Matrix of Model A](results/11_Boosting/cm_inf_MoM_model_A.jpg){fig-align="center" width="100%"}
 :::
 ::: {.column width="5%"}
 :::
 ::: {.column width="30%"}
-![Confusion Matrix of Model B](results/11_Boosting/cm_inf_MoM_model_B.jpg){#fig-unemp-test fig-align="center" width="100%"}
+![Confusion Matrix of Model B](results/11_Boosting/cm_inf_MoM_model_B.jpg){fig-align="center" width="100%"}
 :::
 ::: {.column width="5%"}
 :::
 ::: {.column width="30%"}
-![Confusion Matrix of Model C](results/11_Boosting/cm_inf_MoM_model_C.jpg){#fig-unemp-test fig-align="center" width="100%"}
+![Confusion Matrix of Model C](results/11_Boosting/cm_inf_MoM_model_C.jpg){fig-align="center" width="100%"}
 :::
 :::
 :::
@@ -285,17 +285,17 @@ These models vary in model depth, number of boosting rounds, learning rate, and 
 ::: {.justify}
 ::: {.columns}
 ::: {.column width="30%"}
-![Feature Importance of Model A](results/11_Boosting/fi_inf_MoM_Model_A.png){#fig-unemp-train fig-align="center" width="100%"}
+![Feature Importance of Model A](results/11_Boosting/fi_inf_MoM_Model_A.png){fig-align="center" width="100%"}
 :::
 ::: {.column width="5%"}
 :::
 ::: {.column width="30%"}
-![Feature Importance of Model B](results/11_Boosting/fi_inf_MoM_Model_B.png){#fig-unemp-test fig-align="center" width="100%"}
+![Feature Importance of Model B](results/11_Boosting/fi_inf_MoM_Model_B.png){fig-align="center" width="100%"}
 :::
 ::: {.column width="5%"}
 :::
 ::: {.column width="30%"}
-![Feature Importance of Model C](results/11_Boosting/fi_inf_MoM_Model_C.png){#fig-unemp-test fig-align="center" width="100%"}
+![Feature Importance of Model C](results/11_Boosting/fi_inf_MoM_Model_C.png){fig-align="center" width="100%"}
 :::
 :::
 :::
@@ -326,17 +326,17 @@ These models vary in model depth, number of boosting rounds, learning rate, and 
 ::: {.justify}
 ::: {.columns}
 ::: {.column width="30%"}
-![Confusion Matrix of Model A](results/11_Boosting/cm_unemp_model_A.jpg){#fig-unemp-train fig-align="center" width="100%"}
+![Confusion Matrix of Model A](results/11_Boosting/cm_unemp_model_A.jpg){fig-align="center" width="100%"}
 :::
 ::: {.column width="5%"}
 :::
 ::: {.column width="30%"}
-![Confusion Matrix of Model B](results/11_Boosting/cm_unemp_model_B.jpg){#fig-unemp-test fig-align="center" width="100%"}
+![Confusion Matrix of Model B](results/11_Boosting/cm_unemp_model_B.jpg){fig-align="center" width="100%"}
 :::
 ::: {.column width="5%"}
 :::
 ::: {.column width="30%"}
-![Confusion Matrix of Model C](results/11_Boosting/cm_unemp_model_C.jpg){#fig-unemp-test fig-align="center" width="100%"}
+![Confusion Matrix of Model C](results/11_Boosting/cm_unemp_model_C.jpg){fig-align="center" width="100%"}
 :::
 :::
 :::
@@ -344,17 +344,17 @@ These models vary in model depth, number of boosting rounds, learning rate, and 
 ::: {.justify}
 ::: {.columns}
 ::: {.column width="30%"}
-![Feature Importance of Model A](results/11_Boosting/fi_unemp_Model_A.png){#fig-unemp-train fig-align="center" width="100%"}
+![Feature Importance of Model A](results/11_Boosting/fi_unemp_Model_A.png){fig-align="center" width="100%"}
 :::
 ::: {.column width="5%"}
 :::
 ::: {.column width="30%"}
-![Feature Importance of Model B](results/11_Boosting/fi_unemp_Model_B.png){#fig-unemp-test fig-align="center" width="100%"}
+![Feature Importance of Model B](results/11_Boosting/fi_unemp_Model_B.png){fig-align="center" width="100%"}
 :::
 ::: {.column width="5%"}
 :::
 ::: {.column width="30%"}
-![Feature Importance of Model C](results/11_Boosting/fi_unemp_Model_C.png){#fig-unemp-test fig-align="center" width="100%"}
+![Feature Importance of Model C](results/11_Boosting/fi_unemp_Model_C.png){fig-align="center" width="100%"}
 :::
 :::
 :::
