@@ -1,0 +1,379 @@
+---
+title: "The Dynamics Between Inflation and Unemployment: Empirical Evidence from U.S. Macroeconomic Data"
+author:
+  - Taihei Sone\inst{1}
+institute: |
+  \inst{1} College of Engineering and Applied Science\\
+  University of Colorado Boulder\\
+  Boulder, CO, USA\\
+  Taihei.Sone@colorado.edu
+# date: "`r Sys.Date()`"
+date: "2025-12-05"
+output:
+  beamer_presentation:
+    latex_engine: xelatex
+    keep_tex: true
+    theme: Madrid
+    includes:
+      in_header: mytemplate.tex
+    slide_level: 2
+bibliography: mybib.bib
+biblio-style: apalike
+nocite: '@*' 
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Outline
+
+\tableofcontents
+
+# Introduction
+
+## Introduction
+
+- The inflation–unemployment relationship (Phillips curve) is **unstable** and varies across economic regimes.  
+- Recent evidence shows a **flattened and nonlinear** relationship, challenging conventional interpretations.  
+- Understanding inflation–unemployment dynamics requires identifying **underlying macroeconomic factors** and **regime shifts**.  
+- Machine learning methods offer useful tools for **classifying economic states**, though interpretability remains limited.
+
+### This Study
+
+- Identify macroeconomic factors driving inflation and unemployment (via PCA)  
+- Detect regime shifts using clustering methods  
+- Evaluate regime identification using machine-learning classifiers (Naïve Bayes, Decision Trees, XGBoost)
+
+# Related Literature
+
+## Related Literature
+
+- Evidence on the inflation–unemployment relationship: trade-off, instability, and **flattening** over time  
+  - \tiny @53cde4ea-d643-31bc-af9d-f3aefdafb5f0; @90faeace-9ccb-36dc-bd27-e5d7bec510cf; @af978182-58ee-3c82-839b-4d1eba4da5d0; @LUCAS197619; @InflationDynamicsandtheGreatRecession; @af24a568-7833-3e7d-8cb0-64a4701160e5
+
+- Phillips curve dynamics are **nonlinear and regime-dependent**  
+  - \tiny @Hazell2022PhillipsCurve
+
+- Machine learning methods can help **identify economic states** and capture nonlinear patterns  
+  - \tiny @Medeiros02012021; @Gogas2022
+
+**Key Insight:**  
+The inflation–unemployment relationship is **not stable**; it varies with economic regimes and underlying shocks.
+
+**Research Gap:**  
+Existing studies address inflation, unemployment, regimes, or ML **separately**, but do not provide a **unified, reproducible framework** that  
+\quad\quad - jointly analyzes both variables,  
+\quad\quad - identifies economic regimes, and  
+\quad\quad - evaluates regime classification with ML.
+
+# Data
+
+## Data
+
+\begin{center}
+\scriptsize
+\renewcommand{\arraystretch}{0.8}
+\begin{tabular}{p{2.7cm} p{3.5cm} p{0.5cm} p{1.5cm} p{1.5cm}}
+\hline
+\textbf{Category} & \textbf{Variable} & \textbf{Freq.} & \textbf{Source} & \textbf{Code} \\
+\hline
+Inflation & Core PCE & M & FRED & PCEPILFE \\
+Unemployment & Unemployment Rate & M & FRED & UNRATE \\
+ & Noncyclical Unemployment & Q & FRED & NROU \\
+Regimes & Recession indicator & M & FRED & USREC \\
+ & Zero Lower Bound dummy & M & FRED & - \\
+ & COVID-19 period dummy & M & Created & - \\
+Demand & Real GDP & Q & FRED & GDPC1\\
+ & Real Potential GDP & Q & FRED & GDPPOT \\
+ & Industrial Production & M & FRED & INDPRO \\
+ & Retail Sales & M & FRED & RSAFS \\
+Supply & Crude Oil Prices & M & FRED & MCOILWTICO \\
+ & Import Price Index & M & FRED & IR \\
+ & Labor Productivity & Q & FRED & OPHNFB \\
+Labor Markets & Avg Hourly Earnings & M & FRED & CES050... \\
+ & Labor Force Participation & M & FRED & CIVPART \\
+ & Job Openings & M & FRED & JTSJOL \\
+Monetary Policy & Fed Funds Rate & M & FRED & FEDFUNDS \\
+ & Money Supply M2 & M & FRED & M2SL \\
+ & Fed Total Assets & W & FRED & WALCL \\
+Inflation Expectations & 5Y Breakeven & D & FRED & T5YIE \\
+ & 10Y Breakeven & D & FRED & T10YIE \\
+ & 1Y Exp. Inflation & M & UM Survey & PX\_MD \\
+ & 5Y Exp. Inflation & M & UM Survey & PX5\_MD \\
+\hline
+\end{tabular}
+\end{center}
+
+\tiny Full list includes 23 series retrieved via FRED API or University of Michigan CSV downloads.
+
+# Method
+
+## Method
+
+- **PCA (Principal Component Analysis)**  
+  Reduce dimensionality and extract latent inflation and business-cycle factors.
+
+- **K-Means & Hierarchical Clustering**  
+  Identify macroeconomic regimes using unsupervised grouping.
+
+- **Naïve Bayes**  
+  Simple probabilistic classifier for high-inflation / high-unemployment regimes.
+
+- **Decision Trees**  
+  Nonlinear, interpretable classification based on threshold rules.
+
+- **Boosting (XGBoost)**  
+  Ensemble method capturing complex patterns and improving predictive accuracy.
+
+# Results & Discussions
+
+## PCA Results: Macroeconomic Factor Structure
+
+\begin{columns}
+
+  % Left side (figure)
+  \begin{column}{0.48\textwidth}
+    \begin{center}
+      \includegraphics[height=0.85\textheight]{../results/3_PCA/pca_corr_heatmap.png}
+    \end{center}
+  \end{column}
+
+  % Right side (text)
+  \begin{column}{0.52\textwidth}
+    \begin{itemize}
+      \item \textbf{PC1: Inflation Factor}  
+            Strong link to Core PCE \& expectations;  
+            negative with unemployment.
+    
+      \item \textbf{PC2–PC3: Business Cycle}  
+            Driven by production, sales,  
+            and labor-market indicators.
+    
+      \item \textbf{Policy Signals}  
+            Monetary Policy-related variables (FEDFUNDS, M2, and WALCL) spread across PCs.
+    
+      \item \textbf{Summary}  
+            PCA extracts \textbf{inflation} vs. \textbf{cycle} factors.
+    \end{itemize}
+  \end{column}
+
+\end{columns}
+
+## Regime Identification via Clustering (1/3)
+
+\begin{columns}[T,totalwidth=\textwidth]
+
+  % Left: K-Means Figure
+  \begin{column}{0.48\textwidth}
+    \begin{center}
+      \textbf{K-Means (k = 12)} \\[0.3em]
+      {\tiny within shares of 0/1} \\[0.3em]
+      \includegraphics[width=0.9\textwidth]{pies_kmeans_label_binary_pies_1.png}
+    \end{center}
+  \end{column}
+
+  % Right: Text
+  \begin{column}{0.52\textwidth}
+    \textbf{Key Insight}\\[0.6em]
+    \begin{itemize}
+      \item Many clusters show \textbf{near-pure 0/1 splits} for USREC, ZLB, or COVID dummies.
+      \item Clusters align closely with well-known \textbf{macroeconomic regimes}  
+            (recession periods, ZLB episodes, COVID-19 shock).
+      \item \textbf{Summary}  
+            Clearly identifies regimes such as high-inflation periods and recessions.
+    \end{itemize}
+    {\scriptsize
+      \vspace{0.4em}
+      *Hierarchical clustering yields similar regime separation.
+    }
+  \end{column}
+
+\end{columns}
+
+## Regime Identification via Clustering (2/3)
+
+\begin{columns}[T,totalwidth=\textwidth]
+
+  % Left: K-Means Figure
+  \begin{column}{0.48\textwidth}
+    \begin{center}
+      \textbf{K-Means (k = 12)} \\[0.3em]
+      {\tiny within shares of 0/1} \\[0.3em]
+      \includegraphics[width=0.9\textwidth]{pies_kmeans_label_binary_pies_2.png}
+    \end{center}
+  \end{column}
+
+  % Right: Text
+  \begin{column}{0.52\textwidth}
+    \textbf{Key Insight}\\[0.6em]
+    \begin{itemize}
+      \item Many clusters show \textbf{near-pure 0/1 splits} for USREC, ZLB, or COVID dummies.
+      \item Clusters align closely with well-known \textbf{macroeconomic regimes}  
+            (recession periods, ZLB episodes, COVID-19 shock).
+      \item \textbf{Summary}  
+            Clearly identifies regimes such as high-inflation periods and recessions.
+    \end{itemize}
+    {\scriptsize
+      \vspace{0.4em}
+      *Hierarchical clustering yields similar regime separation.
+    }
+  \end{column}
+
+\end{columns}
+
+## Regime Identification via Clustering (3/3)
+
+\begin{columns}[T,totalwidth=\textwidth]
+
+  % Left: K-Means Figure
+  \begin{column}{0.48\textwidth}
+    \begin{center}
+      \textbf{K-Means (k = 12)} \\[0.3em]
+      {\tiny within shares of 0/1} \\[0.3em]
+      \includegraphics[width=0.9\textwidth]{pies_kmeans_label_binary_pies_3.png}
+    \end{center}
+  \end{column}
+
+  % Right: Text
+  \begin{column}{0.52\textwidth}
+    \textbf{Key Insight}\\[0.6em]
+    \begin{itemize}
+      \item Many clusters show \textbf{near-pure 0/1 splits} for USREC, ZLB, or COVID dummies.
+      \item Clusters align closely with well-known \textbf{macroeconomic regimes}  
+            (recession periods, ZLB episodes, COVID-19 shock).
+      \item \textbf{Summary}  
+            Clearly identifies regimes such as high-inflation periods and recessions.
+    \end{itemize}
+    {\scriptsize
+      \vspace{0.4em}
+      *Hierarchical clustering yields similar regime separation.
+    }
+  \end{column}
+
+\end{columns}
+
+## ML Model Comparison: Accuracy
+
+\begin{columns}[T, totalwidth=\textwidth]
+
+% ---------- Left Column: Tables ----------
+\begin{column}{0.60\textwidth}
+
+% --- Table 1: Accuracy Comparison ---
+\scriptsize
+\begin{center}
+\begin{tabularx}{0.90\textwidth}{llc}
+\toprule
+Task & Model & Accuracy \\
+\midrule
+Unemployment & Naive Bayes & 0.86 \\
+Unemployment & Decision Tree & 0.97 \\
+Unemployment & XGBoost-A & 0.96 \\
+Unemployment & XGBoost-B & 0.96 \\
+Unemployment & XGBoost-C & 0.96 \\
+\midrule
+Inflation (YoY) & Naive Bayes & 0.86 \\
+Inflation (YoY) & Decision Tree & 0.93 \\
+Inflation (YoY) & XGBoost-A & 0.84 \\
+Inflation (YoY) & XGBoost-B & 0.83 \\
+Inflation (YoY) & XGBoost-C & 0.86 \\
+\midrule
+Inflation (MoM) & Naive Bayes & 0.71 \\
+Inflation (MoM) & Decision Tree & 0.65 \\
+Inflation (MoM) & XGBoost-A & 0.57 \\
+Inflation (MoM) & XGBoost-B & 0.64 \\
+Inflation (MoM) & XGBoost-C & 0.60 \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.4em}
+\raggedright\tiny
+Notes: XGBoost-A is a baseline configuration with moderate depth and shrinkage. XGBoost-B has deeper trees and more estimators, optimized for capturing nonlinearities. XGBoost-C is shallow but high-learning-rate model emphasizing speed and simplicity. Please refer to the appendix for detailed parameters.
+
+\end{center}
+\normalsize
+
+\end{column}
+
+% ---------- Right Column: Text ----------
+\begin{column}{0.40\textwidth}
+
+\textbf{Key Insights}\\[0.4em]
+
+\begin{itemize}
+  \small
+  \item Decision Tree and XGBoost achieve \textbf{very high accuracy} for unemployment classification.
+  \item Inflation (YoY) is predicted well by all methods, with Decision Tree performing best.
+  \item Inflation (MoM) remains the most challenging task across models.
+  \item XGBoost parameter variations show clear trade-offs between model complexity and generalization.
+\end{itemize}
+
+\end{column}
+
+\end{columns}
+
+# Conclusion
+
+## Conclusion, Implications, and Future Work
+
+### Conclusion
+- PCA reveals distinct inflation and business-cycle factors.
+- Clustering effectively identifies major macroeconomic regimes.
+- ML models classify unemployment and YoY inflation well; MoM inflation is noisy.
+
+### Implications
+- Macroeconomic dynamics are multi-factor and complex.
+- ML can support rapid macro-state monitoring.
+- Short-term inflation measures require cautious interpretation.
+
+### Future Work
+- Add high-frequency data and extend models to other methods.
+- Identify regime-specific shifts in inflation–unemployment dynamics.
+- Comparison and integration with traditional macroeconomic models.
+
+---
+
+\begin{center}
+\vspace{1cm}
+{\huge Thank you!}
+\end{center}
+
+---
+
+\begin{center}
+\vspace{1cm}
+{\huge Appendix}
+\end{center}
+
+---
+
+## XGBoost Parameter Summary
+
+\begin{center}
+\tiny
+\begin{tabularx}{0.80\textwidth}{lccccc}
+\toprule
+Model & n\_estimators & max\_depth & learning\_rate & subsample & colsample\_bytree \\
+\midrule
+XGBoost-A & 200 & 3 & 0.05 & 0.8 & 0.8 \\
+XGBoost-B & 300 & 4 & 0.03 & 0.7 & 0.9 \\
+XGBoost-C & 150 & 2 & 0.10 & 0.9 & 0.7 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+\normalsize
+
+---
+
+\begin{center}
+\vspace{1cm}
+{\huge References}
+\end{center}
+
+---
+
+## {.allowframebreaks}
+
+::: {#refs}
+:::

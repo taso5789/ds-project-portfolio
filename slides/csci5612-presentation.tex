@@ -1,0 +1,691 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  ignorenonframetext,
+]{beamer}
+\usepackage{pgfpages}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+% Prevent slide breaks in the middle of a paragraph
+\widowpenalties 1 10000
+\raggedbottom
+\setbeamertemplate{part page}{
+  \centering
+  \begin{beamercolorbox}[sep=16pt,center]{part title}
+    \usebeamerfont{part title}\insertpart\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{section page}{
+  \centering
+  \begin{beamercolorbox}[sep=12pt,center]{section title}
+    \usebeamerfont{section title}\insertsection\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center]{subsection title}
+    \usebeamerfont{subsection title}\insertsubsection\par
+  \end{beamercolorbox}
+}
+\AtBeginPart{
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{
+  \frame{\subsectionpage}
+}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\usetheme[]{Madrid}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\newif\ifbibliography
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
+  \fi
+  % set entry spacing
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+\setbeamertemplate{navigation symbols}{}
+
+\AtBeginDocument{
+	\title[U.S. Inflation–Unemployment Dynamics]{The Dynamics Between Inflation and Unemployment: Empirical Evidence from U.S. Macroeconomic Data}
+	\author[Taihei Sone]{Taihei Sone\inst{1}}
+	\institute[]{\inst{1} College of Engineering and Applied Science\\University of Colorado Boulder\\Boulder, CO, USA\\Taihei.Sone@colorado.edu}
+}
+
+\setbeamerfont{caption}{size=\footnotesize}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\newcommand\blfootnote[1]{%
+	\begingroup
+	\renewcommand\thefootnote{}\footnote{#1}%
+	\addtocounter{footnote}{-1}%
+	\endgroup
+}
+
+\usepackage{array}
+\newcolumntype{L}{>{\centering\arraybackslash}m{3cm}}
+
+\usepackage[table]{xcolor}
+\usepackage{colortbl}
+\definecolor{rowred}{RGB}{255, 200, 200}
+
+\usepackage{arydshln}
+
+\usepackage{tabularx}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={The Dynamics Between Inflation and Unemployment: Empirical Evidence from U.S. Macroeconomic Data},
+  pdfauthor={Taihei Sone},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{The Dynamics Between Inflation and Unemployment: Empirical
+Evidence from U.S. Macroeconomic Data}
+\author{Taihei Sone\inst{1}}
+\date{2025-12-05}
+\institute{\inst{1} College of Engineering and Applied
+Science\textbackslash{} University of Colorado Boulder\textbackslash{}
+Boulder, CO, USA\textbackslash{}
+\href{mailto:Taihei.Sone@colorado.edu}{\nolinkurl{Taihei.Sone@colorado.edu}}}
+
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}{Outline}
+\phantomsection\label{outline}
+\tableofcontents
+\end{frame}
+
+\section{Introduction}\label{introduction}
+
+\begin{frame}{Introduction}
+\phantomsection\label{introduction-1}
+\begin{itemize}
+\tightlist
+\item
+  The inflation--unemployment relationship (Phillips curve) is
+  \textbf{unstable} and varies across economic regimes.\\
+\item
+  Recent evidence shows a \textbf{flattened and nonlinear} relationship,
+  challenging conventional interpretations.\\
+\item
+  Understanding inflation--unemployment dynamics requires identifying
+  \textbf{underlying macroeconomic factors} and \textbf{regime
+  shifts}.\\
+\item
+  Machine learning methods offer useful tools for \textbf{classifying
+  economic states}, though interpretability remains limited.
+\end{itemize}
+
+\begin{block}{This Study}
+\phantomsection\label{this-study}
+\begin{itemize}
+\tightlist
+\item
+  Identify macroeconomic factors driving inflation and unemployment (via
+  PCA)\\
+\item
+  Detect regime shifts using clustering methods\\
+\item
+  Evaluate regime identification using machine-learning classifiers
+  (Naïve Bayes, Decision Trees, XGBoost)
+\end{itemize}
+\end{block}
+\end{frame}
+
+\section{Related Literature}\label{related-literature}
+
+\begin{frame}{Related Literature}
+\phantomsection\label{related-literature-1}
+\begin{itemize}
+\tightlist
+\item
+  Evidence on the inflation--unemployment relationship: trade-off,
+  instability, and \textbf{flattening} over time
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \tiny Phillips (1958); Samuelson and Solow (1960); Muth (1961);
+    Lucas (1976); Mazumder and Ball (2011); Blanchard (2016)
+  \end{itemize}
+\item
+  Phillips curve dynamics are \textbf{nonlinear and regime-dependent}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \tiny Hazell et al. (2022)
+  \end{itemize}
+\item
+  Machine learning methods can help \textbf{identify economic states}
+  and capture nonlinear patterns
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \tiny Medeiros et al. (2021); Gogas, Papadimitriou, and Sofianos
+    (2022)
+  \end{itemize}
+\end{itemize}
+
+\textbf{Key Insight:}\\
+The inflation--unemployment relationship is \textbf{not stable}; it
+varies with economic regimes and underlying shocks.
+
+\textbf{Research Gap:}\\
+Existing studies address inflation, unemployment, regimes, or ML
+\textbf{separately}, but do not provide a \textbf{unified, reproducible
+framework} that\\
+\quad\quad - jointly analyzes both variables,\\
+\quad\quad - identifies economic regimes, and\\
+\quad\quad - evaluates regime classification with ML.
+\end{frame}
+
+\section{Data}\label{data}
+
+\begin{frame}{Data}
+\phantomsection\label{data-1}
+\begin{center}
+\scriptsize
+\renewcommand{\arraystretch}{0.8}
+\begin{tabular}{p{2.7cm} p{3.5cm} p{0.5cm} p{1.5cm} p{1.5cm}}
+\hline
+\textbf{Category} & \textbf{Variable} & \textbf{Freq.} & \textbf{Source} & \textbf{Code} \\
+\hline
+Inflation & Core PCE & M & FRED & PCEPILFE \\
+Unemployment & Unemployment Rate & M & FRED & UNRATE \\
+ & Noncyclical Unemployment & Q & FRED & NROU \\
+Regimes & Recession indicator & M & FRED & USREC \\
+ & Zero Lower Bound dummy & M & FRED & - \\
+ & COVID-19 period dummy & M & Created & - \\
+Demand & Real GDP & Q & FRED & GDPC1\\
+ & Real Potential GDP & Q & FRED & GDPPOT \\
+ & Industrial Production & M & FRED & INDPRO \\
+ & Retail Sales & M & FRED & RSAFS \\
+Supply & Crude Oil Prices & M & FRED & MCOILWTICO \\
+ & Import Price Index & M & FRED & IR \\
+ & Labor Productivity & Q & FRED & OPHNFB \\
+Labor Markets & Avg Hourly Earnings & M & FRED & CES050... \\
+ & Labor Force Participation & M & FRED & CIVPART \\
+ & Job Openings & M & FRED & JTSJOL \\
+Monetary Policy & Fed Funds Rate & M & FRED & FEDFUNDS \\
+ & Money Supply M2 & M & FRED & M2SL \\
+ & Fed Total Assets & W & FRED & WALCL \\
+Inflation Expectations & 5Y Breakeven & D & FRED & T5YIE \\
+ & 10Y Breakeven & D & FRED & T10YIE \\
+ & 1Y Exp. Inflation & M & UM Survey & PX\_MD \\
+ & 5Y Exp. Inflation & M & UM Survey & PX5\_MD \\
+\hline
+\end{tabular}
+\end{center}
+
+\tiny Full list includes 23 series retrieved via FRED API or University
+of Michigan CSV downloads.
+\end{frame}
+
+\section{Method}\label{method}
+
+\begin{frame}{Method}
+\phantomsection\label{method-1}
+\begin{itemize}
+\item
+  \textbf{PCA (Principal Component Analysis)}\\
+  Reduce dimensionality and extract latent inflation and business-cycle
+  factors.
+\item
+  \textbf{K-Means \& Hierarchical Clustering}\\
+  Identify macroeconomic regimes using unsupervised grouping.
+\item
+  \textbf{Naïve Bayes}\\
+  Simple probabilistic classifier for high-inflation / high-unemployment
+  regimes.
+\item
+  \textbf{Decision Trees}\\
+  Nonlinear, interpretable classification based on threshold rules.
+\item
+  \textbf{Boosting (XGBoost)}\\
+  Ensemble method capturing complex patterns and improving predictive
+  accuracy.
+\end{itemize}
+\end{frame}
+
+\section{Results \& Discussions}\label{results-discussions}
+
+\begin{frame}{PCA Results: Macroeconomic Factor Structure}
+\phantomsection\label{pca-results-macroeconomic-factor-structure}
+\begin{columns}
+
+  % Left side (figure)
+  \begin{column}{0.48\textwidth}
+    \begin{center}
+      \includegraphics[height=0.85\textheight]{../results/3_PCA/pca_corr_heatmap.png}
+    \end{center}
+  \end{column}
+
+  % Right side (text)
+  \begin{column}{0.52\textwidth}
+    \begin{itemize}
+      \item \textbf{PC1: Inflation Factor}  
+            Strong link to Core PCE \& expectations;  
+            negative with unemployment.
+    
+      \item \textbf{PC2–PC3: Business Cycle}  
+            Driven by production, sales,  
+            and labor-market indicators.
+    
+      \item \textbf{Policy Signals}  
+            Monetary Policy-related variables (FEDFUNDS, M2, and WALCL) spread across PCs.
+    
+      \item \textbf{Summary}  
+            PCA extracts \textbf{inflation} vs. \textbf{cycle} factors.
+    \end{itemize}
+  \end{column}
+
+\end{columns}
+\end{frame}
+
+\begin{frame}{Regime Identification via Clustering (1/3)}
+\phantomsection\label{regime-identification-via-clustering-13}
+\begin{columns}[T,totalwidth=\textwidth]
+
+  % Left: K-Means Figure
+  \begin{column}{0.48\textwidth}
+    \begin{center}
+      \textbf{K-Means (k = 12)} \\[0.3em]
+      {\tiny within shares of 0/1} \\[0.3em]
+      \includegraphics[width=0.9\textwidth]{pies_kmeans_label_binary_pies_1.png}
+    \end{center}
+  \end{column}
+
+  % Right: Text
+  \begin{column}{0.52\textwidth}
+    \textbf{Key Insight}\\[0.6em]
+    \begin{itemize}
+      \item Many clusters show \textbf{near-pure 0/1 splits} for USREC, ZLB, or COVID dummies.
+      \item Clusters align closely with well-known \textbf{macroeconomic regimes}  
+            (recession periods, ZLB episodes, COVID-19 shock).
+      \item \textbf{Summary}  
+            Clearly identifies regimes such as high-inflation periods and recessions.
+    \end{itemize}
+    {\scriptsize
+      \vspace{0.4em}
+      *Hierarchical clustering yields similar regime separation.
+    }
+  \end{column}
+
+\end{columns}
+\end{frame}
+
+\begin{frame}{Regime Identification via Clustering (2/3)}
+\phantomsection\label{regime-identification-via-clustering-23}
+\begin{columns}[T,totalwidth=\textwidth]
+
+  % Left: K-Means Figure
+  \begin{column}{0.48\textwidth}
+    \begin{center}
+      \textbf{K-Means (k = 12)} \\[0.3em]
+      {\tiny within shares of 0/1} \\[0.3em]
+      \includegraphics[width=0.9\textwidth]{pies_kmeans_label_binary_pies_2.png}
+    \end{center}
+  \end{column}
+
+  % Right: Text
+  \begin{column}{0.52\textwidth}
+    \textbf{Key Insight}\\[0.6em]
+    \begin{itemize}
+      \item Many clusters show \textbf{near-pure 0/1 splits} for USREC, ZLB, or COVID dummies.
+      \item Clusters align closely with well-known \textbf{macroeconomic regimes}  
+            (recession periods, ZLB episodes, COVID-19 shock).
+      \item \textbf{Summary}  
+            Clearly identifies regimes such as high-inflation periods and recessions.
+    \end{itemize}
+    {\scriptsize
+      \vspace{0.4em}
+      *Hierarchical clustering yields similar regime separation.
+    }
+  \end{column}
+
+\end{columns}
+\end{frame}
+
+\begin{frame}{Regime Identification via Clustering (3/3)}
+\phantomsection\label{regime-identification-via-clustering-33}
+\begin{columns}[T,totalwidth=\textwidth]
+
+  % Left: K-Means Figure
+  \begin{column}{0.48\textwidth}
+    \begin{center}
+      \textbf{K-Means (k = 12)} \\[0.3em]
+      {\tiny within shares of 0/1} \\[0.3em]
+      \includegraphics[width=0.9\textwidth]{pies_kmeans_label_binary_pies_3.png}
+    \end{center}
+  \end{column}
+
+  % Right: Text
+  \begin{column}{0.52\textwidth}
+    \textbf{Key Insight}\\[0.6em]
+    \begin{itemize}
+      \item Many clusters show \textbf{near-pure 0/1 splits} for USREC, ZLB, or COVID dummies.
+      \item Clusters align closely with well-known \textbf{macroeconomic regimes}  
+            (recession periods, ZLB episodes, COVID-19 shock).
+      \item \textbf{Summary}  
+            Clearly identifies regimes such as high-inflation periods and recessions.
+    \end{itemize}
+    {\scriptsize
+      \vspace{0.4em}
+      *Hierarchical clustering yields similar regime separation.
+    }
+  \end{column}
+
+\end{columns}
+\end{frame}
+
+\begin{frame}{ML Model Comparison: Accuracy}
+\phantomsection\label{ml-model-comparison-accuracy}
+\begin{columns}[T, totalwidth=\textwidth]
+
+% ---------- Left Column: Tables ----------
+\begin{column}{0.60\textwidth}
+
+% --- Table 1: Accuracy Comparison ---
+\scriptsize
+\begin{center}
+\begin{tabularx}{0.90\textwidth}{llc}
+\toprule
+Task & Model & Accuracy \\
+\midrule
+Unemployment & Naive Bayes & 0.86 \\
+Unemployment & Decision Tree & 0.97 \\
+Unemployment & XGBoost-A & 0.96 \\
+Unemployment & XGBoost-B & 0.96 \\
+Unemployment & XGBoost-C & 0.96 \\
+\midrule
+Inflation (YoY) & Naive Bayes & 0.86 \\
+Inflation (YoY) & Decision Tree & 0.93 \\
+Inflation (YoY) & XGBoost-A & 0.84 \\
+Inflation (YoY) & XGBoost-B & 0.83 \\
+Inflation (YoY) & XGBoost-C & 0.86 \\
+\midrule
+Inflation (MoM) & Naive Bayes & 0.71 \\
+Inflation (MoM) & Decision Tree & 0.65 \\
+Inflation (MoM) & XGBoost-A & 0.57 \\
+Inflation (MoM) & XGBoost-B & 0.64 \\
+Inflation (MoM) & XGBoost-C & 0.60 \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.4em}
+\raggedright\tiny
+Notes: XGBoost-A is a baseline configuration with moderate depth and shrinkage. XGBoost-B has deeper trees and more estimators, optimized for capturing nonlinearities. XGBoost-C is shallow but high-learning-rate model emphasizing speed and simplicity. Please refer to the appendix for detailed parameters.
+
+\end{center}
+\normalsize
+
+\end{column}
+
+% ---------- Right Column: Text ----------
+\begin{column}{0.40\textwidth}
+
+\textbf{Key Insights}\\[0.4em]
+
+\begin{itemize}
+  \small
+  \item Decision Tree and XGBoost achieve \textbf{very high accuracy} for unemployment classification.
+  \item Inflation (YoY) is predicted well by all methods, with Decision Tree performing best.
+  \item Inflation (MoM) remains the most challenging task across models.
+  \item XGBoost parameter variations show clear trade-offs between model complexity and generalization.
+\end{itemize}
+
+\end{column}
+
+\end{columns}
+\end{frame}
+
+\section{Conclusion}\label{conclusion}
+
+\begin{frame}{Conclusion, Implications, and Future Work}
+\phantomsection\label{conclusion-implications-and-future-work}
+\begin{block}{Conclusion}
+\phantomsection\label{conclusion-1}
+\begin{itemize}
+\tightlist
+\item
+  PCA reveals distinct inflation and business-cycle factors.
+\item
+  Clustering effectively identifies major macroeconomic regimes.
+\item
+  ML models classify unemployment and YoY inflation well; MoM inflation
+  is noisy.
+\end{itemize}
+\end{block}
+
+\begin{block}{Implications}
+\phantomsection\label{implications}
+\begin{itemize}
+\tightlist
+\item
+  Macroeconomic dynamics are multi-factor and complex.
+\item
+  ML can support rapid macro-state monitoring.
+\item
+  Short-term inflation measures require cautious interpretation.
+\end{itemize}
+\end{block}
+
+\begin{block}{Future Work}
+\phantomsection\label{future-work}
+\begin{itemize}
+\tightlist
+\item
+  Add high-frequency data and extend models to other methods.
+\item
+  Identify regime-specific shifts in inflation--unemployment dynamics.
+\item
+  Comparison and integration with traditional macroeconomic models.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\vspace{1cm}
+{\huge Thank you!}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\vspace{1cm}
+{\huge Appendix}
+\end{center}
+\end{frame}
+
+\begin{frame}{XGBoost Parameter Summary}
+\phantomsection\label{xgboost-parameter-summary}
+\begin{center}
+\tiny
+\begin{tabularx}{0.80\textwidth}{lccccc}
+\toprule
+Model & n\_estimators & max\_depth & learning\_rate & subsample & colsample\_bytree \\
+\midrule
+XGBoost-A & 200 & 3 & 0.05 & 0.8 & 0.8 \\
+XGBoost-B & 300 & 4 & 0.03 & 0.7 & 0.9 \\
+XGBoost-C & 150 & 2 & 0.10 & 0.9 & 0.7 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+\normalsize
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\vspace{1cm}
+{\huge References}
+\end{center}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{}
+\phantomsection\label{section}
+\phantomsection\label{refs}
+\begin{CSLReferences}{1}{0}
+\bibitem[\citeproctext]{ref-af24a568-7833-3e7d-8cb0-64a4701160e5}
+Blanchard, Olivier. 2016. {``The Phillips Curve: Back to the '60s?''}
+\emph{The American Economic Review} 106 (5): 31--34.
+\url{http://www.jstor.org/stable/43860981}.
+
+\bibitem[\citeproctext]{ref-Calvo1983StaggeredPrices}
+Calvo, Guillermo A. 1983. {``Staggered Prices in a Utility-Maximizing
+Framework.''} \emph{Journal of Monetary Economics} 12 (3): 383--98.
+\url{https://doi.org/10.1016/0304-3932(83)90060-0}.
+
+\bibitem[\citeproctext]{ref-Gogas2022}
+Gogas, Periklis, Theophilos Papadimitriou, and Emmanouil Sofianos. 2022.
+{``Forecasting Unemployment in the Euro Area with Machine Learning.''}
+\emph{Journal of Forecasting} 41 (3): 551--66.
+https://doi.org/\url{https://doi.org/10.1002/for.2824}.
+
+\bibitem[\citeproctext]{ref-Hazell2022PhillipsCurve}
+Hazell, Jonathon, Juan Herreño, Emi Nakamura, and Jón Steinsson. 2022.
+{``The Slope of the Phillips Curve: Evidence from u.s. States.''}
+\emph{The Quarterly Journal of Economics} 137 (3): 1299--1344.
+\url{https://doi.org/10.1093/qje/qjac010}.
+
+\bibitem[\citeproctext]{ref-LUCAS197619}
+Lucas, Robert E. 1976. {``Econometric Policy Evaluation: A Critique.''}
+\emph{Carnegie-Rochester Conference Series on Public Policy} 1: 19--46.
+https://doi.org/\url{https://doi.org/10.1016/S0167-2231(76)80003-6}.
+
+\bibitem[\citeproctext]{ref-MAGAZZINO2025471}
+Magazzino, Cosimo, Marco Mele, and Mihai Mutascu. 2025. {``An Artificial
+Neural Network Experiment on the Prediction of the Unemployment Rate.''}
+\emph{Journal of Policy Modeling} 47 (3): 471--91.
+https://doi.org/\url{https://doi.org/10.1016/j.jpolmod.2024.10.004}.
+
+\bibitem[\citeproctext]{ref-InflationDynamicsandtheGreatRecession}
+Mazumder, Sandeep, and Laurence M. Ball. 2011. {``Inflation Dynamics and
+the Great Recession.''} \emph{IMF Working Papers} 2011 (121): A001.
+\url{https://doi.org/10.5089/9781455263387.001.A001}.
+
+\bibitem[\citeproctext]{ref-Medeiros02012021}
+Medeiros, Marcelo C., Gabriel F. R. Vasconcelos, Álvaro Veiga, and
+Eduardo Zilberman. 2021. {``Forecasting Inflation in a Data-Rich
+Environment: The Benefits of Machine Learning Methods.''} \emph{Journal
+of Business \& Economic Statistics} 39 (1): 98--119.
+\url{https://doi.org/10.1080/07350015.2019.1637745}.
+
+\bibitem[\citeproctext]{ref-af978182-58ee-3c82-839b-4d1eba4da5d0}
+Muth, John F. 1961. {``Rational Expectations and the Theory of Price
+Movements.''} \emph{Econometrica} 29 (3): 315--35.
+\url{http://www.jstor.org/stable/1909635}.
+
+\bibitem[\citeproctext]{ref-53cde4ea-d643-31bc-af9d-f3aefdafb5f0}
+Phillips, A. W. 1958. {``The Relation Between Unemployment and the Rate
+of Change of Money Wage Rates in the United Kingdom, 1861-1957.''}
+\emph{Economica} 25 (100): 283--99.
+\url{http://www.jstor.org/stable/2550759}.
+
+\bibitem[\citeproctext]{ref-doi:10.1086ux2f261117}
+Rotemberg, Julio J. 1982. {``Sticky Prices in the United States.''}
+\emph{Journal of Political Economy} 90 (6): 1187--1211.
+\url{https://doi.org/10.1086/261117}.
+
+\bibitem[\citeproctext]{ref-90faeace-9ccb-36dc-bd27-e5d7bec510cf}
+Samuelson, Paul A., and Robert M. Solow. 1960. {``Analytical Aspects of
+Anti-Inflation Policy.''} \emph{The American Economic Review} 50 (2):
+177--94. \url{http://www.jstor.org/stable/1815021}.
+
+\bibitem[\citeproctext]{ref-bbf94ffe-9638-3ab0-8e92-b9f6f5633382}
+Sargent, Thomas J., and Neil Wallace. 1975. {``"Rational" Expectations,
+the Optimal Monetary Instrument, and the Optimal Money Supply Rule.''}
+\emph{Journal of Political Economy} 83 (2): 241--54.
+\url{http://www.jstor.org/stable/1830921}.
+
+\bibitem[\citeproctext]{ref-NBERw25987}
+Stock, James H, and Mark W Watson. 2019. {``Slack and Cyclically
+Sensitive Inflation.''} Working Paper 25987. Working Paper Series.
+National Bureau of Economic Research.
+\url{https://doi.org/10.3386/w25987}.
+
+\bibitem[\citeproctext]{ref-Woodford2003InterestAndPrices}
+Woodford, Michael. 2003. \emph{Interest and Prices: Foundations of a
+Theory of Monetary Policy}. Princeton, NJ: Princeton University Press.
+\url{https://press.princeton.edu/books/hardcover/9780691010496/interest-and-prices}.
+
+\end{CSLReferences}
+\end{frame}
+
+\end{document}
