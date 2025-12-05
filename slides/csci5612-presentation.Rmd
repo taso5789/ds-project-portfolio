@@ -141,6 +141,7 @@ Inflation Expectations & 5Y Breakeven & D & FRED & T5YIE \\
 
   % Right side (text)
   \begin{column}{0.52\textwidth}
+    \textbf{Key Insights}\\[0.6em]
     \begin{itemize}
       \item \textbf{PC1: Inflation Factor}  
             Strong link to Core PCE \& expectations;  
@@ -175,7 +176,7 @@ Inflation Expectations & 5Y Breakeven & D & FRED & T5YIE \\
 
   % Right: Text
   \begin{column}{0.52\textwidth}
-    \textbf{Key Insight}\\[0.6em]
+    \textbf{Key Insights}\\[0.6em]
     \begin{itemize}
       \item Many clusters show \textbf{near-pure 0/1 splits} for USREC, ZLB, or COVID dummies.
       \item Clusters align closely with well-known \textbf{macroeconomic regimes}  
@@ -206,7 +207,7 @@ Inflation Expectations & 5Y Breakeven & D & FRED & T5YIE \\
 
   % Right: Text
   \begin{column}{0.52\textwidth}
-    \textbf{Key Insight}\\[0.6em]
+    \textbf{Key Insights}\\[0.6em]
     \begin{itemize}
       \item Many clusters show \textbf{near-pure 0/1 splits} for USREC, ZLB, or COVID dummies.
       \item Clusters align closely with well-known \textbf{macroeconomic regimes}  
@@ -237,7 +238,7 @@ Inflation Expectations & 5Y Breakeven & D & FRED & T5YIE \\
 
   % Right: Text
   \begin{column}{0.52\textwidth}
-    \textbf{Key Insight}\\[0.6em]
+    \textbf{Key Insights}\\[0.6em]
     \begin{itemize}
       \item Many clusters show \textbf{near-pure 0/1 splits} for USREC, ZLB, or COVID dummies.
       \item Clusters align closely with well-known \textbf{macroeconomic regimes}  
@@ -299,14 +300,12 @@ Notes: XGBoost-A is a baseline configuration with moderate depth and shrinkage. 
 % ---------- Right Column: Text ----------
 \begin{column}{0.40\textwidth}
 
-\textbf{Key Insights}\\[0.4em]
+\textbf{Key Insights}\\[0.6em]
 
 \begin{itemize}
-  \small
   \item Decision Tree and XGBoost achieve \textbf{very high accuracy} for unemployment classification.
   \item Inflation (YoY) is predicted well by all methods, with Decision Tree performing best.
   \item Inflation (MoM) remains the most challenging task across models.
-  \item XGBoost parameter variations show clear trade-offs between model complexity and generalization.
 \end{itemize}
 
 \end{column}
