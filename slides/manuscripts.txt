@@ -1,0 +1,81 @@
+Now, I would like to begin my presentation. The title is The Dynamics Between Inflation and Unemployment: Empirical Evidence from U.S. Macroeconomic Data.
+Here is today's outline.
+
+
+In this study, I examine why the inflation–unemployment relationship, or the Phillips curve, has become increasingly unstable.
+Recent evidence shows that the curve has flattened and may behave nonlinearly, suggesting that its dynamics differ across economic regimes.
+To better understand these changes, it is essential to uncover the macroeconomic factors that drive inflation and unemployment, and to identify potential regime shifts in the data.
+Machine-learning methods can help classify these economic states, although their interpretability remains limited.
+
+This study has three main goals.
+First, to extract key macroeconomic factors using PCA.
+Second, to detect regime shifts through clustering methods.
+And third, to evaluate whether machine-learning models — specifically Naïve Bayes, Decision Trees, and XGBoost — can accurately identify these regimes.
+
+
+The literature shows that the inflation–unemployment relationship has evolved significantly.
+Early studies identified a trade-off, but later work revealed instability, expectation-driven shifts, and a gradual flattening of the Phillips curve. Recent evidence also shows that this relationship is nonlinear and depends on the economic regime.
+Machine-learning research further suggests that ML methods can help detect economic states and capture these nonlinear patterns.
+
+The main insight from the literature is that the Phillips curve is not stable — it varies with regimes and underlying shocks.
+
+But a gap remains: no existing study provides a unified framework that jointly analyzes inflation and unemployment, identifies regimes, and evaluates regime classification using ML tools.
+
+
+This slide summarizes the 23 macroeconomic series used in the study.
+I include core measures of inflation and unemployment, several regime indicators, and key demand and supply variables such as GDP, industrial production, and oil prices.
+Monetary policy variables — including the federal funds rate, money supply, and Fed balance sheet — are also incorporated, along with market- and survey-based inflation expectations.
+Together, these variables provide broad coverage of the macroeconomic environment for my analysis.
+
+
+I use PCA to reduce dimensionality and extract the key inflation and business-cycle factors.
+I then apply K-means and hierarchical clustering to identify macroeconomic regimes.
+For classification, I compare three methods:
+Naïve Bayes for simple probabilistic classification,
+Decision Trees for interpretable nonlinear rules,
+and XGBoost to capture more complex patterns and improve accuracy.
+
+
+Here I summarize the PCA results.
+PC1 clearly loads on inflation: it is strongly correlated with Core PCE and inflation expectations, and negatively correlated with unemployment.
+PC2 and PC3 capture business-cycle dynamics, driven by production, sales, and labor-market indicators.
+Policy-related variables, such as the federal funds rate, M2, and the Fed’s balance sheet, are spread across several components rather than concentrated in one.
+Overall, PCA separates the data into an inflation factor and a set of business-cycle factors.
+
+
+Here, I divide the data into 12 clusters and visualize the proportion of the recession dummy, the zero lower bound dummy, and the COVID dummy within each cluster. This allows me to assess whether each cluster successfully identifies distinct economic regimes. The results are presented across three pages.
+The clustering results reveal a clear pattern.
+Many clusters show almost pure 0/1 splits for variables such as the recession indicator, the zero lower bound, and the COVID-19 dummy.
+This means that the clusters align closely with well-known macroeconomic regimes — including recessions, ZLB episodes, and the COVID-19 shock.
+In summary, the clustering methods successfully identify major economic regimes, including high-inflation periods and recessions.
+Hierarchical clustering produces a very similar separation.
+
+
+This slide summarizes the classification accuracy of the machine-learning models.
+For unemployment, both the Decision Tree and all versions of XGBoost achieve very high accuracy — around 96 to 97 percent — indicating that unemployment regimes are relatively easy to classify.
+For inflation on a year-over-year basis, all models perform reasonably well, with the Decision Tree again producing the best results.
+However, month-to-month inflation is clearly the most challenging task: accuracy drops across all models, reflecting the noisier and more volatile nature of MoM inflation.
+
+
+To conclude, the PCA results show that inflation and business-cycle forces are captured by distinct factors.
+The clustering analysis successfully identifies major macroeconomic regimes, and the machine-learning models classify unemployment and year-over-year inflation quite well, although month-to-month inflation remains very noisy.
+
+These findings imply that macroeconomic dynamics are inherently multi-factor and complex, and that ML methods can support rapid monitoring of macroeconomic states. They also highlight that short-term inflation indicators require careful interpretation.
+
+For future work, I plan to incorporate higher-frequency data, examine regime-specific changes in inflation–unemployment dynamics, and compare these ML-based approaches with traditional macroeconomic models.
+
+
+Thank you for your attention.
+
+
+This is an appendix.
+
+
+And these are references.
+
+
+Thank you!
+
+
+
+
