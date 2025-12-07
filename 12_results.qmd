@@ -1,0 +1,58 @@
+---
+title: "Results"
+---
+
+# Unsupervised Learning (Clustering and PCA)
+
+::: {.justify}
+- Clustering effectively identified historical macroeconomic regimes such as recessions, the zero lower bound period, and the COVID era, and it also revealed how the short-run relationship between unemployment and inflation varies across these regimes. In particular, hierarchical clustering produced clearer and more stable groupings, confirming its usefulness for capturing structural features of the macroeconomy.
+
+- PCA effectively extracts the main sources of variation from high-dimensional macroeconomic data, clarifying the underlying structure without significant information loss. The first principal component captures an inflation factor that reflects the trade-off between inflation and unemployment, while the second and third components extract business-cycle factors related to production and labor market activity. This enables the complex dynamics of the macroeconomy to be summarized with only a few factors, providing an integrated understanding of how inflation and unemployment evolve together.
+:::
+
+# Supervised Learning (Naïve Bayes, Decision Tree, and Boosting)
+
+::: {.justify}
+- @tbl-accuracy summarizes the performance comparison across the supervised learning models. The hyperparameters for each XGBoost model shown in the table are listed in @tbl-xgb.
+
+- For indicators with relatively stable dynamics and clear regime distinctions—such as unemployment and year-over-year (YoY) inflation—the Decision Tree model achieved the highest accuracy (0.97 for unemployment and 0.93 for YoY inflation), with XGBoost performing similarly well. Naïve Bayes showed slightly lower but still practical accuracy (0.86).
+
+- In contrast, for month-over-month (MoM) inflation, which is highly volatile and dominated by short-term noise, all models showed a significant drop in performance. XGBoost was particularly unstable (0.57–0.64), whereas the simplest model, Naïve Bayes, achieved the best accuracy (0.71).
+
+- Overall, Decision Tree and XGBoost are most effective for stable macroeconomic indicators, while Naïve Bayes provides relatively robust performance for noisy, short-term measures. Model effectiveness depends strongly on the underlying characteristics of the target time series.
+
+::: {#tbl-accuracy tbl-cap="Accuracy comparison across models."}
+
+| Task            | Model         | Accuracy |
+|-----------------|---------------|----------|
+| Unemployment    | Naive Bayes   | 0.86     |
+| Unemployment    | Decision Tree | 0.97     |
+| Unemployment    | XGBoost-A     | 0.96     |
+| Unemployment    | XGBoost-B     | 0.96     |
+| Unemployment    | XGBoost-C     | 0.96     |
+| Inflation (YoY) | Naive Bayes   | 0.86     |
+| Inflation (YoY) | Decision Tree | 0.93     |
+| Inflation (YoY) | XGBoost-A     | 0.84     |
+| Inflation (YoY) | XGBoost-B     | 0.83     |
+| Inflation (YoY) | XGBoost-C     | 0.86     |
+| Inflation (MoM) | Naive Bayes   | 0.71     |
+| Inflation (MoM) | Decision Tree | 0.65     |
+| Inflation (MoM) | XGBoost-A     | 0.57     |
+| Inflation (MoM) | XGBoost-B     | 0.64     |
+| Inflation (MoM) | XGBoost-C     | 0.60     |
+
+:::
+
+Notes: XGBoost-A is a baseline configuration with moderate depth and shrinkage. XGBoost-B has deeper trees and more estimators, optimized for capturing nonlinearities. XGBoost-C is shallow but high-learning-rate model emphasizing speed and simplicity. Please refer to the appendix for detailed parameters.
+
+::: {#tbl-xgb tbl-cap="Hyperparameter settings for the XGBoost models."}
+
+| Model     | n_estimators | max_depth | learning_rate | subsample | colsample_bytree |
+|-----------|--------------|-----------|---------------|-----------|------------------|
+| XGBoost-A | 200          | 3         | 0.05          | 0.8       | 0.8              |
+| XGBoost-B | 300          | 4         | 0.03          | 0.7       | 0.9              |
+| XGBoost-C | 150          | 2         | 0.10          | 0.9       | 0.7              |
+
+:::
+
+:::

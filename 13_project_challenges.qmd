@@ -1,0 +1,31 @@
+---
+title: "Project Challenges"
+---
+
+::: {.justify}
+
+**1. Challenges Related to Data Characteristics**
+
+- A central challenge in this project arises from the intrinsic properties of macroeconomic time-series data. Many macro variables exhibit strong persistence, structural breaks, and non-stationarity, making them difficult to model with methods that rely on independent and identically distributed observations. For example, unemployment displays slow-moving dynamics, while month-to-month inflation varies irregularly with substantial noise. These heterogeneous time-series characteristics reduced the effectiveness of clustering and supervised learning methods in a uniform manner. As a result, methods that assume stable variance or clear signal structure, such as K-Means, struggled to capture economic regimes when noise dominated the input space.
+
+**2. Challenges in Unsupervised Learning (Clustering)**
+
+- Clustering revealed additional methodological challenges. K-Means relies on Euclidean distance and spherical cluster assumptions, which conflict with the complex geometry of macroeconomic state space. This led to weak silhouette scores (maximum ≈0.27), indicating limited cluster cohesion. Hierarchical clustering performed better, but its outcomes were highly sensitive to the choice of distance metric and linkage method. The number of clusters was also ambiguous—although 11–12 clusters were reasonably supported, no method provided a definitively optimal grouping. These issues highlight the difficulty of applying unsupervised learning to high-dimensional, correlated economic indicators.
+
+**3. Challenges in Feature Engineering and Dimensionality Reduction**
+
+- Feature engineering played a decisive role, particularly for supervised learning models. The performance of the Naïve Bayes classifier varied dramatically depending on preprocessing steps such as lag creation, smoothing, and oversampling. This sensitivity reflects a core scientific limitation: macroeconomic relationships depend on temporal structure, which traditional classifiers cannot fully incorporate. PCA successfully extracted inflation and business-cycle components, but interpretation remained challenging because principal components mix economic concepts and statistical variance. Although PCA improved signal clarity, the resulting components still required careful economic interpretation, demonstrating the trade-off between dimensionality reduction and interpretability.
+
+**4. Challenges in Supervised Learning Across Indicators**
+
+- Supervised learning models performed well for stable indicators (unemployment, YoY inflation) but poorly for volatile ones (MoM inflation). Decision Trees achieved high accuracy for persistent variables due to their ability to capture threshold behavior. However, they overfit easily and struggled when the signal-to-noise ratio was low. XGBoost performed comparably for unemployment and YoY inflation but deteriorated sharply for MoM inflation (as low as 0.57 accuracy), illustrating the difficulty of modeling short-run inflation with nonlinear boosting even after tuning. This divergence across indicators demonstrates a broader principle: model effectiveness depends fundamentally on the statistical properties of the target variable, not just on algorithmic sophistication.
+
+**5. Challenges in Regime Identification and Economic Interpretation**
+
+- Although clustering aligned with recession, ZLB, and COVID regimes, interpretation remained a scientific challenge. Some clusters displayed nearly balanced distributions of regime dummies, indicating ambiguous classification where macroeconomic state transitions blur. This reflects a well-known issue in regime-switching economics: actual regimes evolve gradually, whereas clustering imposes discrete boundaries. Thus, while the results were broadly consistent with historical episodes, the mapping between clusters and economic narratives requires caution. This highlights a fundamental limitation of unsupervised learning for regime identification without incorporating structural economic models.
+
+**6. Future Research Directions**
+
+- Several extensions could overcome the limitations encountered in this project. First, incorporating time-series ML methods (e.g., HMMs, Kalman filters, LSTMs) would allow dynamic modeling of state transitions rather than relying on contemporaneous clustering. Second, nonlinear dimensionality reduction (UMAP, t-SNE) could reveal alternative manifold structures beyond PCA. Third, more sophisticated regime-switching econometric models, such as Markov-switching VARs, could enhance interpretability by linking state transitions to economic relationships. Finally, expanding the feature set to include financial markets, global shocks, and supply-chain indicators could enrich the model’s ability to detect structural breaks.
+
+:::

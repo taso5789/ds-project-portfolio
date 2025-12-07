@@ -97,3 +97,67 @@ Notes: All images displayed on this page are free-use materials, unless otherwis
 ![](images/fig_01_intro_09.png){fig-align="center" width="50%"}
 :::
 :::
+
+# Q&A
+
+::: {.justify}
+**1. Is a short-run trade-off between inflation and unemployment statistically observable?**
+
+- Yes, it is. According to the results of clustering, although the relationship is not a perfect straight line, the presence of distinct clusters indicates that the short-run Phillips curve trade-off is statistically observable.
+
+- Please refer to Model/Method > [Clustering](03_clustering.qmd) for further details.
+
+**2. To what extent does the Phillips curve relationship vary across business-cycle phases (recessions and expansions) and policy regimes (e.g., the zero lower bound period or the COVID-19 era)?**
+
+- By conducting clustering based on whether the economy was in a recession or not (`USREC` = 0/1), during the Zero Lower Bound (ZLB) period or not (`ZLB_dummy` = 0/1), and in the COVID-19 era or not (`COVID_dummy` = 0/1), the negative relationship between unemployment and inflation was generally preserved in all cases. In other words, although the slope varied in strength across different economic phases and policy regimes, the basic Phillips curve relationship consistently held.
+
+- Please refer to Model/Method > [Clustering](03_clustering.qmd) for further details.
+
+**3. How do macroeconomic factors extracted through principal component analysis (PCA) affect the dynamics of inflation and unemployment?**
+
+- According to the results of PCA, macroeconomic factors extracted through PCA affect the dynamics of inflation and unemployment mainly through two channels:
+
+  1. **Inflation factor (first principal component)**: When this factor rises, both the year-over-year (YoY) and month-over-month (MoM) core inflation rates increase, while the unemployment rate decreases. This reflects a short-run Phillips curve relationship, namely **higher inflationary pressures → lower unemployment**.
+
+  1. **Business cycle factors (second and third principal components)**: These are closely linked to real economic activity (production, retail sales, and labor market indicators) and represent business cycle conditions by primarily driving unemployment fluctuations. Their effects on inflation generally emerge with a lag through the demand channel, with MoM inflation responding earlier than YoY inflation, as it is more sensitive to short-term fluctuations.
+
+- In summary, PCA facilitates the identification of distinct macroeconomic drivers, isolating an inflation factor and business cycle factors, and thereby providing a structured account of how persistent price pressures and cyclical labor market conditions jointly shape the evolution of inflation and unemployment.
+
+- Please refer to Model/Method > [PCA](04_pca.qmd) for further details.
+
+**4. Does regime identification based on data-driven clustering align with historical episodes such as stagflation or the post–global financial crisis recovery?**
+
+- Yes, it does. In both K-Means clustering and hierarchical clustering, each cluster tends to be strongly skewed toward either 0 or 1 for the dummy variables representing recessions (`USREC`), the zero lower bound period (`ZLB_dummy`), and the COVID era (`COVID_dummy`), suggesting the effectiveness of clustering in identifying regimes.
+
+- Please refer to Model/Method > [Clustering](03_clustering.qmd) for further details.
+
+**5. To what extent can simple classification models such as Naïve Bayes and decision trees accurately identify periods of high inflation or high unemployment?**
+
+- The Naïve Bayes model’s performance is highly dependent on the quality of feature engineering and preprocessing, but with appropriate transformations, its accuracy for predicting unemployment and year-over-year inflation improved significantly to 86.4%. In contrast, forecasting month-over-month inflation remained difficult, reflecting the model’s structural limitation of assuming feature independence. Overall, with well-designed features, Naïve Bayes can function as a powerful regime-classification model.
+
+- The Decision Tree model performed exceptionally well for predicting persistent macroeconomic states such as unemployment and year-over-year inflation, achieving high accuracy and stable results. However, its performance declined sharply when forecasting noisy, short-term fluctuations like month-over-month inflation, indicating difficulty in separating signal from noise. Overall, the model’s effectiveness depends heavily on the stability and volatility characteristics of the target time series.
+
+- Please refer to Model/Method > [Naïve Bayes](05_naive_bayes.qmd) and Model/Method > [Decision Trees](06_decision_trees.qmd) for further details.
+
+**6. Does the support vector machine (SVM) improve regime-classification accuracy compared with simpler classifiers such as Naïve Bayes and decision trees?**
+
+- This question cannot be answered because the applications of SVM, regression models, and neural networks were discontinued.
+
+**7. How do traditional regression models (OLS, VAR, Elastic Net) and machine learning models (SVM, neural networks) differ in their performance when forecasting inflation and unemployment one, three, and six months ahead?**
+
+- This question cannot be answered because the applications of SVM, regression models, and neural networks were discontinued.
+
+**8. Can performance differences across forecasting models be judged statistically significant using tests such as the Diebold–Mariano test?**
+
+- This question cannot be answered within the scope of the current project because no forecasting models or time-series prediction errors were generated, and DM tests require error series from competing models.
+
+**9. According to Granger causality tests, what is the causal direction between inflation and unemployment (inflation → unemployment or unemployment → inflation)?**
+
+- This question cannot be addressed because Granger causality analysis requires VAR estimation and stationarity testing, which were not included in the project.
+
+**10. Through local projection analysis, how do demand shocks and supply shocks dynamically affect inflation and unemployment?**
+
+- This question cannot be evaluated because the project did not perform shock identification or local-projection regressions necessary for tracing dynamic responses to macroeconomic shocks.
+
+:::
+

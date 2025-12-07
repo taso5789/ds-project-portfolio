@@ -104,7 +104,7 @@ Notes: All images displayed on this page are free-use materials, unless otherwis
 ::: {.justify}
 **Is a short-run trade-off between inflation and unemployment statistically observable?**
 
-- Yes, it is. In both figures (2D scatterplots of unemployment rate `UNRATE` and inflation rate `PCEPI YoY`), periods of higher inflation coincide with lower unemployment clusters (upper-left), while periods of higher unemployment coincide with lower or even negative inflation clusters (lower-right).
+- Yes, it is. In both figures (2D scatterplots of unemployment rate `UNRATE` and inflation rate `PCEPILFE YoY`), periods of higher inflation coincide with lower unemployment clusters (upper-left), while periods of higher unemployment coincide with lower or even negative inflation clusters (lower-right).
 
 - Although the relationship is not a perfect straight line, the presence of distinct clusters indicates that the short-run Phillips curve trade-off is statistically observable.
 
@@ -271,7 +271,7 @@ Notes: All images displayed on this page are free-use materials, unless otherwis
 ::: {.justify}
 **Does regime identification based on data-driven clustering align with historical episodes such as stagflation or the post–global financial crisis recovery?**
 
-- Yes, it does. In both K-Means clustering and hierarchical clustering, each cluster tends to be strongly skewed toward either 0 or 1 for the dummy variables representing recessions (USREC), the zero lower bound period (ZLB_dummy), and the COVID era (COVID_dummy), suggesting the effectiveness of clustering in identifying regimes.
+- Yes, it does. In both K-Means clustering and hierarchical clustering, each cluster tends to be strongly skewed toward either 0 or 1 for the dummy variables representing recessions (`USREC`), the zero lower bound period (`ZLB_dummy`), and the COVID era (`COVID_dummy`), suggesting the effectiveness of clustering in identifying regimes.
 :::
 
 ### K-Means Clustering

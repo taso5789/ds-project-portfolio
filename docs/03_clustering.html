@@ -137,23 +137,19 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Decision Trees</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./07_svm.html">
- <span class="dropdown-text">Support Vector Machine (SVM)</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./08_regression.html">
- <span class="dropdown-text">Regression</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./09_nn.html">
- <span class="dropdown-text">Neural Network (NN)</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="./11_boosting.html">
  <span class="dropdown-text">Boosting</span></a>
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./12_results.html"> 
+<span class="menu-text">Results</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./13_project_challenges.html"> 
+<span class="menu-text">Project Challenges</span></a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="./10_conclusions.html"> 
 <span class="menu-text">Conclusions</span></a>
@@ -351,7 +347,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="justify">
 <p><strong>Is a short-run trade-off between inflation and unemployment statistically observable?</strong></p>
 <ul>
-<li><p>Yes, it is. In both figures (2D scatterplots of unemployment rate <code>UNRATE</code> and inflation rate <code>PCEPI YoY</code>), periods of higher inflation coincide with lower unemployment clusters (upper-left), while periods of higher unemployment coincide with lower or even negative inflation clusters (lower-right).</p></li>
+<li><p>Yes, it is. In both figures (2D scatterplots of unemployment rate <code>UNRATE</code> and inflation rate <code>PCEPILFE YoY</code>), periods of higher inflation coincide with lower unemployment clusters (upper-left), while periods of higher unemployment coincide with lower or even negative inflation clusters (lower-right).</p></li>
 <li><p>Although the relationship is not a perfect straight line, the presence of distinct clusters indicates that the short-run Phillips curve trade-off is statistically observable.</p></li>
 <li><p>In the figures below, the left side shows the results of K-Means Clustering, while the right side shows the results of Hierarchical Clustering.</p></li>
 </ul>
@@ -560,7 +556,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="justify">
 <p><strong>Does regime identification based on data-driven clustering align with historical episodes such as stagflation or the post–global financial crisis recovery?</strong></p>
 <ul>
-<li>Yes, it does. In both K-Means clustering and hierarchical clustering, each cluster tends to be strongly skewed toward either 0 or 1 for the dummy variables representing recessions (USREC), the zero lower bound period (ZLB_dummy), and the COVID era (COVID_dummy), suggesting the effectiveness of clustering in identifying regimes.</li>
+<li>Yes, it does. In both K-Means clustering and hierarchical clustering, each cluster tends to be strongly skewed toward either 0 or 1 for the dummy variables representing recessions (<code>USREC</code>), the zero lower bound period (<code>ZLB_dummy</code>), and the COVID era (<code>COVID_dummy</code>), suggesting the effectiveness of clustering in identifying regimes.</li>
 </ul>
 </div>
 <section id="k-means-clustering" class="level3">

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Support Vector Machine (SVM) – Data Science Project</title>
+<title>Project Challenges – Data Science Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -137,23 +137,19 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Decision Trees</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./07_svm.html">
- <span class="dropdown-text">Support Vector Machine (SVM)</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./08_regression.html">
- <span class="dropdown-text">Regression</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./09_nn.html">
- <span class="dropdown-text">Neural Network (NN)</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="./11_boosting.html">
  <span class="dropdown-text">Boosting</span></a>
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./12_results.html"> 
+<span class="menu-text">Results</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./13_project_challenges.html" aria-current="page"> 
+<span class="menu-text">Project Challenges</span></a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="./10_conclusions.html"> 
 <span class="menu-text">Conclusions</span></a>
@@ -181,25 +177,15 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#data-prep" id="toc-data-prep" class="nav-link" data-scroll-target="#data-prep">Data Prep</a></li>
-  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
-  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Support Vector Machine (SVM)</h1>
+<h1 class="title">Project Challenges</h1>
 </div>
 
 
@@ -216,38 +202,34 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="overview" class="level1">
-<h1>Overview</h1>
+<div class="justify">
+<p><strong>1. Challenges Related to Data Characteristics</strong></p>
 <ul>
-<li>xxx</li>
+<li>A central challenge in this project arises from the intrinsic properties of macroeconomic time-series data. Many macro variables exhibit strong persistence, structural breaks, and non-stationarity, making them difficult to model with methods that rely on independent and identically distributed observations. For example, unemployment displays slow-moving dynamics, while month-to-month inflation varies irregularly with substantial noise. These heterogeneous time-series characteristics reduced the effectiveness of clustering and supervised learning methods in a uniform manner. As a result, methods that assume stable variance or clear signal structure, such as K-Means, struggled to capture economic regimes when noise dominated the input space.</li>
 </ul>
-</section>
-<section id="data-prep" class="level1">
-<h1>Data Prep</h1>
+<p><strong>2. Challenges in Unsupervised Learning (Clustering)</strong></p>
 <ul>
-<li>xxx</li>
+<li>Clustering revealed additional methodological challenges. K-Means relies on Euclidean distance and spherical cluster assumptions, which conflict with the complex geometry of macroeconomic state space. This led to weak silhouette scores (maximum ≈0.27), indicating limited cluster cohesion. Hierarchical clustering performed better, but its outcomes were highly sensitive to the choice of distance metric and linkage method. The number of clusters was also ambiguous—although 11–12 clusters were reasonably supported, no method provided a definitively optimal grouping. These issues highlight the difficulty of applying unsupervised learning to high-dimensional, correlated economic indicators.</li>
 </ul>
-</section>
-<section id="code" class="level1">
-<h1>Code</h1>
+<p><strong>3. Challenges in Feature Engineering and Dimensionality Reduction</strong></p>
 <ul>
-<li>xxx</li>
+<li>Feature engineering played a decisive role, particularly for supervised learning models. The performance of the Naïve Bayes classifier varied dramatically depending on preprocessing steps such as lag creation, smoothing, and oversampling. This sensitivity reflects a core scientific limitation: macroeconomic relationships depend on temporal structure, which traditional classifiers cannot fully incorporate. PCA successfully extracted inflation and business-cycle components, but interpretation remained challenging because principal components mix economic concepts and statistical variance. Although PCA improved signal clarity, the resulting components still required careful economic interpretation, demonstrating the trade-off between dimensionality reduction and interpretability.</li>
 </ul>
-</section>
-<section id="results" class="level1">
-<h1>Results</h1>
+<p><strong>4. Challenges in Supervised Learning Across Indicators</strong></p>
 <ul>
-<li>xxx</li>
+<li>Supervised learning models performed well for stable indicators (unemployment, YoY inflation) but poorly for volatile ones (MoM inflation). Decision Trees achieved high accuracy for persistent variables due to their ability to capture threshold behavior. However, they overfit easily and struggled when the signal-to-noise ratio was low. XGBoost performed comparably for unemployment and YoY inflation but deteriorated sharply for MoM inflation (as low as 0.57 accuracy), illustrating the difficulty of modeling short-run inflation with nonlinear boosting even after tuning. This divergence across indicators demonstrates a broader principle: model effectiveness depends fundamentally on the statistical properties of the target variable, not just on algorithmic sophistication.</li>
 </ul>
-</section>
-<section id="conclusions" class="level1">
-<h1>Conclusions</h1>
+<p><strong>5. Challenges in Regime Identification and Economic Interpretation</strong></p>
 <ul>
-<li>xxx</li>
+<li>Although clustering aligned with recession, ZLB, and COVID regimes, interpretation remained a scientific challenge. Some clusters displayed nearly balanced distributions of regime dummies, indicating ambiguous classification where macroeconomic state transitions blur. This reflects a well-known issue in regime-switching economics: actual regimes evolve gradually, whereas clustering imposes discrete boundaries. Thus, while the results were broadly consistent with historical episodes, the mapping between clusters and economic narratives requires caution. This highlights a fundamental limitation of unsupervised learning for regime identification without incorporating structural economic models.</li>
 </ul>
+<p><strong>6. Future Research Directions</strong></p>
+<ul>
+<li>Several extensions could overcome the limitations encountered in this project. First, incorporating time-series ML methods (e.g., HMMs, Kalman filters, LSTMs) would allow dynamic modeling of state transitions rather than relying on contemporaneous clustering. Second, nonlinear dimensionality reduction (UMAP, t-SNE) could reveal alternative manifold structures beyond PCA. Third, more sophisticated regime-switching econometric models, such as Markov-switching VARs, could enhance interpretability by linking state transitions to economic relationships. Finally, expanding the feature set to include financial markets, global shocks, and supply-chain indicators could enrich the model’s ability to detect structural breaks.</li>
+</ul>
+</div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

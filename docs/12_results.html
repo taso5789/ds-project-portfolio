@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Regression – Data Science Project</title>
+<title>Results – Data Science Project</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -137,23 +137,19 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Decision Trees</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./07_svm.html">
- <span class="dropdown-text">Support Vector Machine (SVM)</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./08_regression.html">
- <span class="dropdown-text">Regression</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./09_nn.html">
- <span class="dropdown-text">Neural Network (NN)</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="./11_boosting.html">
  <span class="dropdown-text">Boosting</span></a>
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="./12_results.html" aria-current="page"> 
+<span class="menu-text">Results</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./13_project_challenges.html"> 
+<span class="menu-text">Project Challenges</span></a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="./10_conclusions.html"> 
 <span class="menu-text">Conclusions</span></a>
@@ -186,11 +182,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#data-prep" id="toc-data-prep" class="nav-link" data-scroll-target="#data-prep">Data Prep</a></li>
-  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
-  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">Conclusions</a></li>
+  <li><a href="#unsupervised-learning-clustering-and-pca" id="toc-unsupervised-learning-clustering-and-pca" class="nav-link active" data-scroll-target="#unsupervised-learning-clustering-and-pca">Unsupervised Learning (Clustering and PCA)</a></li>
+  <li><a href="#supervised-learning-naïve-bayes-decision-tree-and-boosting" id="toc-supervised-learning-naïve-bayes-decision-tree-and-boosting" class="nav-link" data-scroll-target="#supervised-learning-naïve-bayes-decision-tree-and-boosting">Supervised Learning (Naïve Bayes, Decision Tree, and Boosting)</a></li>
   </ul>
 </nav>
     </div>
@@ -199,7 +192,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Regression</h1>
+<h1 class="title">Results</h1>
 </div>
 
 
@@ -216,35 +209,176 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="overview" class="level1">
-<h1>Overview</h1>
+<section id="unsupervised-learning-clustering-and-pca" class="level1">
+<h1>Unsupervised Learning (Clustering and PCA)</h1>
+<div class="justify">
 <ul>
-<li>xxx</li>
+<li><p>Clustering effectively identified historical macroeconomic regimes such as recessions, the zero lower bound period, and the COVID era, and it also revealed how the short-run relationship between unemployment and inflation varies across these regimes. In particular, hierarchical clustering produced clearer and more stable groupings, confirming its usefulness for capturing structural features of the macroeconomy.</p></li>
+<li><p>PCA effectively extracts the main sources of variation from high-dimensional macroeconomic data, clarifying the underlying structure without significant information loss. The first principal component captures an inflation factor that reflects the trade-off between inflation and unemployment, while the second and third components extract business-cycle factors related to production and labor market activity. This enables the complex dynamics of the macroeconomy to be summarized with only a few factors, providing an integrated understanding of how inflation and unemployment evolve together.</p></li>
 </ul>
+</div>
 </section>
-<section id="data-prep" class="level1">
-<h1>Data Prep</h1>
+<section id="supervised-learning-naïve-bayes-decision-tree-and-boosting" class="level1">
+<h1>Supervised Learning (Naïve Bayes, Decision Tree, and Boosting)</h1>
+<div class="justify">
 <ul>
-<li>xxx</li>
+<li><p><a href="#tbl-accuracy" class="quarto-xref">Table&nbsp;1</a> summarizes the performance comparison across the supervised learning models. The hyperparameters for each XGBoost model shown in the table are listed in <a href="#tbl-xgb" class="quarto-xref">Table&nbsp;2</a>.</p></li>
+<li><p>For indicators with relatively stable dynamics and clear regime distinctions—such as unemployment and year-over-year (YoY) inflation—the Decision Tree model achieved the highest accuracy (0.97 for unemployment and 0.93 for YoY inflation), with XGBoost performing similarly well. Naïve Bayes showed slightly lower but still practical accuracy (0.86).</p></li>
+<li><p>In contrast, for month-over-month (MoM) inflation, which is highly volatile and dominated by short-term noise, all models showed a significant drop in performance. XGBoost was particularly unstable (0.57–0.64), whereas the simplest model, Naïve Bayes, achieved the best accuracy (0.71).</p></li>
+<li><p>Overall, Decision Tree and XGBoost are most effective for stable macroeconomic indicators, while Naïve Bayes provides relatively robust performance for noisy, short-term measures. Model effectiveness depends strongly on the underlying characteristics of the target time series.</p></li>
 </ul>
-</section>
-<section id="code" class="level1">
-<h1>Code</h1>
-<ul>
-<li>xxx</li>
-</ul>
-</section>
-<section id="results" class="level1">
-<h1>Results</h1>
-<ul>
-<li>xxx</li>
-</ul>
-</section>
-<section id="conclusions" class="level1">
-<h1>Conclusions</h1>
-<ul>
-<li>xxx</li>
-</ul>
+<div id="tbl-accuracy" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-accuracy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Accuracy comparison across models.
+</figcaption>
+<div aria-describedby="tbl-accuracy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Task</th>
+<th>Model</th>
+<th>Accuracy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Unemployment</td>
+<td>Naive Bayes</td>
+<td>0.86</td>
+</tr>
+<tr class="even">
+<td>Unemployment</td>
+<td>Decision Tree</td>
+<td>0.97</td>
+</tr>
+<tr class="odd">
+<td>Unemployment</td>
+<td>XGBoost-A</td>
+<td>0.96</td>
+</tr>
+<tr class="even">
+<td>Unemployment</td>
+<td>XGBoost-B</td>
+<td>0.96</td>
+</tr>
+<tr class="odd">
+<td>Unemployment</td>
+<td>XGBoost-C</td>
+<td>0.96</td>
+</tr>
+<tr class="even">
+<td>Inflation (YoY)</td>
+<td>Naive Bayes</td>
+<td>0.86</td>
+</tr>
+<tr class="odd">
+<td>Inflation (YoY)</td>
+<td>Decision Tree</td>
+<td>0.93</td>
+</tr>
+<tr class="even">
+<td>Inflation (YoY)</td>
+<td>XGBoost-A</td>
+<td>0.84</td>
+</tr>
+<tr class="odd">
+<td>Inflation (YoY)</td>
+<td>XGBoost-B</td>
+<td>0.83</td>
+</tr>
+<tr class="even">
+<td>Inflation (YoY)</td>
+<td>XGBoost-C</td>
+<td>0.86</td>
+</tr>
+<tr class="odd">
+<td>Inflation (MoM)</td>
+<td>Naive Bayes</td>
+<td>0.71</td>
+</tr>
+<tr class="even">
+<td>Inflation (MoM)</td>
+<td>Decision Tree</td>
+<td>0.65</td>
+</tr>
+<tr class="odd">
+<td>Inflation (MoM)</td>
+<td>XGBoost-A</td>
+<td>0.57</td>
+</tr>
+<tr class="even">
+<td>Inflation (MoM)</td>
+<td>XGBoost-B</td>
+<td>0.64</td>
+</tr>
+<tr class="odd">
+<td>Inflation (MoM)</td>
+<td>XGBoost-C</td>
+<td>0.60</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Notes: XGBoost-A is a baseline configuration with moderate depth and shrinkage. XGBoost-B has deeper trees and more estimators, optimized for capturing nonlinearities. XGBoost-C is shallow but high-learning-rate model emphasizing speed and simplicity. Please refer to the appendix for detailed parameters.</p>
+<div id="tbl-xgb" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-xgb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Hyperparameter settings for the XGBoost models.
+</figcaption>
+<div aria-describedby="tbl-xgb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 17%">
+<col style="width: 13%">
+<col style="width: 18%">
+<col style="width: 13%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>n_estimators</th>
+<th>max_depth</th>
+<th>learning_rate</th>
+<th>subsample</th>
+<th>colsample_bytree</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>XGBoost-A</td>
+<td>200</td>
+<td>3</td>
+<td>0.05</td>
+<td>0.8</td>
+<td>0.8</td>
+</tr>
+<tr class="even">
+<td>XGBoost-B</td>
+<td>300</td>
+<td>4</td>
+<td>0.03</td>
+<td>0.7</td>
+<td>0.9</td>
+</tr>
+<tr class="odd">
+<td>XGBoost-C</td>
+<td>150</td>
+<td>2</td>
+<td>0.10</td>
+<td>0.9</td>
+<td>0.7</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
 
 
 </section>

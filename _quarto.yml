@@ -10,11 +10,13 @@ project:
     - 04_pca.qmd
     - 05_naive_bayes.qmd
     - 06_decision_trees.qmd
-    - 07_svm.qmd
-    - 08_regression.qmd
-    - 09_nn.qmd
+    # - 07_svm.qmd
+    # - 08_regression.qmd
+    # - 09_nn.qmd
     - 10_conclusions.qmd
     - 11_boosting.qmd
+    - 12_results.qmd
+    - 13_project_challenges.qmd
   output-dir: docs
   resources:
     - images/**
@@ -46,14 +48,18 @@ website:
           href: 05_naive_bayes.qmd
         - text: "Decision Trees"
           href: 06_decision_trees.qmd
-        - text: "Support Vector Machine (SVM)"
-          href: 07_svm.qmd
-        - text: "Regression"
-          href: 08_regression.qmd
-        - text: "Neural Network (NN)"
-          href: 09_nn.qmd
+        # - text: "Support Vector Machine (SVM)"
+        #   href: 07_svm.qmd
+        # - text: "Regression"
+        #   href: 08_regression.qmd
+        # - text: "Neural Network (NN)"
+        #   href: 09_nn.qmd
         - text: "Boosting"
           href: 11_boosting.qmd
+      - text: "Results"
+        href: 12_results.qmd
+      - text: "Project Challenges"
+        href: 13_project_challenges.qmd
       - text: "Conclusions"
         href: 10_conclusions.qmd
     right:
@@ -67,6 +73,8 @@ format:
     theme: cosmo
     css: styles.css
     toc: true
+
+
 
 
 

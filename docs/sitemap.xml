@@ -1,59 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://taso5789.github.io/ds-project-portfolio/13_project_challenges.html</loc>
+    <lastmod>2025-12-07T17:29:06.099Z</lastmod>
+  </url>
+  <url>
     <loc>https://taso5789.github.io/ds-project-portfolio/11_boosting.html</loc>
     <lastmod>2025-11-22T01:59:57.556Z</lastmod>
-  </url>
-  <url>
-    <loc>https://taso5789.github.io/ds-project-portfolio/09_nn.html</loc>
-    <lastmod>2025-09-23T21:58:08.245Z</lastmod>
-  </url>
-  <url>
-    <loc>https://taso5789.github.io/ds-project-portfolio/07_svm.html</loc>
-    <lastmod>2025-09-23T21:58:02.201Z</lastmod>
-  </url>
-  <url>
-    <loc>https://taso5789.github.io/ds-project-portfolio/05_naive_bayes.html</loc>
-    <lastmod>2025-10-21T01:34:08.614Z</lastmod>
-  </url>
-  <url>
-    <loc>https://taso5789.github.io/ds-project-portfolio/03_clustering.html</loc>
-    <lastmod>2025-09-26T02:20:40.594Z</lastmod>
-  </url>
-  <url>
-    <loc>https://taso5789.github.io/ds-project-portfolio/02_02_data_gathering_and_cleaning.html</loc>
-    <lastmod>2025-09-24T02:40:14.636Z</lastmod>
-  </url>
-  <url>
-    <loc>https://taso5789.github.io/ds-project-portfolio/01_introduction.html</loc>
-    <lastmod>2025-09-08T03:36:01.877Z</lastmod>
-  </url>
-  <url>
-    <loc>https://taso5789.github.io/ds-project-portfolio/index.html</loc>
-    <lastmod>2025-09-02T21:53:25.282Z</lastmod>
-  </url>
-  <url>
-    <loc>https://taso5789.github.io/ds-project-portfolio/02_01_overview.html</loc>
-    <lastmod>2025-09-08T23:44:17.150Z</lastmod>
-  </url>
-  <url>
-    <loc>https://taso5789.github.io/ds-project-portfolio/02_03_data_visualization.html</loc>
-    <lastmod>2025-09-08T03:23:10.215Z</lastmod>
-  </url>
-  <url>
-    <loc>https://taso5789.github.io/ds-project-portfolio/04_pca.html</loc>
-    <lastmod>2025-09-26T02:30:07.415Z</lastmod>
   </url>
   <url>
     <loc>https://taso5789.github.io/ds-project-portfolio/06_decision_trees.html</loc>
     <lastmod>2025-11-21T00:29:33.242Z</lastmod>
   </url>
   <url>
-    <loc>https://taso5789.github.io/ds-project-portfolio/08_regression.html</loc>
-    <lastmod>2025-09-23T21:58:05.051Z</lastmod>
+    <loc>https://taso5789.github.io/ds-project-portfolio/04_pca.html</loc>
+    <lastmod>2025-09-26T02:30:07.415Z</lastmod>
+  </url>
+  <url>
+    <loc>https://taso5789.github.io/ds-project-portfolio/02_03_data_visualization.html</loc>
+    <lastmod>2025-09-08T03:23:10.215Z</lastmod>
+  </url>
+  <url>
+    <loc>https://taso5789.github.io/ds-project-portfolio/02_01_overview.html</loc>
+    <lastmod>2025-09-08T23:44:17.150Z</lastmod>
+  </url>
+  <url>
+    <loc>https://taso5789.github.io/ds-project-portfolio/index.html</loc>
+    <lastmod>2025-12-07T16:03:23.391Z</lastmod>
+  </url>
+  <url>
+    <loc>https://taso5789.github.io/ds-project-portfolio/01_introduction.html</loc>
+    <lastmod>2025-12-07T20:18:06.425Z</lastmod>
+  </url>
+  <url>
+    <loc>https://taso5789.github.io/ds-project-portfolio/02_02_data_gathering_and_cleaning.html</loc>
+    <lastmod>2025-09-24T02:40:14.636Z</lastmod>
+  </url>
+  <url>
+    <loc>https://taso5789.github.io/ds-project-portfolio/03_clustering.html</loc>
+    <lastmod>2025-12-07T16:25:51.808Z</lastmod>
+  </url>
+  <url>
+    <loc>https://taso5789.github.io/ds-project-portfolio/05_naive_bayes.html</loc>
+    <lastmod>2025-10-21T01:34:08.614Z</lastmod>
   </url>
   <url>
     <loc>https://taso5789.github.io/ds-project-portfolio/10_conclusions.html</loc>
-    <lastmod>2025-08-31T23:09:24.343Z</lastmod>
+    <lastmod>2025-12-07T17:36:38.888Z</lastmod>
+  </url>
+  <url>
+    <loc>https://taso5789.github.io/ds-project-portfolio/12_results.html</loc>
+    <lastmod>2025-12-07T17:20:05.603Z</lastmod>
   </url>
 </urlset>

@@ -2,12 +2,14 @@
 title: "Conclusions"
 ---
 
-- xxx
+::: {.justify}
 
-- xxx
+- This project demonstrated that a combination of PCA, clustering, and supervised learning provides meaningful insights into macroeconomic dynamics, particularly the inflation–unemployment relationship and the identification of economic regimes. PCA effectively extracted inflation and business-cycle components, while clustering revealed groupings broadly consistent with historical U.S. macroeconomic episodes. Supervised models performed well for persistent indicators such as unemployment and YoY inflation but were less successful for noisy short-term measures like MoM inflation.
 
-- xxx
+- Overall, the project shows that machine-learning methods can uncover economic structure but must be applied with careful consideration of data properties, model assumptions, and interpretability. These findings highlight both the potential and limitations of ML techniques in macroeconomic analysis and point toward promising future directions involving dynamic and nonlinear modeling frameworks.
 
-- xxx
+:::
 
-- xxx
+<div style="text-align: right; font-style: italic; color: #777; letter-spacing: 2px; margin-top: 2em;">
+  Fin
+</div>
