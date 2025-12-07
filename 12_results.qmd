@@ -43,7 +43,7 @@ title: "Results"
 
 :::
 
-Notes: XGBoost-A is a baseline configuration with moderate depth and shrinkage. XGBoost-B has deeper trees and more estimators, optimized for capturing nonlinearities. XGBoost-C is shallow but high-learning-rate model emphasizing speed and simplicity. Please refer to the appendix for detailed parameters.
+Notes: XGBoost-A is a baseline configuration with moderate depth and shrinkage. XGBoost-B has deeper trees and more estimators, optimized for capturing nonlinearities. XGBoost-C is shallow but high-learning-rate model emphasizing speed and simplicity. Please refer to @tbl-xgb for detailed parameters.
 
 ::: {#tbl-xgb tbl-cap="Hyperparameter settings for the XGBoost models."}
 
